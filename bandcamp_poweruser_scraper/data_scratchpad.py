@@ -1,8 +1,6 @@
 import requests
 import json
 import time
-from requests.auth import HTTPBasicAuth
-
 from bs4 import BeautifulSoup
 
 nice = 3 # seconds to wait between calls
@@ -10,8 +8,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleW
 bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
-count = 1
-switch = 5
+count = 10
+switch = 0
 
 if switch == 0:
     # get list of purchased items
@@ -35,7 +33,7 @@ if switch == 0:
         item_title = i['item_title']
         item_url = i['item_url']
         item_img_url = i['item_art_url']
-        item_album_id = i['album_id']
+        item_album_id = i['album_id'] # BUG: can be None if a single track release
         item_album_title = i['album_title']
         print(item_id, item_type, item_band_id, item_band_name, item_band_url)
         print("\t", item_also_collected_count, item_title, item_url, item_img_url)
@@ -208,7 +206,7 @@ elif switch == 5:
 elif switch == 6:
     # track info
 
-    url = "https://ehua.bandcamp.com/track/piume"
+    url = "https://twoshell.bandcamp.com/track/no-reply-1"
     r = requests.get(url, headers=headers)
     soup = BeautifulSoup(r.text, 'html.parser')
 
@@ -222,7 +220,7 @@ elif switch == 6:
     label_id = data_band['id']
     label_name = data_band['name']
     label_img_url = soup.find_all("img",attrs={"class":"band-photo"})[0]['src']
-    label_url = soup.find_all("div",attrs={"class":"desktop-header"})[0].a['href']
+    label_url = soup.find_all("div",attrs={"id":"name-section"})[0].h3.span.a['href']
     print("LABEL: ",label_id, label_name, label_url, label_img_url)
 
     album_id = data_embed['album_embed_data']['tralbum_param']['value']
@@ -241,13 +239,29 @@ elif switch == 6:
     track_artist = data_tralbum['artist']
     print("TRACK: ", item_type, track_id, track_artist, track_title, track_number, track_url)
 
-    track_mp3 = data_tralbum['trackinfo'][0]['file']['mp3-128']
+    track_mp3 = data_tralbum['trackinfo'][0]['file']
+    if track_mp3 is not None:
+        track_mp3 = track_mp3['mp3-128']
     track_duration = data_tralbum['trackinfo'][0]['duration']
     print(track_mp3, track_duration)
 
     artist_id = data_tralbum['current']['band_id']
-    selling_artist_id = data_tralbum['current']['selling_band_id']    
-    print(artist_id, selling_artist_id)
+    selling_artist_id = data_tralbum['current']['selling_band_id']  
+    album_is_preorder =  data_tralbum['album_is_preorder']
+    
+    # pricing & physical only checks
+    digital_items = soup.find_all("li", attrs={"class":"buyItem digital"})
+    default_price = "NO DIGITAL"
+    if len(digital_items) > 0:        
+        price_div = digital_items[0].find_all("span", attrs={"class":"nobreak"})
+        if len(price_div) > 0:
+            default_price = price_div[0].find_all("span",attrs={"class":"base-text-color"})[0].text
+        else:
+            default_price = "FREE"
+
+    currency = soup.find_all("script",attrs={"data-band-currency":True})[0]['data-band-currency']
+
+    print("SELLING: ", artist_id, selling_artist_id, album_is_preorder, default_price, currency)
 
     # BOUGHT BY        
     token = f"{int(time.time())}::::"
@@ -270,12 +284,6 @@ elif switch == 6:
 
         buyer_img_url = "https://f4.bcbits.com/img/" + str(buyer_img_id).zfill(10) + "_42.jpg"
         print(buyer_id, buyer_username, buyer_name, buyer_img_id, buyer_img_url)   
- 
-    # TODO: is_pre_order?
-    # TODO: digital_price, fixed, free
-    # TODO: physical only?
-    # TODO: compilation?
-    # TODO: doesn't have mp3s
-    
+
 
     
