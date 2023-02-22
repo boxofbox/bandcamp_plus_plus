@@ -9,9 +9,34 @@ bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
 count = 10
-switch = 0
+switch = -2
 
-if switch == 0:
+if switch == -2:
+    # get list of purchased items
+    url = "https://bandcamp.com/api/fancollection/1/collection_items"
+    token = f"{int(time.time())}::a::" 
+    blob = {
+        "fan_id": "ab", #100002020202020020202,
+        "older_than_token": token,
+        "count": 1,    
+    }   
+    r = requests.post(url, data=json.dumps(blob)).json()      
+    if r.get('error',False) is True:
+        print("ERROR: ", r['error_message'])
+        exit()
+    items = r['items']
+    print(items)
+
+if switch == -1:
+    url = "https://bandcamp.com/boxofbox"
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    text_404 = "Sorry, that something"
+    is_404 = len(soup.find_all(lambda tag: tag.name == "h2" and text_404 in tag.text)) > 0
+
+    print(is_404)
+
+elif switch == 0:
     # get list of purchased items
     url = "https://bandcamp.com/api/fancollection/1/collection_items"
     token = f"{int(time.time())}::a::" 
@@ -284,6 +309,3 @@ elif switch == 6:
 
         buyer_img_url = "https://f4.bcbits.com/img/" + str(buyer_img_id).zfill(10) + "_42.jpg"
         print(buyer_id, buyer_username, buyer_name, buyer_img_id, buyer_img_url)   
-
-
-    
