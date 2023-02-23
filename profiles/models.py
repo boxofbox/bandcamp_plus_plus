@@ -6,17 +6,18 @@ class Profile(models.Model):
     username = models.TextField
     name = models.TextField
     
-    followers = models.ManyToManyField("self", symmetrical=False) # TODO check symmetric, related_name
-    following_fans = models.ManyToManyField("self", symmetrical=False) # TODO check symmetric, related_name
-    following_labelbands = models.ManyToManyField(LabelBand) # TODO related_name
+    followers = models.ManyToManyField("self", related_name="following_fans", symmetrical=False, blank=True)
+    following_labelbands = models.ManyToManyField(LabelBand, related_name="fans", blank=True)
     
     purchases = models.ManyToManyField(
                                         Release, 
                                         through='Purchase',
-                                        through_fields = ('profile','release')
+                                        through_fields = ('profile','release'),
+                                        related_name='purchased_by',
+                                        blank=True
                                         )
 
 class Purchase(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE) # TODO check delete, related_name
-    release = models.ForeignKey(Release, on_delete=models.CASCADE) # TODO check delete, related_name
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    release = models.ForeignKey(Release, on_delete=models.CASCADE)
     date = models.DateTimeField
