@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Bin, Issue
+
+admin.site.register(Bin)
+admin.site.register(Issue)
