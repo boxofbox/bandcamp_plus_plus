@@ -1,0 +1,29 @@
+<!-- templates/home.html -->
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+    <h1>Dashboard content placeholder</h1>
+
+    <div class='progress-wrapper'>
+        <div id='progress-bar' class='progress-bar' style="background-color: #68a9ef; width: 0%;">&nbsp;</div>
+      </div>
+      <div id="progress-bar-message">Waiting for progress to start...</div>
+
+      <div id="celery-result"></div>
+      {{ task_id }} {{ task_status }} {{ task_state }} {{ another }}
+
+      <script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+
+{% endblock content %}
+
+{% block codetail %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+    CeleryProgressBar.initProgressBar(progressUrl);
+  });
+</script>
+{% endblock codetail %}

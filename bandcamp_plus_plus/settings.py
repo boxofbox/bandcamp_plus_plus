@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     "bins.apps.BinsConfig",
     "releases.apps.ReleasesConfig",
     "dashboard.apps.DashboardConfig",
+    # APPS
+    'celery_progress'
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,41 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Celery Settings
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+             'datefmt': '%y %b %d, %H:%M:%S',
+            },
+        },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'celery': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'celery.log',
+            'formatter': 'simple',
+            'maxBytes': 1024 * 1024 * 100,  # 100 mb
+        },
+    },
+    'loggers': {
+        'celery': {
+            'handlers': ['celery', 'console'],
+            'level': 'DEBUG',
+        },
+    }
+}
+from logging.config import dictConfig
+dictConfig(LOGGING)

@@ -1,0 +1,2359 @@
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Tasks, Control, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@3435c1fa3210 ready.
+INFO Task dashboard.views.my_task[7ce42d22-7f88-4443-80e1-b56050c7f2d6] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '7ce42d22-7f88-4443-80e1-b56050c7f2d6', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '7ce42d22-7f88-4443-80e1-b56050c7f2d6', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '7ce42d22-7f88-4443-80e1-b56050c7f2d6', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen7@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '7ce42d22-7f88-4443-80e1-b56050c7f2d6', 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a7c16af5-1a38-4000-ae0d-1fcbf02d5830'}, 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'correlation_id': '7ce42d22-7f88-4443-80e1-b56050c7f2d6', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[7ce42d22-7f88-4443-80e1-b56050c7f2d6] succeeded in 10.171036671003094s: 45
+INFO Task dashboard.views.my_task[bd11790e-0b8c-42c0-b2a7-cc7f9c197d03] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'bd11790e-0b8c-42c0-b2a7-cc7f9c197d03', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'bd11790e-0b8c-42c0-b2a7-cc7f9c197d03', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'bd11790e-0b8c-42c0-b2a7-cc7f9c197d03', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen7@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'bd11790e-0b8c-42c0-b2a7-cc7f9c197d03', 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7e22ce81-86f5-4dd5-b408-13d320bea3f9'}, 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'correlation_id': 'bd11790e-0b8c-42c0-b2a7-cc7f9c197d03', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[bd11790e-0b8c-42c0-b2a7-cc7f9c197d03] succeeded in 10.154119587998139s: 45
+INFO Task dashboard.views.my_task[022abffa-570c-4a13-a2b6-529c37493ba8] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '022abffa-570c-4a13-a2b6-529c37493ba8', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '022abffa-570c-4a13-a2b6-529c37493ba8', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '022abffa-570c-4a13-a2b6-529c37493ba8', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen7@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '022abffa-570c-4a13-a2b6-529c37493ba8', 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a809cd46-37f2-44a7-aadc-c7d54d6ff75e'}, 'reply_to': '667bb690-eef0-369c-8b0e-a11ee6a5e188', 'correlation_id': '022abffa-570c-4a13-a2b6-529c37493ba8', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[022abffa-570c-4a13-a2b6-529c37493ba8] succeeded in 10.135931088007055s: 45
+INFO Task dashboard.views.my_task[e687aec2-3672-426c-a2c5-87cb9f74d9ff] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'e687aec2-3672-426c-a2c5-87cb9f74d9ff', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'e687aec2-3672-426c-a2c5-87cb9f74d9ff', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'e687aec2-3672-426c-a2c5-87cb9f74d9ff', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen12@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'e687aec2-3672-426c-a2c5-87cb9f74d9ff', 'reply_to': 'f001fc20-bdce-3089-921f-f79814c1d777', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd93db6e0-fb83-489e-a88d-5bd6ed22c944'}, 'reply_to': 'f001fc20-bdce-3089-921f-f79814c1d777', 'correlation_id': 'e687aec2-3672-426c-a2c5-87cb9f74d9ff', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[e687aec2-3672-426c-a2c5-87cb9f74d9ff] succeeded in 10.15367708800477s: 45
+INFO Task dashboard.views.my_task[874bb9e8-5dc3-410f-83ae-80c3be2344d3] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '874bb9e8-5dc3-410f-83ae-80c3be2344d3', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '874bb9e8-5dc3-410f-83ae-80c3be2344d3', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '874bb9e8-5dc3-410f-83ae-80c3be2344d3', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen15@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '874bb9e8-5dc3-410f-83ae-80c3be2344d3', 'reply_to': 'b9965a32-0f8f-36d5-b6e0-d3100d1604a2', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4163e73e-c1af-49eb-9843-5d148406131b'}, 'reply_to': 'b9965a32-0f8f-36d5-b6e0-d3100d1604a2', 'correlation_id': '874bb9e8-5dc3-410f-83ae-80c3be2344d3', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO Task dashboard.views.my_task[72a8cb93-a9bd-4e00-99fd-6113dbd452ae] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '72a8cb93-a9bd-4e00-99fd-6113dbd452ae', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '72a8cb93-a9bd-4e00-99fd-6113dbd452ae', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '72a8cb93-a9bd-4e00-99fd-6113dbd452ae', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen15@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '72a8cb93-a9bd-4e00-99fd-6113dbd452ae', 'reply_to': 'b9965a32-0f8f-36d5-b6e0-d3100d1604a2', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'cf3722d4-8271-4ad1-b0fa-ec4e69026eff'}, 'reply_to': 'b9965a32-0f8f-36d5-b6e0-d3100d1604a2', 'correlation_id': '72a8cb93-a9bd-4e00-99fd-6113dbd452ae', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 8
+INFO current status: 0
+INFO current status: 9
+INFO Task dashboard.views.my_task[874bb9e8-5dc3-410f-83ae-80c3be2344d3] succeeded in 10.167675338001573s: 45
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[72a8cb93-a9bd-4e00-99fd-6113dbd452ae] succeeded in 10.155294752999907s: 45
+INFO Task dashboard.views.my_task[1e25b295-8e55-416d-879f-f81d2b7ddbcb] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '1e25b295-8e55-416d-879f-f81d2b7ddbcb', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '1e25b295-8e55-416d-879f-f81d2b7ddbcb', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '1e25b295-8e55-416d-879f-f81d2b7ddbcb', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen18@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '1e25b295-8e55-416d-879f-f81d2b7ddbcb', 'reply_to': 'b58bd2c8-7dae-3b9a-ab12-ab6312c06793', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '0db128ce-c0c5-40c0-8c92-e10abc3aa819'}, 'reply_to': 'b58bd2c8-7dae-3b9a-ab12-ab6312c06793', 'correlation_id': '1e25b295-8e55-416d-879f-f81d2b7ddbcb', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[1e25b295-8e55-416d-879f-f81d2b7ddbcb] succeeded in 10.143510878988309s: 45
+INFO Task dashboard.views.my_task[0de15b5f-91cc-4d52-b7ef-2544d7588045] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', '0de15b5f-91cc-4d52-b7ef-2544d7588045', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': '0de15b5f-91cc-4d52-b7ef-2544d7588045', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '0de15b5f-91cc-4d52-b7ef-2544d7588045', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen22@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': '0de15b5f-91cc-4d52-b7ef-2544d7588045', 'reply_to': 'b69040b8-d57a-3615-b12d-e5c6c78252ce', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ca9d83f6-cbf3-4fb1-b757-c47c72fd37da'}, 'reply_to': 'b69040b8-d57a-3615-b12d-e5c6c78252ce', 'correlation_id': '0de15b5f-91cc-4d52-b7ef-2544d7588045', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs':... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[0de15b5f-91cc-4d52-b7ef-2544d7588045] succeeded in 10.146063171996502s: 45
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(10,)', 'kwargsrepr': '{}', 'origin': 'gen40@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'f71bb582-6177-3bd3-9a7c-9515ba3cfbd8', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'b23bc32e-aef5-4f4d-b87c-a94b423afe4f'}, 'reply_to': 'f71bb582-6177-3bd3-9a7c-9515ba3cfbd8', 'correlation_id': 'django-test-main', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [10], 'kwargs': {}}, b'[[10], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 10.107572462991811s: 45
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen51@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6da1666f-0b9b-4640-aefc-b9254687aa6c'}, 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'correlation_id': 'django-test-main', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen51@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7f7ae772-882c-436c-bbfa-6a2a7383200b'}, 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'correlation_id': 'django-test-main', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 5
+INFO current status: 0
+INFO current status: 6
+INFO current status: 1
+INFO current status: 7
+INFO current status: 2
+INFO current status: 8
+INFO current status: 3
+INFO current status: 9
+INFO current status: 4
+INFO current status: 10
+INFO current status: 5
+INFO current status: 11
+INFO current status: 6
+INFO current status: 12
+INFO current status: 7
+INFO current status: 13
+INFO current status: 8
+INFO current status: 14
+INFO current status: 9
+INFO current status: 15
+INFO current status: 10
+INFO current status: 16
+INFO current status: 11
+INFO current status: 17
+INFO current status: 12
+INFO current status: 18
+INFO current status: 13
+INFO current status: 19
+INFO current status: 14
+INFO current status: 20
+INFO current status: 15
+INFO current status: 21
+INFO current status: 16
+INFO current status: 22
+INFO current status: 17
+INFO current status: 23
+INFO current status: 18
+INFO current status: 24
+INFO current status: 19
+INFO current status: 25
+INFO current status: 20
+INFO current status: 26
+INFO current status: 21
+INFO current status: 27
+INFO current status: 22
+INFO current status: 28
+INFO current status: 23
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.36382855499687s: 435
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen51@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9d586be9-d877-4a27-8c00-c2b04e095298'}, 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'correlation_id': 'django-test-main', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 27
+INFO current status: 0
+INFO current status: 28
+INFO current status: 1
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.41996388899861s: 435
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.38360805499542s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadf66290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen51@ee41d159445c', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd17616b9-6d26-4b0b-85f4-fba9b1c78730'}, 'reply_to': 'df261406-2f56-3631-8d96-ece84f75cecf', 'correlation_id': 'django-test-main', 'hostname': 'celery@3435c1fa3210', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.377674347007996s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Agent, Mingle, Tasks, Control, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@2ee45d3ffb89 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'fbd4ed9b-f2dc-3110-a398-7b75a0f1ae18', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '3ac59b27-c5d4-4277-90ac-7fce6d0482be'}, 'reply_to': 'fbd4ed9b-f2dc-3110-a398-7b75a0f1ae18', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.340222471000743s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '3519080a-09aa-3b86-a53a-a789f834d209', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '34acb576-d74b-45db-8894-9cb723913949'}, 'reply_to': '3519080a-09aa-3b86-a53a-a789f834d209', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.361310223001055s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen13@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'cd451e5a-368a-3209-8245-49f7ba2c1c79', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a10ee213-2894-47fc-b015-734f412c0c1a'}, 'reply_to': 'cd451e5a-368a-3209-8245-49f7ba2c1c79', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.379927223009872s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen20@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'f46662a0-a45e-3ef7-a3cb-30aa298f36ba', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '3587f754-196d-4345-b484-bf8900356af9'}, 'reply_to': 'f46662a0-a45e-3ef7-a3cb-30aa298f36ba', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.39207493100548s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen26@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c848b2e2-8c7f-3faf-b482-a087d2b4bcd1', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e6e57a67-cbfa-4323-8f62-96a6e71e0f57'}, 'reply_to': 'c848b2e2-8c7f-3faf-b482-a087d2b4bcd1', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83ac2290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen26@fcca2239a68e', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c848b2e2-8c7f-3faf-b482-a087d2b4bcd1', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c6337298-9506-4848-b0dc-a1030bad13dd'}, 'reply_to': 'c848b2e2-8c7f-3faf-b482-a087d2b4bcd1', 'correlation_id': 'django-test-main', 'hostname': 'celery@2ee45d3ffb89', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 18
+INFO current status: 0
+INFO current status: 19
+INFO current status: 1
+INFO current status: 20
+INFO current status: 2
+INFO current status: 21
+INFO current status: 3
+INFO current status: 22
+INFO current status: 4
+INFO current status: 23
+INFO current status: 5
+INFO current status: 24
+INFO current status: 6
+INFO current status: 25
+INFO current status: 7
+INFO current status: 26
+INFO current status: 8
+INFO current status: 27
+INFO current status: 9
+INFO current status: 28
+INFO current status: 10
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.422584555999492s: 435
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.471558056000504s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Heart, Agent, Tasks, Control, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@ebfc677f553a ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9abca290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@2db1f408371f', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'db2d171c-63ea-3e5e-8dc7-2c1bb81737e7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e2c06714-1df5-4abc-9a8b-90b3f6fd116b'}, 'reply_to': 'db2d171c-63ea-3e5e-8dc7-2c1bb81737e7', 'correlation_id': 'django-test-main', 'hostname': 'celery@ebfc677f553a', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.39858397199714s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9abca290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen13@2db1f408371f', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'eb70e241-c75e-3203-9856-c35b8c8dc4ac', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8d023c44-b3a3-4f6a-8936-b06295ee307f'}, 'reply_to': 'eb70e241-c75e-3203-9856-c35b8c8dc4ac', 'correlation_id': 'django-test-main', 'hostname': 'celery@ebfc677f553a', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.332400595987565s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9abca290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen17@2db1f408371f', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '18647377-f1af-3d6e-a6d3-746544af9290', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7b966eef-024d-4b0b-bf01-7dec795d6abc'}, 'reply_to': '18647377-f1af-3d6e-a6d3-746544af9290', 'correlation_id': 'django-test-main', 'hostname': 'celery@ebfc677f553a', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.406207888998324s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9abca290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen25@2db1f408371f', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '7ad10daa-89bb-3d5c-9a1b-628e64e085f9', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '65510c91-a537-4ab7-9049-bab8e782d249'}, 'reply_to': '7ad10daa-89bb-3d5c-9a1b-628e64e085f9', 'correlation_id': 'django-test-main', 'hostname': 'celery@ebfc677f553a', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO Tasks flagged as revoked: django-test-main
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO Tasks flagged as revoked: django-test-main
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.380526638997253s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+INFO Task dashboard.views.my_task[django-test-main] received
+INFO Discarding revoked task: dashboard.views.my_task[django-test-main]
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Gossip, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@bea5c704c088 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen10@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'b54dcf61-7ab4-3fcc-bbff-5aa941cbfe0c', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'b9b27ca9-6047-4c4c-bce9-18f6e062c394'}, 'reply_to': 'b54dcf61-7ab4-3fcc-bbff-5aa941cbfe0c', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.42607813900395s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen21@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '20e5878d-cf8c-3fb7-a29e-9c700bd296a5', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '87a551a9-fe85-4542-8fee-b6d9c4a48488'}, 'reply_to': '20e5878d-cf8c-3fb7-a29e-9c700bd296a5', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.438713638999616s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen21@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '20e5878d-cf8c-3fb7-a29e-9c700bd296a5', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '86ac3d89-7470-4f25-b640-5db1fe310492'}, 'reply_to': '20e5878d-cf8c-3fb7-a29e-9c700bd296a5', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.480596389010316s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen24@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '427ce5d3-8f63-37ed-bef7-1661bd9a3302', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ca1fe86a-251d-4075-895b-a9843d8d0f73'}, 'reply_to': '427ce5d3-8f63-37ed-bef7-1661bd9a3302', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.40040705598949s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen24@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '427ce5d3-8f63-37ed-bef7-1661bd9a3302', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9af47131-6821-4ef8-8c6b-5a1e2158e4f4'}, 'reply_to': '427ce5d3-8f63-37ed-bef7-1661bd9a3302', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.533786055006203s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen28@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '8ff7d3c2-bbfa-38c7-8b4a-16571bd4fbbe', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '58b6048e-6833-43bb-925e-ca557f01a15b'}, 'reply_to': '8ff7d3c2-bbfa-38c7-8b4a-16571bd4fbbe', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.463767305001966s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen31@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '46a7562e-b293-3f61-a5c1-8b504170fdbb', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '0049ade7-26f8-4457-bee9-513f4abfeb88'}, 'reply_to': '46a7562e-b293-3f61-a5c1-8b504170fdbb', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.501946306001628s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'fd52a7d2-8efd-3416-927d-fb8103d847fe', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'ab3f2ae3-9f0d-4e60-90cd-e7f7f2552af7'}, 'reply_to': 'fd52a7d2-8efd-3416-927d-fb8103d847fe', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.469514096999774s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen38@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'f8fd6b6f-408a-3056-b565-f993c193480b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '73a9ac4e-7019-4a7a-99c3-e1b10386bb55'}, 'reply_to': 'f8fd6b6f-408a-3056-b565-f993c193480b', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.420814804994734s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen41@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '9997a810-7ce4-3fe1-a364-48f1950b0cf7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '66881aeb-17a8-49c3-8a2b-8b678f4976c9'}, 'reply_to': '9997a810-7ce4-3fe1-a364-48f1950b0cf7', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.436723346996587s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen44@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '20c07af8-9453-33e6-b5f6-aed74358ce73', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6eaa1c4c-8f42-4f26-87f2-0451f8bb6061'}, 'reply_to': '20c07af8-9453-33e6-b5f6-aed74358ce73', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.44554184700246s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen44@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '20c07af8-9453-33e6-b5f6-aed74358ce73', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '0cb52033-dae3-4f0c-9006-fa987007af03'}, 'reply_to': '20c07af8-9453-33e6-b5f6-aed74358ce73', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.48437851300696s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen48@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '3cb49dca-77ed-3070-8f6f-d881b836e009', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '024dc035-41d8-4d25-8cfd-ee20954a456e'}, 'reply_to': '3cb49dca-77ed-3070-8f6f-d881b836e009', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.426124262987287s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen53@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c21094d5-5c15-30ce-b20b-fda8d19d1cfe', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'afb6e0c6-1eed-45fa-ac81-8ccedf71400c'}, 'reply_to': 'c21094d5-5c15-30ce-b20b-fda8d19d1cfe', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.410369764009374s: 435
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8418a290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen56@0badd754b3f5', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '2d4a91f4-594d-3707-922c-335d8b094cb9', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'a60b2695-1889-4c16-9a01-3a2c1c811122'}, 'reply_to': '2d4a91f4-594d-3707-922c-335d8b094cb9', 'correlation_id': 'django-test-main', 'hostname': 'celery@bea5c704c088', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.405483306007227s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Heart, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@6362f7f60111 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffa723e290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@16643722609b', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '1fac2b48-7aef-351a-b267-a5e842e16990', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9bf75747-e2cc-4ae0-9863-d9cec1a0de7a'}, 'reply_to': '1fac2b48-7aef-351a-b267-a5e842e16990', 'correlation_id': 'django-test-main', 'hostname': 'celery@6362f7f60111', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffa723e290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@16643722609b', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '1fac2b48-7aef-351a-b267-a5e842e16990', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '946a9887-116f-4dd7-92b3-a5ce9d56d69f'}, 'reply_to': '1fac2b48-7aef-351a-b267-a5e842e16990', 'correlation_id': 'django-test-main', 'hostname': 'celery@6362f7f60111', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 6
+INFO current status: 0
+INFO current status: 7
+INFO current status: 1
+INFO current status: 8
+INFO current status: 2
+INFO current status: 9
+INFO current status: 3
+INFO current status: 10
+INFO current status: 4
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+INFO current status: 11
+INFO current status: 5
+INFO current status: 12
+INFO current status: 6
+INFO current status: 13
+INFO current status: 7
+INFO current status: 14
+INFO current status: 8
+INFO current status: 15
+INFO current status: 9
+INFO current status: 16
+INFO current status: 10
+INFO current status: 17
+INFO current status: 11
+INFO current status: 18
+INFO current status: 12
+INFO current status: 19
+INFO current status: 13
+INFO current status: 20
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@b8aabf7fb290 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9ba4e290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@37e329ae60b3', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'de4e204e-f26d-320c-abf1-a438bf80c07b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '884a2d42-e7f9-469b-ac82-56e78f2112af'}, 'reply_to': 'de4e204e-f26d-320c-abf1-a438bf80c07b', 'correlation_id': 'django-test-main', 'hostname': 'celery@b8aabf7fb290', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+WARNING aborting signal received
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 5.115178377003758s: None
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9ba4e290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@37e329ae60b3', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'de4e204e-f26d-320c-abf1-a438bf80c07b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '0dc71399-97a9-42fb-b458-c956ed544088'}, 'reply_to': 'de4e204e-f26d-320c-abf1-a438bf80c07b', 'correlation_id': 'django-test-main', 'hostname': 'celery@b8aabf7fb290', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+WARNING aborting signal received
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 6.120064710994484s: None
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Gossip, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@e1a34018c8f9 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff8ae36290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@6a805b927e3f', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '069643e2-f431-3345-888b-92f0bb088e7e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '629729c9-e4ee-4296-9dcc-e73c87b4c728'}, 'reply_to': '069643e2-f431-3345-888b-92f0bb088e7e', 'correlation_id': 'django-test-main', 'hostname': 'celery@e1a34018c8f9', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.48062863899395s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Agent, Tasks, Control, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@d4c8bdfb23d5 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff9fdf6290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@65674236c97a', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '4eb4bf2a-5693-3491-b02f-949baf59a87d', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '3481f451-6036-464b-9fac-641ceee60ce6'}, 'reply_to': '4eb4bf2a-5693-3491-b02f-949baf59a87d', 'correlation_id': 'django-test-main', 'hostname': 'celery@d4c8bdfb23d5', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.45472347200848s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@14daac39543d ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffa83de290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@82287da1bbe7', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '50f6a4c3-06b7-3182-8e5b-5d0004bedef5', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '5a2b6b96-5c8d-4a4c-9653-b88b8fc74560'}, 'reply_to': '50f6a4c3-06b7-3182-8e5b-5d0004bedef5', 'correlation_id': 'django-test-main', 'hostname': 'celery@14daac39543d', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 40.49377168601495s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Mingle, Tasks, Control, Gossip, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@2a6d31f517e2 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff7ff12290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@2858e1639954', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '5242927f-8985-475d-933b-8bff5bcc0dd3'}, 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'correlation_id': 'django-test-main', 'hostname': 'celery@2a6d31f517e2', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff7ff12290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@2858e1639954', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '80b69b9c-cb0f-4e51-9cd5-faf5d9494806'}, 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'correlation_id': 'django-test-main', 'hostname': 'celery@2a6d31f517e2', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff7ff12290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@2858e1639954', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e843361b-a4e5-43f6-846e-12a6c40fea52'}, 'reply_to': '00ec6fc4-1909-38dc-81d8-3c3d1efcf263', 'correlation_id': 'django-test-main', 'hostname': 'celery@2a6d31f517e2', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 0
+INFO current status: 11
+INFO current status: 1
+INFO current status: 12
+INFO current status: 2
+INFO current status: 13
+INFO current status: 3
+INFO current status: 14
+INFO current status: 4
+INFO current status: 15
+INFO current status: 5
+INFO current status: 16
+INFO current status: 6
+INFO current status: 17
+INFO current status: 7
+INFO current status: 0
+INFO current status: 18
+INFO current status: 8
+INFO current status: 1
+INFO current status: 19
+INFO current status: 9
+INFO current status: 2
+INFO current status: 20
+INFO current status: 10
+INFO current status: 3
+INFO current status: 21
+INFO current status: 11
+INFO current status: 4
+INFO current status: 22
+INFO current status: 12
+INFO current status: 5
+INFO current status: 23
+INFO current status: 13
+INFO current status: 6
+INFO current status: 24
+INFO current status: 14
+INFO current status: 7
+INFO current status: 25
+INFO current status: 15
+INFO current status: 8
+INFO current status: 26
+INFO current status: 16
+INFO current status: 9
+INFO current status: 27
+INFO current status: 17
+INFO current status: 10
+INFO current status: 28
+INFO current status: 11
+INFO current status: 18
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 40.37103410201962s: 435
+INFO current status: 12
+INFO current status: 19
+INFO current status: 13
+INFO current status: 20
+INFO current status: 21
+INFO current status: 14
+INFO current status: 22
+INFO current status: 15
+INFO current status: 16
+INFO current status: 23
+INFO current status: 17
+INFO current status: 24
+INFO current status: 18
+INFO current status: 25
+INFO current status: 19
+INFO current status: 26
+INFO current status: 20
+INFO current status: 27
+INFO current status: 21
+INFO current status: 28
+INFO current status: 22
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 40.436310435005s: 435
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 40.42538426700048s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Mingle, Gossip, Tasks, Control, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@41905c0be202 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffb9b32290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@0935ef759826', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '667e80bd-5d2e-3fb9-9783-a2f5672a69b8', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '5911706d-8ee7-4c2f-b873-60e9b90d9cd3'}, 'reply_to': '667e80bd-5d2e-3fb9-9783-a2f5672a69b8', 'correlation_id': 'django-test-main', 'hostname': 'celery@41905c0be202', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffb9b32290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@0935ef759826', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '667e80bd-5d2e-3fb9-9783-a2f5672a69b8', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1bbaed35-d11c-463a-94d1-b917657796f6'}, 'reply_to': '667e80bd-5d2e-3fb9-9783-a2f5672a69b8', 'correlation_id': 'django-test-main', 'hostname': 'celery@41905c0be202', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 5
+INFO current status: 0
+INFO current status: 6
+INFO current status: 1
+INFO current status: 7
+INFO current status: 2
+INFO current status: 8
+INFO current status: 3
+INFO current status: 9
+INFO current status: 4
+INFO current status: 10
+INFO current status: 5
+INFO current status: 11
+INFO current status: 6
+INFO current status: 12
+INFO current status: 7
+INFO current status: 13
+INFO current status: 8
+INFO current status: 14
+INFO current status: 9
+INFO current status: 15
+INFO current status: 10
+INFO current status: 16
+INFO current status: 11
+INFO current status: 17
+INFO current status: 12
+INFO current status: 18
+INFO current status: 13
+INFO current status: 19
+INFO current status: 14
+INFO current status: 20
+INFO current status: 15
+INFO current status: 21
+INFO current status: 16
+INFO current status: 22
+INFO current status: 17
+INFO current status: 23
+INFO current status: 18
+INFO current status: 24
+INFO current status: 19
+INFO current status: 25
+INFO current status: 20
+INFO current status: 26
+INFO current status: 21
+INFO current status: 27
+INFO current status: 22
+INFO current status: 28
+INFO current status: 23
+INFO current status: 29
+INFO current status: 24
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.4177899719798s: 435
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.36550067999633s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Agent, Events, Heart, Mingle, Tasks, Control, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@7bd9cd456220 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff98bea290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@04ab96ed97f6', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'fa253e88-3f58-338b-9275-9f9c4e95d7cf', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8db69c7b-8a3b-4fab-b98f-91c651984c26'}, 'reply_to': 'fa253e88-3f58-338b-9275-9f9c4e95d7cf', 'correlation_id': 'django-test-main', 'hostname': 'celery@7bd9cd456220', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 30.406097722996492s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Heart, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@e86a85249d3d ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff86236290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@91bc210fda44', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '08a7302e-c057-34d8-8df5-1860bba94ca4', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9737d447-c728-44c4-a280-5015e105c003'}, 'reply_to': '08a7302e-c057-34d8-8df5-1860bba94ca4', 'correlation_id': 'django-test-main', 'hostname': 'celery@e86a85249d3d', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Agent, Mingle, Tasks, Control, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@871c568c3225 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffadbbe290> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@e77275db43ad', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '556e93d4-7e0e-333e-badf-86803f09ae8e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '87c04ce4-947a-480c-b781-fa4a93fa9747'}, 'reply_to': '556e93d4-7e0e-333e-badf-86803f09ae8e', 'correlation_id': 'django-test-main', 'hostname': 'celery@871c568c3225', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 35.33639572400716s: 435
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished

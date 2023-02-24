@@ -15,13 +15,13 @@ class Bin(models.Model):
 class RecentFanPurchase(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     recently_bought_by = models.ManyToManyField(Profile)
-    date_updated = models.DateTimeField
+    most_recent_purchase_date = models.DateTimeField
     seen_before = models.BooleanField
 
 class RecentLabelbandRelease(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     recently_released_by = models.ManyToManyField(LabelBand)
-    date_updated = models.DateTimeField
+    release_date = models.DateTimeField
     seen_before = models.BooleanField
 
 class Issue(models.Model):

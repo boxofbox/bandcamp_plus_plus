@@ -5,8 +5,9 @@ from profiles.models import Profile
 
 class DashboardSettings(models.Model):
     lock = models.CharField(max_length=1, null=False, primary_key='True', default='X')
-    delay_time = models.FloatField    
+    delay_time = models.FloatField(default=1.0)
     base_profile = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    max_profile_depth = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.pk = 'X'
