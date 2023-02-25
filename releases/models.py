@@ -2,9 +2,9 @@ from django.db import models
 
 class LabelBand(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    name = models.TextField
-    url = models.URLField
-    img_id = models.BigIntegerField
+    name = models.TextField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+    img_id = models.BigIntegerField(null=True, blank=True)
 
 class Release(models.Model):
     item_id = models.BigIntegerField(primary_key=True)
@@ -17,11 +17,11 @@ class Release(models.Model):
         default=ALBUM
         )
     
-    title = models.TextField
-    url = models.URLField
-    img_url = models.URLField
-    price = models.TextField
-    release_date = models.DateTimeField
+    title = models.TextField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
+    img_url = models.URLField(null=True, blank=True)
+    price = models.TextField(null=True, blank=True)
+    release_date = models.DateTimeField(null=True, blank=True)
     
     artist_id = models.ForeignKey(
                                     LabelBand, 
@@ -38,7 +38,7 @@ class Release(models.Model):
                                     on_delete=models.PROTECT
                                     )
 
-    artist_name = models.TextField
+    artist_name = models.TextField(null=True, blank=True)
 
 class Track(Release):
     album = models.ForeignKey(
@@ -47,6 +47,6 @@ class Track(Release):
                                 blank=True,
                                 null=True,
                                 on_delete=models.CASCADE)
-    mp3 = models.URLField
-    track_number = models.IntegerField
-    duration = models.FloatField
+    mp3 = models.URLField(null=True, blank=True)
+    track_number = models.IntegerField(null=True, blank=True)
+    duration = models.FloatField(null=True, blank=True)

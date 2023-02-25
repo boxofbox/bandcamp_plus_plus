@@ -3,9 +3,9 @@ from django.db import models
 from releases.models import Release, LabelBand
 from profiles.models import Profile
 class Bin(models.Model):    
-    name = models.TextField
-    sort_key = models.TextField
-    date_updated = models.DateTimeField
+    name = models.TextField(null=True, blank=True)
+    sort_key = models.TextField(null=True, blank=True)
+    date_updated = models.DateTimeField(null=True, blank=True)
     releases = models.ManyToManyField(
                                         Release,
                                         blank=True,
@@ -15,31 +15,33 @@ class Bin(models.Model):
 class RecentFanPurchase(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     recently_bought_by = models.ManyToManyField(Profile)
-    most_recent_purchase_date = models.DateTimeField
-    seen_before = models.BooleanField
+    most_recent_purchase_date = models.DateTimeField(null=True, blank=True)
+    seen_before = models.BooleanField(default=False)
 
 class RecentLabelbandRelease(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     recently_released_by = models.ManyToManyField(LabelBand)
-    release_date = models.DateTimeField
-    seen_before = models.BooleanField
+    release_date = models.DateTimeField(null=True, blank=True)
+    seen_before = models.BooleanField(default=False)
 
 class Issue(models.Model):
-    item_id = models.BigIntegerField
+    item_id = models.BigIntegerField(null=True, blank=True)
 
     ALBUM = 'a'
     TRACK = 't'
     PROFILE = 'p'
     LABELBAND = 'l'
+    OTHER = 'o'
     flag = models.CharField(
         max_length=1,
         choices=[
             (ALBUM, 'album'),
             (TRACK, 'track'),
             (PROFILE, 'profile'),
-            (LABELBAND, 'labelband')
+            (LABELBAND, 'labelband'),
+            (OTHER, 'other')
             ],
         default=ALBUM
         )
     
-    note = models.TextField    
+    note = models.TextField(null=True, blank=True)    
