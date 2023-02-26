@@ -9,21 +9,82 @@
 
     <div class='progress-wrapper'>
         <div id='progress-bar' class='progress-bar' style="background-color: #68a9ef; width: 0%;">&nbsp;</div>
-      </div>
-      <div id="progress-bar-message">Waiting for progress to start...</div>
+    </div>
+    <div id="progress-bar-message">Waiting for progress to start...</div>
 
-      <div id="celery-result"></div>
-      {{ task_id }} {{ task_status }} {{ task_state }} {{ another }}
+    <div id="celery-result"></div>
+    
+    <button type="button" id="testrun" disabled>test run</button>
+    <button type="button" id="testabort" disabled>test abort</button>
+    <input type="checkbox" id="10sec">
+    <label for="10sec">+10 sec</label>
+    <input type="checkbox" id="16sec">
+    <label for="10sec">+16 sec</label>
+    <input type="checkbox" id="23sec">
+    <label for="10sec">+23 sec</label>
 
-      <script src="{% static 'celery_progress/celery_progress.js' %}"></script>
 
 {% endblock content %}
 
 {% block codetail %}
+
+<script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
-    CeleryProgressBar.initProgressBar(progressUrl);
-  });
+
+let progressUrl = "{% url 'celery_progress:task_status' 'django-test-main' %}";
+let celery_obj = null;
+let celery_opts = {};
+celery_opts.pollInterval = 2000;
+
+
+function init() {
+  let init_status = "{{ task_state }}";
+  let abort_button =  document.getElementById("testabort");
+  let run_button =  document.getElementById("testrun");
+  
+  if (init_status == "PENDING" || init_status == "ABORTED" ) {
+    run_button.disabled = false;
+  } else {
+    abort_button.disabled = false;    
+  };
+  
+  celery_obj = CeleryProgressBar.initProgressBar("{% url 'celery_progress:task_status' 'django-test-main' %}", celery_opts);
+  abort_button.addEventListener("click", abortfun);
+  run_button.addEventListener("click", runfun);
+};
+
+// TODO ON SUCCESS RESET THE RUN BUTTON!?!?!?!?! & RESET THE progress bar
+// TODO ON ABORT FIX THE PROGRESS BLIP
+// TODO what if it's running on another tab?
+
+function runfun() {
+  document.getElementById("testabort").disabled = false;
+  document.getElementById("testrun").disabled = true;
+
+  let xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {  
+    if (celery_obj === null) {
+      celery_obj = CeleryProgressBar.initProgressBar("{% url 'celery_progress:task_status' 'django-test-main' %}", celery_opts);
+    }
+  }
+  xhttp.open("GET", "progtest/run", true)
+  xhttp.send()
+};
+
+function abortfun() {
+  document.getElementById("testabort").disabled = true;
+  document.getElementById("testrun").disabled = true;
+
+  let xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    document.getElementById("testrun").disabled = false;
+  }
+  xhttp.open("GET", "progtest/abort", false)
+  xhttp.send()
+};
+
+document.addEventListener("DOMContentLoaded", init);
 </script>
+
 {% endblock codetail %}
