@@ -16,4 +16,5 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . .
 
-RUN mv  ./routing.py.patch /usr/local/lib/python3.10/site-packages/celery_progress/websockets/routing.py
+RUN mv  ./celery_progress.patch/websockets.routing.py /usr/local/lib/python3.10/site-packages/celery_progress/websockets/routing.py
+RUN mv  ./celery_progress.patch/websockets.backend.py /usr/local/lib/python3.10/site-packages/celery_progress/websockets/backend.py

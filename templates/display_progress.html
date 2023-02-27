@@ -76,6 +76,8 @@
       try { data = JSON.parse(event.data); } 
         catch (parsingError) { throw parsingError; }
       
+      console.log(data);
+
       if (data.progress) {
         progressBarElement.style.backgroundColor = barColors.progress;
         progressBarElement.style.width = data.progress.percent + "%";
@@ -107,95 +109,30 @@
       runPressed = false;
 
       if (data.complete === true) {  
+          console.log("COMPLETE?????");
           runButton.disabled = false;
           abortButton.disabled = true;
-          let xhttp = new XMLHttpRequest();
-          xhttp.open("GET", "progtest/complete", false);  
-          xhttp.send();
+          fetch("progtest/reset");
+          progressBarElement.style.width = "0%";
+          progressBarMessageElement.textContent = messages.waiting;
           // TODO if not success??
       };
     };
   };         
         
 
-
-
-        //*****************************************
-      // GET PROGRESS
-      /*
-      let response;
-      try { response = await fetch(progressUrl);} 
-        catch (networkError) { throw networkError;}
-
-      if (response.status === 200) {
-        let data;
-        try { data = await response.json();} 
-          catch (parsingError) {throw parsingError;}
-      
-
-        // DEAL WITH THE DATA
-        if (data.progress) {
-          progressBarElement.style.backgroundColor = barColors.progress;
-          progressBarElement.style.width = data.progress.percent + "%";
-          var description = data.progress.description || "";
-          if (data.progress.current == 0) {
-            if (data.progress.pending === true) {
-              if (!runPressed) {
-                runButton.disabled = false;
-                abortButton.disabled = true;
-              }
-              progressBarMessageElement.textContent = messages.waiting;
-            } else {
-              progressBarMessageElement.textContent = messages.started;
-              runButton.disabled = true;
-              abortButton.disabled = true;
-            }
-          } else {
-            if (abortPressed) {
-              runButton.disabled = false;
-              abortButton.disabled = true;              
-            } else {
-              runButton.disabled = true;
-              abortButton.disabled = false;
-              progressBarMessageElement.textContent = data.progress.current + ' of ' + data.progress.total + ' processed. ' + description;
-            }            
-          }
-        };
-        abortPressed = false;
-        runPressed = false;
-
-        if (data.complete === true) {  
-            runButton.disabled = false;
-            abortButton.disabled = true;
-            let xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "progtest/complete", false);  
-            xhttp.send();
-            // TODO if not success??
-        };
-      };
-
-      await sleep(pollInterval);
-    */
-    
-
-
-
   function runfun() {
     document.getElementById("testrun").disabled = true;
     runPressed = true;
     console.log("runfun");
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "progtest/run", true)
-    xhttp.send()
+    fetch("progtest/run");
   };
   
   function abortfun() {
     document.getElementById("testabort").disabled = true;
     abortPressed = true;
     console.log("abortfun");
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "progtest/abort", true)
-    xhttp.send()
+    fetch("progtest/abort");
   };
 
   function init() {
