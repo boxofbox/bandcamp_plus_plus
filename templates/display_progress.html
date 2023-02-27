@@ -28,63 +28,184 @@
 
 {% block codetail %}
 
-<script src="{% static 'celery_progress/celery_progress.js' %}"></script>
-
 <script>
-
-let progressUrl = "{% url 'celery_progress:task_status' 'django-test-main' %}";
-let celery_obj = null;
-let celery_opts = {};
-celery_opts.pollInterval = 2000;
-
-
-function init() {
-  let init_status = "{{ task_state }}";
-  let abort_button =  document.getElementById("testabort");
-  let run_button =  document.getElementById("testrun");
+  let progressUrl = "{% url 'celery_progress:task_status' 'django-test-main' %}";
   
-  if (init_status == "PENDING" || init_status == "ABORTED" ) {
-    run_button.disabled = false;
-  } else {
-    abort_button.disabled = false;    
+  let pollInterval = 1000;
+  let runPressed = false;
+  let abortPressed = false;
+  console.log("preflight");
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  };
+
+  async function progressBar() {
+
+    // init bar
+    let progressBarElement = document.getElementById('progress-bar');
+    let progressBarMessageElement = document.getElementById('progress-bar-message');
+    let abortButton = document.getElementById("testabort");
+    let runButton = document.getElementById("testrun");
+
+    let barColors = {
+      success: '#76ce60',
+      error: '#dc4f63',
+      progress: '#68a9ef',
+      ignored: '#7a7a7a'
+    }
+    
+
+    let messages = {
+      waiting: 'Waiting for task to start...',
+      started: 'Task started...',
+    }    
+
+    // event loop
+    console.log("start event loop");
+    
+    let ProgressSocket = new WebSocket("ws://127.0.0.1:8001/ws/progress/django-test-main/")//"ws://" + window.location.host + progressUrl);
+
+    ProgressSocket.onopen = function (event) {
+        ProgressSocket.send(JSON.stringify({'type': 'check_task_completion'}));
+    };
+
+    const bar = this;
+    ProgressSocket.onmessage = function (event) {
+      let data;
+      try { data = JSON.parse(event.data); } 
+        catch (parsingError) { throw parsingError; }
+      
+      if (data.progress) {
+        progressBarElement.style.backgroundColor = barColors.progress;
+        progressBarElement.style.width = data.progress.percent + "%";
+        var description = data.progress.description || "";
+        if (data.progress.current == 0) {
+          if (data.progress.pending === true) {
+            if (!runPressed) {
+              runButton.disabled = false;
+              abortButton.disabled = true;
+            }
+            progressBarMessageElement.textContent = messages.waiting;
+          } else {
+            progressBarMessageElement.textContent = messages.started;
+            runButton.disabled = true;
+            abortButton.disabled = true;
+          }
+        } else {
+          if (abortPressed) {
+            runButton.disabled = false;
+            abortButton.disabled = true;              
+          } else {
+            runButton.disabled = true;
+            abortButton.disabled = false;
+            progressBarMessageElement.textContent = data.progress.current + ' of ' + data.progress.total + ' processed. ' + description;
+          }            
+        }
+      };
+      abortPressed = false;
+      runPressed = false;
+
+      if (data.complete === true) {  
+          runButton.disabled = false;
+          abortButton.disabled = true;
+          let xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "progtest/complete", false);  
+          xhttp.send();
+          // TODO if not success??
+      };
+    };
+  };         
+        
+
+
+
+        //*****************************************
+      // GET PROGRESS
+      /*
+      let response;
+      try { response = await fetch(progressUrl);} 
+        catch (networkError) { throw networkError;}
+
+      if (response.status === 200) {
+        let data;
+        try { data = await response.json();} 
+          catch (parsingError) {throw parsingError;}
+      
+
+        // DEAL WITH THE DATA
+        if (data.progress) {
+          progressBarElement.style.backgroundColor = barColors.progress;
+          progressBarElement.style.width = data.progress.percent + "%";
+          var description = data.progress.description || "";
+          if (data.progress.current == 0) {
+            if (data.progress.pending === true) {
+              if (!runPressed) {
+                runButton.disabled = false;
+                abortButton.disabled = true;
+              }
+              progressBarMessageElement.textContent = messages.waiting;
+            } else {
+              progressBarMessageElement.textContent = messages.started;
+              runButton.disabled = true;
+              abortButton.disabled = true;
+            }
+          } else {
+            if (abortPressed) {
+              runButton.disabled = false;
+              abortButton.disabled = true;              
+            } else {
+              runButton.disabled = true;
+              abortButton.disabled = false;
+              progressBarMessageElement.textContent = data.progress.current + ' of ' + data.progress.total + ' processed. ' + description;
+            }            
+          }
+        };
+        abortPressed = false;
+        runPressed = false;
+
+        if (data.complete === true) {  
+            runButton.disabled = false;
+            abortButton.disabled = true;
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "progtest/complete", false);  
+            xhttp.send();
+            // TODO if not success??
+        };
+      };
+
+      await sleep(pollInterval);
+    */
+    
+
+
+
+  function runfun() {
+    document.getElementById("testrun").disabled = true;
+    runPressed = true;
+    console.log("runfun");
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "progtest/run", true)
+    xhttp.send()
   };
   
-  celery_obj = CeleryProgressBar.initProgressBar("{% url 'celery_progress:task_status' 'django-test-main' %}", celery_opts);
-  abort_button.addEventListener("click", abortfun);
-  run_button.addEventListener("click", runfun);
-};
+  function abortfun() {
+    document.getElementById("testabort").disabled = true;
+    abortPressed = true;
+    console.log("abortfun");
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "progtest/abort", true)
+    xhttp.send()
+  };
 
-// TODO ON SUCCESS RESET THE RUN BUTTON!?!?!?!?! & RESET THE progress bar
-// TODO ON ABORT FIX THE PROGRESS BLIP
-// TODO what if it's running on another tab?
+  function init() {
+    console.log("init");
+    document.getElementById("testabort").addEventListener("click", abortfun);
+    document.getElementById("testrun").addEventListener("click", runfun);
+    progressBar();
+  };
 
-function runfun() {
-  document.getElementById("testabort").disabled = false;
-  document.getElementById("testrun").disabled = true;
-
-  let xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {  
-    if (celery_obj === null) {
-      celery_obj = CeleryProgressBar.initProgressBar("{% url 'celery_progress:task_status' 'django-test-main' %}", celery_opts);
-    }
-  }
-  xhttp.open("GET", "progtest/run", true)
-  xhttp.send()
-};
-
-function abortfun() {
-  document.getElementById("testabort").disabled = true;
-  document.getElementById("testrun").disabled = true;
-
-  let xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {
-    document.getElementById("testrun").disabled = false;
-  }
-  xhttp.open("GET", "progtest/abort", false)
-  xhttp.send()
-};
-
-document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", init);  
 </script>
 
 {% endblock codetail %}

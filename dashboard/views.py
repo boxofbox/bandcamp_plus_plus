@@ -8,9 +8,10 @@ class DashboardView(TemplateView):
 
 
 from celery import shared_task
-from celery_progress.backend import ProgressRecorder
+from celery_progress.websockets.backend import WebSocketProgressRecorder
 from celery.utils.log import get_task_logger
 import time
+import datetime
 from threading import Lock
 
 lock = Lock()
@@ -19,7 +20,7 @@ logger = get_task_logger(__name__)
 
 @shared_task(bind=True, base=AbortableTask)
 def my_task(self,seconds):
-    progress_recorder = ProgressRecorder(self)
+    progress_recorder = WebSocketProgressRecorder(self)
     result = 0
     for i in range(seconds):
         time.sleep(1)
@@ -41,9 +42,9 @@ def progress_view_abort(request):
     try:
         result = check.get(timeout=5)
         print("!!!!!!!!!!!!!!!!!GOT CHECK!!!!", result.state)
-    except:
+    except Exception:
         # TODO: ERROR HANDING IF TIMES OUT
-        print("TIMEOUT")
+        print("TIMEOUT", Exception)
     check.forget()
     print("!!!!!!!!!!!!!!!!!FORGETTING", check.state)
     return HttpResponse("")
@@ -53,6 +54,12 @@ def progress_view_run(request):
     if check.state != "PROGRESS":
         check.forget()
         check = my_task.apply_async((30,), task_id='django-test-main')
+    return HttpResponse("")
+
+def progress_view_complete(request):
+    check = AbortableAsyncResult('django-test-main')
+    check.forget()
+    print("COMPLETED: ", datetime.datetime.now())
     return HttpResponse("")
 
     # lock.acquire()

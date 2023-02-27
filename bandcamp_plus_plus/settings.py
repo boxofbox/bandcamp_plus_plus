@@ -15,6 +15,7 @@ from environs import Env
 import os
 
 
+
 env = Env()
 
 CURRENT_ENVIRONMENT = os.environ.get("DJANGO_CURRENT_ENVIRONMENT")
@@ -57,7 +58,10 @@ INSTALLED_APPS = [
     "releases.apps.ReleasesConfig",
     "dashboard.apps.DashboardConfig",
     # APPS
-    'celery_progress'
+    'channels',
+    'celery_progress',
+    'celery_progress.websockets',
+    'channels_redis'
 ]
 
 MIDDLEWARE = [
@@ -148,6 +152,17 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 # Celery Settings
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
+ASGI_APPLICATION = 'bandcamp_plus_plus.routing.application'
+
+CHANNEL_LAYERS = {
+     'default': {
+            # This example is assuming you use redis, in which case `channels_redis` is another dependency.
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                "hosts": [("redis","6379")],
+            },
+        },
+}
 
 LOGGING = {
     'version': 1,
