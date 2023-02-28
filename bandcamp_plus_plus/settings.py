@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     'channels',
     'celery_progress',
     'celery_progress.websockets',
-    'channels_redis'
+    'channels_redis',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -197,3 +199,6 @@ LOGGING = {
 }
 from logging.config import dictConfig
 dictConfig(LOGGING)
+
+CRISPY_ALLOW_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

@@ -6242,3 +6242,685 @@ DEBUG ^-- substep ok
 DEBUG | Consumer: Starting event loop
 DEBUG | Worker: Hub.register Pool...
 INFO celery@09c77a17244d ready.
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Agent, Mingle, Tasks, Control, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@a1cd1e4e0258 ready.
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Heart, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@6eba7e8e5a74 ready.
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffa196b2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffa1988670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffa196af80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffa210b2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffa2128670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffa210af80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffba5672e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffba584670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffba566f80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffb94972e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffb94b4670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffb9496f80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffff93ccf2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffff93cec670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffff93ccef80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffbc3ab2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffbc3c8670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffbc3aaf80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffff9c44b2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffff9c468670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffff9c44af80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffb0aaf2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffffb0acc670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffffb0aaef80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffff8eb6f2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffff8eb8c670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffff8eb6ef80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffff90dab2e0>> raised: ModuleNotFoundError("No module named 'crispy_forms'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/usr/local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+  File "/usr/local/lib/python3.10/site-packages/django/apps/config.py", line 228, in create
+    import_module(entry)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'crispy_forms'
+ERROR Signal handler <promise@0xffff90dc8670 --> <bound method Celery._autodiscover_tasks of <Celery bandcamp_plus_plus at 0xffff90daaf80>>> raised: AppRegistryNotReady("Apps aren't loaded yet.")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 160, in __call__
+    return self.throw()
+  File "/usr/local/lib/python3.10/site-packages/vine/promises.py", line 157, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/usr/local/lib/python3.10/site-packages/celery/app/base.py", line 701, in <listcomp>
+    for pkg in fixup.autodiscover_tasks()
+  File "/usr/local/lib/python3.10/site-packages/celery/fixups/django.py", line 92, in autodiscover_tasks
+    return [config.name for config in apps.get_app_configs()]
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 147, in get_app_configs
+    self.check_apps_ready()
+  File "/usr/local/lib/python3.10/site-packages/django/apps/registry.py", line 138, in check_apps_ready
+    raise AppRegistryNotReady("Apps aren't loaded yet.")
+django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Heart, Agent, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@1dc191e0a468 ready.
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Beat, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Heart, Gossip, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@c6427406723d ready.

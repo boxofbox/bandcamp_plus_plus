@@ -5,7 +5,7 @@ class Profile(models.Model):
     id = models.BigIntegerField(primary_key=True)
     username = models.TextField(null=True, blank=True)
     name = models.TextField(null=True, blank=True)
-    img_url = models.URLField(null=True, blank=True)
+    img_id = models.BigIntegerField(null=True, blank=True)
     following_fans = models.ManyToManyField("self", related_name="followers", symmetrical=False, blank=True)
     following_labelbands = models.ManyToManyField(LabelBand, related_name="fans", blank=True)
     

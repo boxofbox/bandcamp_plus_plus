@@ -9,9 +9,21 @@ bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
 count = 10
-switch = -2
+switch = -3
 
-if switch == -2:
+
+if switch == -3:
+    url = 'https://bandcamp.com/boxofbox'
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
+
+    data = soup.find_all("div", attrs={"data-blob":True})[0]
+    data_blob = json.loads(data['data-blob'])    
+    print(data_blob['fan_data']['fan_id'],data_blob['fan_data']['username'],data_blob['fan_data']['name'],data_blob['fan_data']['photo']['image_id'])
+    
+
+
+elif switch == -2:
     # get list of purchased items
     url = "https://bandcamp.com/api/fancollection/1/collection_items"
     token = f"{int(time.time())}::a::" 
@@ -27,7 +39,7 @@ if switch == -2:
     items = r['items']
     print(items)
 
-if switch == -1:
+elif switch == -1:
     url = "https://bandcamp.com/boxofbox"
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
