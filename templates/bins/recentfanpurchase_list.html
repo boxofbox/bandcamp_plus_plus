@@ -1,0 +1,12 @@
+<!-- templates/profiles/profile_list.html -->
+{% extends "_base.html" %}
+
+{% block title %}Recent Fan Purchases{% endblock title %}
+
+{% block content %}
+    {% for purchase in object_list %}
+        <div>
+            <h2><a href="">{{ purchase.release }}</a></h2>
+        </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,12 @@
+<!-- templates/profiles/profile_list.html -->
+{% extends "_base.html" %}
+
+{% block title %}Issues{% endblock title %}
+
+{% block content %}
+    {% for issue in object_list %}
+        <div>
+            <h2><a href="">{{ issue.item_id }}</a></h2>
+        </div>
+    {% endfor %}
+{% endblock content %}

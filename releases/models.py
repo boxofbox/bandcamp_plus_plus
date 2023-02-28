@@ -7,7 +7,7 @@ class LabelBand(models.Model):
     img_id = models.BigIntegerField(null=True, blank=True)
 
 class Release(models.Model):
-    item_id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True)
 
     ALBUM = 'a'
     TRACK = 't'

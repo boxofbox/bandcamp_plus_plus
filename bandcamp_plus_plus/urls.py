@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("dashboard.urls")),
     re_path(r'^celery-progress/', include('celery_progress.urls')),
-    #path("bins/", include("bins.urls")),
+    path("bins/", include("bins.urls")),
     path("profiles/", include("profiles.urls")),
-    #path("releases/", include("releases.urls")),
+    path("releases/", include("releases.urls")),
 ]

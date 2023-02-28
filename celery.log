@@ -6138,3 +6138,107 @@ INFO current status: 1
 INFO current status: 2
 INFO current status: 3
 INFO Task dashboard.views.my_task[django-test-main] succeeded in 5.11330029400051s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff83a23370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@35e0c2ff5cbd', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '15514076-cc1b-3c87-b3be-9efad8bfb1b9', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'e81e1394-9d89-46c0-9d4f-3a2d7e83e44e'}, 'reply_to': '15514076-cc1b-3c87-b3be-9efad8bfb1b9', 'correlation_id': 'django-test-main', 'hostname': 'celery@fca6572a30a0', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 3.066048584998498s: -1
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Gossip, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 2.00 seconds... (1/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 4.00 seconds... (2/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 6.00 seconds... (3/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 8.00 seconds... (4/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 10.00 seconds... (5/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 12.00 seconds... (6/100)
+
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Mingle, Gossip, Agent, Tasks, Control, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 2.00 seconds... (1/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 4.00 seconds... (2/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 6.00 seconds... (3/100)
+
+ERROR consumer: Cannot connect to redis://redis:6379//: Error -2 connecting to redis:6379. Name or service not known..
+Trying again in 8.00 seconds... (4/100)
+
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, StateDB, Beat, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Agent, Events, Mingle, Tasks, Control, Gossip, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@09c77a17244d ready.

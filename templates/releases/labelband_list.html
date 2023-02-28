@@ -1,0 +1,12 @@
+<!-- templates/profiles/profile_list.html -->
+{% extends "_base.html" %}
+
+{% block title %}Labels/Bands{% endblock title %}
+
+{% block content %}
+    {% for labelband in object_list %}
+        <div>
+            <h2><a href="">{{ labelband.name }}</a></h2>
+        </div>
+    {% endfor %}
+{% endblock content %}

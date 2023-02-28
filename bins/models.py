@@ -18,7 +18,7 @@ class RecentFanPurchase(models.Model):
     most_recent_purchase_date = models.DateTimeField(null=True, blank=True)
     seen_before = models.BooleanField(default=False)
 
-class RecentLabelbandRelease(models.Model):
+class RecentLabelBandRelease(models.Model):
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     recently_released_by = models.ManyToManyField(LabelBand)
     release_date = models.DateTimeField(null=True, blank=True)
