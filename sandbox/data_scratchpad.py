@@ -9,7 +9,7 @@ bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
 count = 10
-switch = -3
+switch = 1
 
 
 if switch == -3:
@@ -91,8 +91,9 @@ elif switch == 1:
         fan_id = f['fan_id']
         fan_url = f['trackpipe_url']
         fan_name = f['name']
+        image_id = f['image_id']
         fan_username = fan_url.split("/")[-1]
-        print(fan_id,fan_name,fan_username,fan_url)
+        print(fan_id,fan_name,fan_username,fan_url, image_id)
     
 elif switch == 2:
     # get list of following artists/labels

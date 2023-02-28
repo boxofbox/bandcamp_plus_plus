@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from celery.contrib.abortable import AbortableTask, AbortableAsyncResult
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from celery import shared_task
 from celery_progress.websockets.backend import WebSocketProgressRecorder
 from celery.utils.log import get_task_logger
@@ -62,7 +62,7 @@ def post_dashboard_settings(request):
                     settings_obj.max_profile_depth = form.cleaned_data['depth']
                     settings_obj.save()
 
-                    return dashboard(request, skip_init_check=True)
+                    return HttpResponseRedirect('/dashboard')
 
                 except Exception as e:
                     error_msgs.append("ERROR: could not update settings")
@@ -81,22 +81,41 @@ def post_dashboard_settings(request):
     if settings_obj.delay_time is None or settings_obj.base_profile is None or settings_obj.max_profile_depth is None:
         return init_dashboard_settings(request, settings_obj.delay_time, settings_obj.base_profile, settings_obj.max_profile_depth, error_msg=error_msg)
 
-def prompt_update(request):
-    return HttpResponse("PROMPT UPDATE") # TODO
+def pre_dashboard_wrapper(request):
+    # Handle initialization of dashboard settings here:
+    if DashboardSettings.objects.count() == 0:
+        return init_dashboard_settings(request)
+    settings_obj = DashboardSettings.objects.get(lock='X')
+    if settings_obj.delay_time is None or settings_obj.base_profile is None or settings_obj.max_profile_depth is None:
+        return init_dashboard_settings(request, settings_obj.delay_time, settings_obj.base_profile, settings_obj.max_profile_depth)
 
+    return HttpResponseRedirect('/dashboard')
 
-def dashboard(request, skip_init_check=False):
+def dashboard_wrapper(request, ajax_content_link=None):
+    if DashboardSettings.objects.count() == 0:
+        return HttpResponseRedirect('/')
+    settings_obj = DashboardSettings.objects.get(lock='X')
+    if settings_obj.delay_time is None or settings_obj.base_profile is None or settings_obj.max_profile_depth is None:
+        return HttpResponseRedirect('/')
 
-    if not skip_init_check:
-        # Handle initialization of dashboard settings here:
-        if DashboardSettings.objects.count() == 0:
-            return init_dashboard_settings(request)
-        settings_obj = DashboardSettings.objects.get(lock='X')
-        if settings_obj.delay_time is None or settings_obj.base_profile is None or settings_obj.max_profile_depth is None:
-            return init_dashboard_settings(request, settings_obj.delay_time, settings_obj.base_profile, settings_obj.max_profile_depth)
+    if ajax_content_link is None:
+        if Profile.objects.count() == 1:
+            ajax_content_link = '/dashboard/prompt_update'
+        else:
+            ajax_content_link = '/dashboard/landing'    
+
+    base_profile_img_url = "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_41.jpg"        
+
+    return render(request, '_post_dashboard_base.html', 
+                  {'ajax_content_link': ajax_content_link, 
+                   'base_profile_obj': settings_obj.base_profile,
+                   'base_profile_img_url': base_profile_img_url})
         
-    if Profile.objects.count() == 1:
-        return prompt_update(request)
+def prompt_update(request):
+    return HttpResponse("PROMPT HERE")
+
+    # if Profile.objects.count() == 1:
+    #     return prompt_update(request)
 
     # TODO
     # add edit settings link
