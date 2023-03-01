@@ -3,7 +3,7 @@ from django.db import models
 from releases.models import Release, LabelBand
 class Profile(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    username = models.TextField(null=True, blank=True)
+    username = models.TextField(null=True, blank=True, unique=True)
     name = models.TextField(null=True, blank=True)
     img_id = models.BigIntegerField(null=True, blank=True)
     following_fans = models.ManyToManyField("self", related_name="followers", symmetrical=False, blank=True)

@@ -6956,3 +6956,538 @@ INFO current status: 7
 INFO current status: 8
 INFO current status: 9
 INFO Task dashboard.views.my_task[django-test-main] succeeded in 11.250621505001618s: -1
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {StateDB, Timer, Hub, Pool, Autoscaler, Beat, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Tasks, Control, Agent, Gossip, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@fdca0062d1e6 ready.
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen18@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'e336f87b-89f1-3069-ad95-4fc4749561e4', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '35f7d85c-4592-4fab-a43c-10d9fe46d6c1'}, 'reply_to': 'e336f87b-89f1-3069-ad95-4fc4749561e4', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 5.117842834999919s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen18@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'e336f87b-89f1-3069-ad95-4fc4749561e4', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1d25bb04-ec86-4952-9a95-6a23d2a00ad5'}, 'reply_to': 'e336f87b-89f1-3069-ad95-4fc4749561e4', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 8.10809571100026s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'cb7689b1-5a8a-43e4-8c74-88eff7bb50c5'}, 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 3.0587854599998536s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '63cd1712-f989-31da-a719-810efd64007a', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8d10603a-53da-4c9d-ac3e-6ed6c8a278d1'}, 'reply_to': '63cd1712-f989-31da-a719-810efd64007a', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 3.042037418000291s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '1abcdc8f-14c1-4452-8a6b-309e8721a9e3'}, 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 2.038899334999769s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '20559944-2ee4-4a07-9260-a151b37b2d83'}, 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 3.065306375999171s: -1
+INFO Task dashboard.views.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff884c3370> (args:('dashboard.views.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.views.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen34@668d17bf5715', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '9b5e5504-48e7-4dd3-830b-b197fdb893bb'}, 'reply_to': 'c9e25d75-36d0-3cb5-97ef-b3892cc8b2a7', 'correlation_id': 'django-test-main', 'hostname': 'celery@fdca0062d1e6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO Task dashboard.views.my_task[django-test-main] succeeded in 4.084225876999881s: -1
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Timer, Hub, Pool, Autoscaler, Beat, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Mingle, Tasks, Control, Gossip, Agent, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@17f0814a19c6 ready.
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen7@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '8b04dd5c-6f00-32c8-9694-afad51140d49', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'f84ef331-14e1-4505-bec4-8012f05afee7'}, 'reply_to': '8b04dd5c-6f00-32c8-9694-afad51140d49', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    log_completed()
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    settings_obj.main_update_last_completed = datetime.datetime.now()
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(30,)', 'kwargsrepr': '{}', 'origin': 'gen11@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '5a986e1f-4197-3fae-9411-55b6ecf3b1a9', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '7d4544f7-3dfa-4da9-a006-cac5f9c266bb'}, 'reply_to': '5a986e1f-4197-3fae-9411-55b6ecf3b1a9', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [30], 'kwargs': {}}, b'[[30], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO current status: 5
+INFO current status: 6
+INFO current status: 7
+INFO current status: 8
+INFO current status: 9
+INFO current status: 10
+INFO current status: 11
+INFO current status: 12
+INFO current status: 13
+INFO current status: 14
+INFO current status: 15
+INFO current status: 16
+INFO current status: 17
+INFO current status: 18
+INFO current status: 19
+INFO current status: 20
+INFO current status: 21
+INFO current status: 22
+INFO current status: 23
+INFO current status: 24
+INFO current status: 25
+INFO current status: 26
+INFO current status: 27
+INFO current status: 28
+INFO current status: 29
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    log_completed()
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    settings_obj.main_update_last_completed = datetime.datetime.now()
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen21@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '0ed27c58-2e35-3d43-9691-7fcf91550ef0', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'c1934625-4f69-442b-94f7-ef05db7e4c80'}, 'reply_to': '0ed27c58-2e35-3d43-9691-7fcf91550ef0', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    log_completed()
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    settings_obj.main_update_last_completed = datetime.datetime.now()
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen25@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'f93240e0-492d-30de-88e2-989e0b1442a6', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'b3416d97-15a2-40c5-9032-10a21c3cb9e9'}, 'reply_to': 'f93240e0-492d-30de-88e2-989e0b1442a6', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    log_completed()
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    settings_obj[0].main_update_last_completed = datetime.datetime.now()
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen29@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'e19d9d29-64ec-3e3c-9ff0-9a75f2ebde0c', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '8eeaf4ba-dd0c-4c43-8e6b-b36a6faa5dc5'}, 'reply_to': 'e19d9d29-64ec-3e3c-9ff0-9a75f2ebde0c', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    progress_recorder.set_progress(i + 1, seconds, description="myprogressdesc")
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    print(settings_obj)
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen35@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '1c627bda-3d2e-329d-bd57-34a966c56924', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '13c7daff-fb96-4b38-8c8b-241a327c9b15'}, 'reply_to': '1c627bda-3d2e-329d-bd57-34a966c56924', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    progress_recorder.set_progress(i + 1, seconds, description="myprogressdesc")
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    print('settings', settings_obj)
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen41@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '56af1766-a2c1-324a-814f-5b714f7af307', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4fd82d45-4097-4977-8ef2-5baa98c14cb4'}, 'reply_to': '56af1766-a2c1-324a-814f-5b714f7af307', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    progress_recorder.set_progress(i + 1, seconds, description="myprogressdesc")
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    print('settings', settings_obj)
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen51@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'd3d5a89e-034a-3f74-8158-83cd092dfc8d', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'd9969d87-4f15-4e27-914c-e46d9f791369'}, 'reply_to': 'd3d5a89e-034a-3f74-8158-83cd092dfc8d', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    progress_recorder.set_progress(i + 1, seconds, description="myprogressdesc")
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    print("TJTEKLDSGLJ", settings_obj)
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffff802f7370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen51@661599291f06', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'd3d5a89e-034a-3f74-8158-83cd092dfc8d', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '64a7c143-be84-4d96-96f6-47f9adbf82b6'}, 'reply_to': 'd3d5a89e-034a-3f74-8158-83cd092dfc8d', 'correlation_id': 'django-test-main', 'hostname': 'celery@17f0814a19c6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+ERROR Task dashboard.tasks.my_task[django-test-main] raised unexpected: AttributeError("'tuple' object has no attribute 'main_update_last_completed'")
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 451, in trace_task
+    R = retval = fun(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/celery/app/trace.py", line 734, in __protected_call__
+    return self.run(*args, **kwargs)
+  File "/code/dashboard/tasks.py", line 33, in my_task
+    progress_recorder.set_progress(i + 1, seconds, description="myprogressdesc")
+  File "/code/dashboard/tasks.py", line 14, in log_completed
+    print("TJTEKLDSGLJ", settings_obj)
+AttributeError: 'tuple' object has no attribute 'main_update_last_completed'
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, Timer, Hub, Pool, Autoscaler, StateDB, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Mingle, Gossip, Tasks, Control, Agent, Heart, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@f9f0248e5bd6 ready.
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffb075b370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen7@adb3a998cd25', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '12d47023-b260-3c2a-a223-0d8b2e2e5144', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'f4e66aa2-bc8a-4d32-b098-2c21ab8c8ebe'}, 'reply_to': '12d47023-b260-3c2a-a223-0d8b2e2e5144', 'correlation_id': 'django-test-main', 'hostname': 'celery@f9f0248e5bd6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 5.046586960000241s: 10
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffb075b370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen11@adb3a998cd25', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'bc2c1507-e5da-39ca-aa48-857715d8827e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '6fd9bb83-6df7-493b-a605-fdbae75f97c0'}, 'reply_to': 'bc2c1507-e5da-39ca-aa48-857715d8827e', 'correlation_id': 'django-test-main', 'hostname': 'celery@f9f0248e5bd6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 5.116708418000599s: 10
+DEBUG | Worker: Closing Hub...
+DEBUG | Worker: Closing Pool...
+DEBUG | Worker: Closing Consumer...
+DEBUG | Worker: Stopping Consumer...
+DEBUG | Consumer: Closing Connection...
+DEBUG | Consumer: Closing Events...
+DEBUG | Consumer: Closing Mingle...
+DEBUG | Consumer: Closing Gossip...
+DEBUG | Consumer: Closing Tasks...
+DEBUG | Consumer: Closing Control...
+DEBUG | Consumer: Closing Heart...
+DEBUG | Consumer: Closing event loop...
+DEBUG | Consumer: Stopping event loop...
+DEBUG | Consumer: Stopping Heart...
+DEBUG | Consumer: Stopping Control...
+DEBUG | Consumer: Stopping Tasks...
+DEBUG Canceling task consumer...
+DEBUG | Consumer: Stopping Gossip...
+DEBUG | Consumer: Stopping Mingle...
+DEBUG | Consumer: Stopping Events...
+DEBUG | Consumer: Stopping Connection...
+DEBUG | Worker: Stopping Pool...
+DEBUG | Worker: Stopping Hub...
+DEBUG | Consumer: Shutdown Heart...
+DEBUG | Consumer: Shutdown Control...
+DEBUG | Consumer: Shutdown Tasks...
+DEBUG Canceling task consumer...
+DEBUG Closing consumer channel...
+DEBUG | Consumer: Shutdown Gossip...
+DEBUG | Consumer: Shutdown Events...
+DEBUG | Consumer: Shutdown Connection...
+DEBUG removing tasks from inqueue until task handler finished
+DEBUG | Worker: Preparing bootsteps.
+DEBUG | Worker: Building graph...
+DEBUG | Worker: New boot order: {Beat, StateDB, Timer, Hub, Pool, Autoscaler, Consumer}
+DEBUG | Consumer: Preparing bootsteps.
+DEBUG | Consumer: Building graph...
+DEBUG | Consumer: New boot order: {Connection, Events, Heart, Mingle, Tasks, Control, Agent, Gossip, event loop}
+DEBUG | Worker: Starting Hub
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Pool
+DEBUG ^-- substep ok
+DEBUG | Worker: Starting Consumer
+DEBUG | Consumer: Starting Connection
+INFO Connected to redis://redis:6379//
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Events
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Heart
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Mingle
+INFO mingle: searching for neighbors
+INFO mingle: all alone
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Tasks
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Control
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting Gossip
+DEBUG ^-- substep ok
+DEBUG | Consumer: Starting event loop
+DEBUG | Worker: Hub.register Pool...
+INFO celery@f9f0248e5bd6 ready.
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffbb5cb370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen11@adb3a998cd25', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': 'bc2c1507-e5da-39ca-aa48-857715d8827e', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '4272e1b6-20db-45ce-883a-e04f983e4a64'}, 'reply_to': 'bc2c1507-e5da-39ca-aa48-857715d8827e', 'correlation_id': 'django-test-main', 'hostname': 'celery@f9f0248e5bd6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO current status: 2
+INFO current status: 3
+INFO current status: 4
+INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 5.083357752999291s: 10
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffbb5cb370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen117@adb3a998cd25', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '52aa9fd9-1355-39a8-a26d-f0ba12507a4b', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': '70b137cf-aa58-4bc2-a8a3-2b5f148f4552'}, 'reply_to': '52aa9fd9-1355-39a8-a26d-f0ba12507a4b', 'correlation_id': 'django-test-main', 'hostname': 'celery@f9f0248e5bd6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 3.0710692929988s: -1

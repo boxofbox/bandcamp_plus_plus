@@ -22,6 +22,7 @@ class Release(models.Model):
     img_url = models.URLField(null=True, blank=True)
     price = models.TextField(null=True, blank=True)
     release_date = models.DateTimeField(null=True, blank=True)
+    last_viewed_as_preorder = models.BooleanField(null=True, blank=True)
     
     artist_id = models.ForeignKey(
                                     LabelBand, 

@@ -1,0 +1,19 @@
+<!-- templates/_settings_pane.html -->
+{% load crispy_forms_tags %}
+<form id="settings_pane_form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <h2 id='msg'>{{ msg }}</h2>
+    <input id="settings_pane_submit" type="button" value="Submit">
+</form>
+
+<script>
+    let settings_pane_form = document.getElementById("settings_pane_form");
+    let settings_pane_submit = document.getElementById("settings_pane_submit");
+
+    settings_pane_submit.addEventListener("click", function () {        
+        content_ajax_update_post('/dashboard/ajax/settings',new FormData(settings_pane_form));
+    });
+    
+    document.getElementById("document_title").innerText = "Bandcamp++ SETTINGS";
+</script>

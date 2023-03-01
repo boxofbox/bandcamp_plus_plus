@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Bandcamp++{% endblock title %}</title>
+        <title id="document_title">{% block title %}Bandcamp++{% endblock title %}</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
         <!-- CSS -->
@@ -25,18 +25,26 @@
         <div class='progress-wrapper container-fluid'>  
             <div id='progress-bar' class='progress-bar' style="background-color: #68a9ef; width: 0%;">&nbsp;</div>
         </div>
-        <div id="progress-bar-message">Waiting for progress to start...</div>
+        <div id="progress-bar-message">Connecting to update service...</div>
 
         <div id="celery-result"></div>
         
-        <button type="button" id="testrun" disabled>test run</button>
-        <button type="button" id="testabort" disabled>test abort</button>
-        <input type="checkbox" id="10sec">
-        <label for="10sec">+10 sec</label>
-        <input type="checkbox" id="16sec">
-        <label for="10sec">+16 sec</label>
-        <input type="checkbox" id="23sec">
-        <label for="10sec">+23 sec</label>
+        <div class="container">
+          <button type="button" id="maintaskbutton" disabled>...</button>
+        </div>
+        <br/>
+        <div class="container">
+          <button type="button" id="update_all"> select all</button>
+          <button type="button" id="update_none"> select none</button>
+          <input type="checkbox" id="update_profiles" checked>
+          <label for="update_profiles">Fan Connections</label>
+          <input type="checkbox" id="update_purchases" checked>
+          <label for="update_purchases">My Purchases</label>
+          <input type="checkbox" id="update_fanpurchases" checked>
+          <label for="update_fanpurchases">Fans' Purchases</label>
+          <input type="checkbox" id="update_labelbands" checked>
+          <label for="update_labelbands">Label/Band Discographies</label>
+        </div>
 
         <br/>
         {{ base_profile_obj.name }} | {{ base_profile_obj.username }}
@@ -56,40 +64,65 @@
             let pollInterval = 1000;
             let runPressed = false;
             let abortPressed = false;
-            console.log("preflight");
+            let maintaskbutton_runmsg = 'Run Update';
+            let maintaskbutton_abortmsg = 'Abort Update';
+            let maintaskbutton_idlemsg = '...';
+            
+            let progressBarElement = document.getElementById('progress-bar');
+            let progressBarMessageElement = document.getElementById('progress-bar-message');
+            let maintaskbutton = document.getElementById("maintaskbutton");
+            let update_all = document.getElementById("update_all");
+            let update_none = document.getElementById("update_none");
+
+            let update_profiles = document.getElementById("update_profiles");
+            let update_purchases = document.getElementById("update_purchases");
+            let update_fanpurchases = document.getElementById("update_fanpurchases");
+            let update_labelbands = document.getElementById("update_labelbands");
+            
+        
+            let barColors = {
+              success: '#76ce60',
+              error: '#dc4f63',
+              progress: '#68a9ef',
+              ignored: '#7a7a7a'
+            }  
+
+            function getCookie(name) {
+              let cookieValue = null;
+              if (document.cookie && document.cookie !== '') {
+                  const cookies = document.cookie.split(';');
+                  for (let i = 0; i < cookies.length; i++) {
+                      const cookie = cookies[i].trim();
+                      // Does this cookie string begin with the name we want?
+                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                          break;
+                      }
+                  }
+              }
+              return cookieValue;
+            }
+
+            const csrftoken = getCookie('csrftoken');
           
             function sleep(ms) {
               return new Promise(resolve => setTimeout(resolve, ms));
             };
           
             async function progressBar() {
-          
-              // init bar
-              let progressBarElement = document.getElementById('progress-bar');
-              let progressBarMessageElement = document.getElementById('progress-bar-message');
-              let abortButton = document.getElementById("testabort");
-              let runButton = document.getElementById("testrun");
-          
-              let barColors = {
-                success: '#76ce60',
-                error: '#dc4f63',
-                progress: '#68a9ef',
-                ignored: '#7a7a7a'
-              }
-              
-          
-              let messages = {
-                waiting: 'Waiting for task to start...',
-                started: 'Task started...',
-              }    
-          
-              // event loop
-              console.log("start event loop");
-              
+                                    
               let ProgressSocket = new WebSocket("ws://127.0.0.1:8001/ws/progress/django-test-main/")//"ws://" + window.location.host + progressUrl);
           
+              ProgressSocket.onclose = function(e) {
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                setTimeout(function() {
+                  progressBar();
+                }, pollInterval);
+              };
+
               ProgressSocket.onopen = function (event) {
                   ProgressSocket.send(JSON.stringify({'type': 'check_task_completion'}));
+                  setMainProgressWaitingMessage();
               };
           
               const bar = this;
@@ -97,8 +130,6 @@
                 let data;
                 try { data = JSON.parse(event.data); } 
                   catch (parsingError) { throw parsingError; }
-                
-                console.log(data);
           
                 if (data.progress) {
                   progressBarElement.style.backgroundColor = barColors.progress;
@@ -107,22 +138,22 @@
                   if (data.progress.current == 0) {
                     if (data.progress.pending === true) {
                       if (!runPressed) {
-                        runButton.disabled = false;
-                        abortButton.disabled = true;
-                      }
-                      progressBarMessageElement.textContent = messages.waiting;
+                        maintaskbutton.innerText = maintaskbutton_runmsg;
+                        maintaskbutton.disabled = false;
+                      }                    
+                    setMainProgressWaitingMessage();                    
                     } else {
-                      progressBarMessageElement.textContent = messages.started;
-                      runButton.disabled = true;
-                      abortButton.disabled = true;
+                      progressBarMessageElement.textContent = "Update task starting... ";
+                      maintaskbutton.innerText = maintaskbutton_idlemsg;
+                      maintaskbutton.disabled = true;
                     }
                   } else {
                     if (abortPressed) {
-                      runButton.disabled = false;
-                      abortButton.disabled = true;              
+                      maintaskbutton.innerText = maintaskbutton_runmsg;
+                      maintaskbutton.disabled = false;             
                     } else {
-                      runButton.disabled = true;
-                      abortButton.disabled = false;
+                      maintaskbutton.innerText = maintaskbutton_abortmsg;
+                      maintaskbutton.disabled = false;
                       progressBarMessageElement.textContent = data.progress.current + ' of ' + data.progress.total + ' processed. ' + description;
                     }            
                   }
@@ -131,48 +162,135 @@
                 runPressed = false;
           
                 if (data.complete === true) {  
-                    console.log("COMPLETE?????");
-                    runButton.disabled = false;
-                    abortButton.disabled = true;
-                    fetch("progtest/reset");
+                    maintaskbutton.innerText = maintaskbutton_runmsg;
+                    maintaskbutton.disabled = false;
+                    fetch("/progtest/reset");
                     progressBarElement.style.width = "0%";
-                    progressBarMessageElement.textContent = messages.waiting;
-                    // TODO if not success??
+                    setMainProgressWaitingMessage();
                 };
               };
             };         
                   
-          
             function runfun() {
-              document.getElementById("testrun").disabled = true;
+              maintaskbutton.innerText = maintaskbutton_idlemsg;
+              maintaskbutton.disabled = true;
               runPressed = true;
-              console.log("runfun");
-              fetch("progtest/run");
-            };
-            
-            function abortfun() {
-              document.getElementById("testabort").disabled = true;
-              abortPressed = true;
-              console.log("abortfun");
-              fetch("progtest/abort");
-            };
-
-           async function init_dashboard_content() {
-                fetch("{{ ajax_content_link }}")
-                .then((response) => {
-                    if (response.ok) { return response.text(); }
-                })
-                .then((html) => {
-                    document.getElementById('content').innerHTML = html
+              body = {};
+              body.update_profiles = document.getElementById("update_profiles").checked;
+              body.update_purchases = document.getElementById("update_purchases").checked;
+              body.update_fanpurchases = document.getElementById("update_fanpurchases").checked;
+              body.update_labelbands = document.getElementById("update_labelbands").checked;
+              
+              fetch("/progtest/run", 
+                { method: 'POST', 
+                  credentials: 'same-origin',
+                  headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrftoken,
+                  },                 
+                  body: JSON.stringify({'post_data': body})
                 });
             };
+
+            async function setMainProgressWaitingMessage() {              
+              fetch("/dashboard/main_last_completed_date")
+                      .then((response) => {
+                          if (response.ok) { return response.text(); }
+                      })
+                      .then((last_completed_date) => {
+                        locale_datetime = new Date(Date.parse(last_completed_date));                        
+                        progressBarMessageElement.textContent = "No main update task running. Last completed: " + locale_datetime;
+                      }); 
+            }          
+            
+            function abortfun() {
+              maintaskbutton.innerText = maintaskbutton_idlemsg;
+              maintaskbutton.disabled = true;
+              abortPressed = true;
+              fetch("/progtest/abort");
+            };
+
+            function run_loaded_scripts(html) {
+              let parser = new DOMParser();
+              let scripts = parser.parseFromString(html, 'text/html').getElementsByTagName("script");
+              console.log(scripts + "test");
+              for (let i = 0; i < scripts.length; i++) {
+                if (scripts[i].innerText) {
+                  eval(scripts[i].innerText);
+                } else {
+                  fetch(scripts[i].src).then(function (data) {
+                    data.text().then(function (r) {
+                      eval(r);
+                    })
+                  });              
+                }
+              }
+            }
+
+            async function content_ajax_update_get(ajax_content_link) {
+              fetch(ajax_content_link)
+              .then((response) => {
+                  if (response.ok) { return response.text(); }
+              })
+              .then((html) => {
+                  console.log("content_ajax_update_get");
+                  document.getElementById('content').innerHTML = html;
+                  run_loaded_scripts(html);
+              });
+            };
+
+            async function content_ajax_update_post(ajax_content_link, body) {
+              fetch(ajax_content_link, 
+              { method: 'POST', 
+                credentials: 'same-origin',
+                headers:{
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'X-CSRFToken': csrftoken,
+                },                 
+                body: body
+              })
+              .then((response) => {
+                  if (response.ok) { return response.text(); }
+              })
+              .then((html) => {
+                console.log("content_ajax_update_post");
+                document.getElementById('content').innerHTML = html;
+                run_loaded_scripts(html);
+            });
+          };
+
+
+            function maintaskcontrolbutton() {
+              if (maintaskbutton.innerText === maintaskbutton_runmsg) {
+                runfun();
+              } else if (maintaskbutton.innerText === maintaskbutton_abortmsg) {
+                abortfun();
+              };
+            };
+
+            function check_all_updates() {
+              update_profiles.checked = true;
+              update_purchases.checked = true;
+              update_fanpurchases.checked = true;
+              update_labelbands.checked = true;
+            };
+
+            function uncheck_all_updates() {
+              update_profiles.checked = false;
+              update_purchases.checked = false;
+              update_fanpurchases.checked = false;
+              update_labelbands.checked = false;
+            };
+            
           
             function init() {
               console.log("init");
-              document.getElementById("testabort").addEventListener("click", abortfun);
-              document.getElementById("testrun").addEventListener("click", runfun);
+              maintaskbutton.addEventListener("click", maintaskcontrolbutton);  
+              update_all.addEventListener("click", check_all_updates);
+              update_none.addEventListener("click", uncheck_all_updates);                                      
               progressBar();
-              init_dashboard_content();
+              content_ajax_update_get("{{ ajax_content_link }}");
             };
 
           
