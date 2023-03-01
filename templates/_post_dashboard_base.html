@@ -15,6 +15,13 @@
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">                
                 <a class="navbar-brand" href="#">Bandcamp++</a>
+
+                
+                <span id="settings_link" class="navbar-brand">settings</span>
+                <div class="navbar-brand">
+                  {{ base_profile_obj.username }}
+                  <image src="{{ base_profile_img_url }}">
+                  </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -47,12 +54,9 @@
         </div>
 
         <br/>
-        {{ base_profile_obj.name }} | {{ base_profile_obj.username }}
-        <image src="{{ base_profile_img_url }}">
+        
 
-        <div class="container-fluid">
-          <a id="settings_link">SETTINGS</a>
-        </div>
+
         <div class="container" id="content">
         </div>
 
@@ -82,6 +86,8 @@
             let update_fanpurchases = document.getElementById("update_fanpurchases");
             let update_labelbands = document.getElementById("update_labelbands");
             
+            let ajax_content_div = document.getElementById('content')
+            let loading_interstitial_html = "Loading... interstitial placeholder"; // TODO: solve potential flicker?
         
             let barColors = {
               success: '#76ce60',
@@ -232,18 +238,21 @@
             }
 
             async function content_ajax_update_get(ajax_content_link) {
+              ajax_content_div.innerHTML = loading_interstitial_html;
               fetch(ajax_content_link)
               .then((response) => {
                   if (response.ok) { return response.text(); }
               })
               .then((html) => {
                   console.log("content_ajax_update_get");
-                  document.getElementById('content').innerHTML = html;
+                  ajax_content_div.innerHTML = html;
                   run_loaded_scripts(html);
+                  loading_interstitial.visible = false;
               });
             };
 
             async function content_ajax_update_post(ajax_content_link, body) {
+              ajax_content_div.innerHTML = loading_interstitial_html;              
               fetch(ajax_content_link, 
               { method: 'POST', 
                 credentials: 'same-origin',
@@ -258,7 +267,7 @@
               })
               .then((html) => {
                 console.log("content_ajax_update_post");
-                document.getElementById('content').innerHTML = html;
+                ajax_content_div.innerHTML = html;
                 run_loaded_scripts(html);
             });
           };
