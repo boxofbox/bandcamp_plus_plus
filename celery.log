@@ -7491,3 +7491,8 @@ DEBUG TaskPool: Apply <function fast_trace_task at 0xffffbb5cb370> (args:('dashb
 INFO current status: 0
 INFO current status: 1
 INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 3.0710692929988s: -1
+INFO Task dashboard.tasks.my_task[django-test-main] received
+DEBUG TaskPool: Apply <function fast_trace_task at 0xffffbb5cb370> (args:('dashboard.tasks.my_task', 'django-test-main', {'lang': 'py', 'task': 'dashboard.tasks.my_task', 'id': 'django-test-main', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'django-test-main', 'parent_id': None, 'argsrepr': '(5,)', 'kwargsrepr': '{}', 'origin': 'gen117@adb3a998cd25', 'ignore_result': False, 'properties': {'correlation_id': 'django-test-main', 'reply_to': '9970537b-d869-3e01-a0f3-8018f17f2f23', 'delivery_mode': 2, 'delivery_info': {'exchange': '', 'routing_key': 'celery'}, 'priority': 0, 'body_encoding': 'base64', 'delivery_tag': 'aa516afa-b5f9-40d9-b0ab-0f156dac4ac4'}, 'reply_to': '9970537b-d869-3e01-a0f3-8018f17f2f23', 'correlation_id': 'django-test-main', 'hostname': 'celery@f9f0248e5bd6', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [5], 'kwargs': {}}, b'[[5], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]',... kwargs:{})
+INFO current status: 0
+INFO current status: 1
+INFO Task dashboard.tasks.my_task[django-test-main] succeeded in 3.0608673349997844s: -1

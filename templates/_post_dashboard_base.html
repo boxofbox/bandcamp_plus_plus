@@ -50,6 +50,9 @@
         {{ base_profile_obj.name }} | {{ base_profile_obj.username }}
         <image src="{{ base_profile_img_url }}">
 
+        <div class="container-fluid">
+          <a id="settings_link">SETTINGS</a>
+        </div>
         <div class="container" id="content">
         </div>
 
@@ -59,7 +62,7 @@
         <script src="{% static 'js/base.js' %}"></script>
     
         <script>
-            let progressUrl = "{% url 'celery_progress:task_status' 'django-test-main' %}";
+            let progressUrl = "{% url 'celery_progress:task_status' 'django-test-main' %}";                        
             
             let pollInterval = 1000;
             let runPressed = false;
@@ -260,7 +263,6 @@
             });
           };
 
-
             function maintaskcontrolbutton() {
               if (maintaskbutton.innerText === maintaskbutton_runmsg) {
                 runfun();
@@ -282,15 +284,39 @@
               update_fanpurchases.checked = false;
               update_labelbands.checked = false;
             };
-            
-          
-            function init() {
+                      
+            function init() {            
               console.log("init");
               maintaskbutton.addEventListener("click", maintaskcontrolbutton);  
               update_all.addEventListener("click", check_all_updates);
               update_none.addEventListener("click", uncheck_all_updates);                                      
               progressBar();
-              content_ajax_update_get("{{ ajax_content_link }}");
+              history.replaceState({
+                ajax_content_link: '{{ ajax_content_link }}',
+                ajax_content_method: 'GET'
+              }, "")           
+              content_ajax_update_get(history.state.ajax_content_link);
+              
+
+              // ajax link events
+              document.getElementById("settings_link").addEventListener("click", function () {
+                content_ajax_update_get('/dashboard/ajax/settings');                              
+                history.pushState({
+                  ajax_content_link: '/dashboard/ajax/settings',
+                  ajax_content_method: 'GET'
+                  }, 
+                  "", "/dashboard/settings"
+                );
+              });
+
+              // TODO: handle POST vs GET?
+              window.addEventListener('popstate', (event) => {                
+                if (event.state.ajax_content_link && event.state.ajax_content_method === "GET") {
+                    content_ajax_update_get(event.state.ajax_content_link);
+                    console.log("updated?");
+                };
+              });
+
             };
 
           
