@@ -1,1 +1,7 @@
 /* static/css/base.css */
+
+/* used for disabling <a> tags */
+.disable {
+    pointer-events: none;
+    cursor: default;
+ }

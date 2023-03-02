@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from .views import pre_dashboard_wrapper, post_dashboard_settings, dashboard_wrapper, \
             progress_view, progress_view_abort, progress_view_run, progress_view_reset, \
-            prompt_update, main_last_completed_date, dashboard_settings, dashboard_settings_wrapper
+            dashboard_home, main_last_completed_date, dashboard_settings, dashboard_settings_wrapper
 
 urlpatterns = [
     path("", pre_dashboard_wrapper, name="dashboard_wrapper"),
@@ -10,11 +10,11 @@ urlpatterns = [
     path("dashboard_settings_update", post_dashboard_settings, name="dashboardsettingsupdate"),
 
     # AJAX CONTENT PANELS
-    path("dashboard/ajax/prompt_update", prompt_update, name="dashboardajaxpromptupdate"),
+    path("dashboard/ajax/dashboard_home", dashboard_home, name="dashboardajaxpromptupdate"),
     path("dashboard/ajax/settings", dashboard_settings, name="dashboardajaxsettings"),
 
     # REWRAPPED CONTEXTS
-    path("dashboard", dashboard_wrapper, name="dashboard"),  
+    re_path(r"dashboard/?$", dashboard_wrapper, name="dashboard"),  
     path("dashboard/settings", dashboard_settings_wrapper, name="dashboardsettingswrapper"),  
 
 

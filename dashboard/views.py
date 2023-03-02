@@ -97,7 +97,7 @@ def pre_dashboard_wrapper(request):
 
     return HttpResponseRedirect('/dashboard')
 
-def dashboard_wrapper(request, ajax_content_link=None):
+def dashboard_wrapper(request, ajax_content_link=None, active_nav_link_id=None):
     if DashboardSettings.objects.count() == 0:
         return HttpResponseRedirect('/')
     settings_obj = DashboardSettings.objects.get(lock='X')
@@ -105,17 +105,17 @@ def dashboard_wrapper(request, ajax_content_link=None):
         return HttpResponseRedirect('/')
 
     if ajax_content_link is None:
-        if Profile.objects.count() == 1:
-            ajax_content_link = '/dashboard/ajax/prompt_update'
-        else:
-            ajax_content_link = '/dashboard/ajax/prompt_update' # TODO    
+        ajax_content_link = '/dashboard/ajax/dashboard_home'
+        active_nav_link_id = 'dashboard_home_link'
+        
 
     base_profile_img_url = "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_42.jpg"        
 
     return render(request, '_post_dashboard_base.html', 
                   {'ajax_content_link': ajax_content_link, 
                    'base_profile_obj': settings_obj.base_profile,
-                   'base_profile_img_url': base_profile_img_url})
+                   'base_profile_img_url': base_profile_img_url,
+                   'active_nav_link_id': active_nav_link_id})
 
 def dashboard_settings(request):
     msgs = [] 
@@ -160,18 +160,17 @@ def dashboard_settings(request):
     if settings_obj.delay_time is not None:
         form.fields['delay_time'].initial = str(settings_obj.delay_time)
     if settings_obj.base_profile is not None:
-        form.fields['profile_name'].initial = settings_obj.base_profile.username        
-        print("^&^&^@&#^@#*^&(#*^&@#*(^&#)) set the profile name!?!?!?!??!")
+        form.fields['profile_name'].initial = settings_obj.base_profile.username   
     if settings_obj.max_profile_depth is not None:
         form.fields['depth'].initial = str(settings_obj.max_profile_depth)
     msg = " | ".join(msgs)
     return render(request, '_settings_pane.html', {'form': form, 'msg': msg})
 
 def dashboard_settings_wrapper(request):
-    return dashboard_wrapper(request, '/dashboard/ajax/settings')
+    return dashboard_wrapper(request, '/dashboard/ajax/settings', 'dashboard_settings_link')
 
-def prompt_update(request):
-    return HttpResponse("PROMPT HERE")
+def dashboard_home(request):
+    return HttpResponse("DASHBOARD HOME PLACEHOLDER")
 
 
     # TODO 
