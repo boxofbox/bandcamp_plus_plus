@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from .models import Bin, RecentFanPurchase, RecentLabelBandRelease, Issue
+from .models import Bin, RecentFanPurchase, RecentLabelBandRelease, Issue, ReleaseAcquiredOutsideBandcamp
 
 class BinListView(ListView):
     model = Bin
@@ -17,3 +17,7 @@ class RecentLabelBandReleaseListView(ListView):
 class IssueListView(ListView):
     model = Issue
     template_name = "bins/issue_list.html"
+
+class ReleaseAcquiredOutsideBandcampListView(ListView):
+    model = ReleaseAcquiredOutsideBandcamp
+    template_name = "bins/releaseacquiredoutsidebandcamp_list.html"

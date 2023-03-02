@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Bin, Issue, RecentFanPurchase, RecentLabelBandRelease
+from .models import Bin, Issue, RecentFanPurchase, RecentLabelBandRelease, ReleaseAcquiredOutsideBandcamp
 
 class BinAdmin(admin.ModelAdmin):
     fields = ['name', 'sort_key', 'date_updated', 'related',]
@@ -18,8 +18,12 @@ class RecentLabelBandReleaseAdmin(admin.ModelAdmin):
     fields = ['release', 'recently_released_by', 'release_date', 'seen_before',]
     list_display = ('release', 'release_date', 'seen_before') 
 
+class ReleaseAcquiredOutsideBandcampAdmin(admin.ModelAdmin):
+    fields = ['release']
+    list_display = ('release',)
 
 admin.site.register(Bin, BinAdmin)
 admin.site.register(Issue, IssueAdmin)
 admin.site.register(RecentFanPurchase, RecentFanPurchaseAdmin)
 admin.site.register(RecentLabelBandRelease, RecentLabelBandReleaseAdmin)
+admin.site.register(ReleaseAcquiredOutsideBandcamp, ReleaseAcquiredOutsideBandcampAdmin)

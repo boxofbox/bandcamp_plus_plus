@@ -108,7 +108,7 @@ def dashboard_wrapper(request, ajax_content_link=None):
         if Profile.objects.count() == 1:
             ajax_content_link = '/dashboard/ajax/prompt_update'
         else:
-            ajax_content_link = '/dashboard/ajax/landing'    
+            ajax_content_link = '/dashboard/ajax/prompt_update' # TODO    
 
     base_profile_img_url = "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_42.jpg"        
 

@@ -24,6 +24,10 @@ class RecentLabelBandRelease(models.Model):
     release_date = models.DateTimeField(null=True, blank=True)
     seen_before = models.BooleanField(default=False)
 
+class ReleaseAcquiredOutsideBandcamp(models.Model):
+    release = models.ForeignKey(Release, on_delete=models.CASCADE)
+    
+
 class Issue(models.Model):
     item_id = models.BigIntegerField(null=True, blank=True)
 
