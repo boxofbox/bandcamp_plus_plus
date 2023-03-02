@@ -23,17 +23,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <div class="me-auto">                 
                     <ul class="navbar-nav">
-                      <li class="nav-item"><a id="dashboard_home_link" class="nav-link" aria-current="page" href="#">Dashboard</a></li>
+                      <li class="nav-item"><a id="dashboard_home_link" class="nav-link" aria-current="page">Dashboard</a></li>
                       <li class="nav-item"><a id="dashboard_profiles_link" class="nav-link" href="#">Profiles</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Labels/Bands</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Artists</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Releases</a></li>
+                      <li class="nav-item"><a class="nav-link">Labels/Bands</a></li>
+                      <li class="nav-item"><a class="nav-link">Artists</a></li>
+                      <li class="nav-item"><a class="nav-link">Releases</a></li>
+                      <li class="nav-item"><a class="nav-link">Bins</a></li> 
                     </ul>    
                   </div>
                   <div class="ms-auto">                    
                     <ul class="navbar-nav">
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a id="base_profile_user" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           {{ base_profile_obj.username }}
                       <image src="{{ base_profile_img_url }}" alt="{{ base_profile_obj.username }}" width="25" height="25" class="rounded-circle">
                         </a>
@@ -329,13 +330,31 @@
               update_fanpurchases.checked = false;
               update_labelbands.checked = false;
             };
+            
+            function register_ajax_navbar_link(link_id, ajax_path, window_path) {
+              document.getElementById(link_id).addEventListener("click", function () {
+                console.log("clicked");
+                content_ajax_update_get(ajax_path);
+                document.getElementById(history.state.active_nav_link_id).classList.remove('active','disable');
+                document.getElementById(link_id).classList.add('active','disable');
+                history.pushState({
+                  ajax_content_link: ajax_path,
+                  active_nav_link_id: link_id,
+                  ajax_content_method: 'GET'
+                  }, 
+                  "", window_path
+                );                
+              });
+            }
                       
             function init() {            
               console.log("init");
               maintaskbutton.addEventListener("click", maintaskcontrolbutton);  
               update_all.addEventListener("click", check_all_updates);
               update_none.addEventListener("click", uncheck_all_updates);                                  
+              
               progressBar();
+
               history.replaceState({
                 ajax_content_link: '{{ ajax_content_link }}',
                 active_nav_link_id: '{{ active_nav_link_id }}',
@@ -343,29 +362,12 @@
               }, "")           
               content_ajax_update_get(history.state.ajax_content_link);
               document.getElementById(history.state.active_nav_link_id).classList.add('active','disable');
-              
-
-              // ajax link events
-              function register_ajax_link(link_id, ajax_path, window_path) {
-                document.getElementById(link_id).addEventListener("click", function () {
-                  console.log("clicked");
-                  content_ajax_update_get(ajax_path);
-                  document.getElementById(history.state.active_nav_link_id).classList.remove('active','disable');
-                  document.getElementById(link_id).classList.add('active','disable');
-                  history.pushState({
-                    ajax_content_link: ajax_path,
-                    active_nav_link_id: link_id,
-                    ajax_content_method: 'GET'
-                    }, 
-                    "", window_path
-                  );                
-                });
-              }
-
-              register_ajax_link('dashboard_settings_link', '/dashboard/ajax/settings', "/dashboard/settings");
-              register_ajax_link('dashboard_home_link', '/dashboard/ajax/dashboard_home', "/dashboard");
+                          
+              register_ajax_navbar_link('dashboard_settings_link', '/dashboard/ajax/settings', "/dashboard/settings");
+              register_ajax_navbar_link('dashboard_home_link', '/dashboard/ajax/dashboard_home', "/dashboard");
 
               // TODO: handle POST vs GET?
+              // TODO: handle anchor links? and external links?
               window.addEventListener('popstate', (event) => {                
                 if (event.state.ajax_content_link && event.state.ajax_content_method === "GET") {
                     content_ajax_update_get(event.state.ajax_content_link);

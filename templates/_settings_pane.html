@@ -16,4 +16,13 @@
     });
     
     document.getElementById("document_title").innerText = "Bandcamp++ SETTINGS";
+
+    fetch("/dashboard/base_profile_info")
+    .then((response) => response.json())
+    .then((data) => {
+        document.getElementById('base_profile_user').innerHTML = data.base_profile_username +
+            " <image src='" + data.base_profile_img_url + "' alt='" + 
+            data.base_profile_username + "' width='25' height='25' class='rounded-circle'>";
+    });
+
 </script>

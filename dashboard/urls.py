@@ -2,7 +2,8 @@ from django.urls import path, re_path
 
 from .views import pre_dashboard_wrapper, post_dashboard_settings, dashboard_wrapper, \
             progress_view, progress_view_abort, progress_view_run, progress_view_reset, \
-            dashboard_home, main_last_completed_date, dashboard_settings, dashboard_settings_wrapper
+            dashboard_home, main_last_completed_date, dashboard_settings, dashboard_settings_wrapper, \
+            base_profile_info
 
 urlpatterns = [
     path("", pre_dashboard_wrapper, name="dashboard_wrapper"),
@@ -17,9 +18,11 @@ urlpatterns = [
     re_path(r"dashboard/?$", dashboard_wrapper, name="dashboard"),  
     path("dashboard/settings", dashboard_settings_wrapper, name="dashboardsettingswrapper"),  
 
-
-
+    # UTILITIES
     path("dashboard/main_last_completed_date", main_last_completed_date, name="dashboardmainlastcompleteddate"),
+    path("dashboard/base_profile_info", base_profile_info, name="dashboardbaseprofileinfo"),
+
+    # DEMO/DEBUG TODO REMOVE
     path("progtest", progress_view, name="progview"),
     path("progtest/abort", progress_view_abort, name="progviewabort"),
     path("progtest/run", progress_view_run, name="progviewrun"),

@@ -1,6 +1,6 @@
 from django import forms
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 from celery.contrib.abortable import AbortableAsyncResult
 
@@ -30,6 +30,17 @@ def main_last_completed_date(request):
     if settings_obj.main_update_last_completed is None:        
         return HttpResponse("never")
     return HttpResponse(str(settings_obj.main_update_last_completed))
+
+def base_profile_info(request):
+    if DashboardSettings.objects.count() == 0:
+        return HttpResponse("")
+    settings_obj = DashboardSettings.objects.get(lock='X')
+    if settings_obj.base_profile is None:        
+        return HttpResponse("")
+    return JsonResponse({
+                "base_profile_username": settings_obj.base_profile.username,
+                "base_profile_img_url": "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_42.jpg" 
+                })
 
 
 def init_dashboard_settings(request, cur_delay=None, cur_profile=None, depth=None, error_msg=""):
