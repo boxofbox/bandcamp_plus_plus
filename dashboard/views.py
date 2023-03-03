@@ -11,9 +11,8 @@ import json
 
 from .models import DashboardSettings
 from profiles.models import Profile
-from .tasks import my_task
+from .tasks import my_task, main_update_task
 
-HARD_CODED_COUNT_LIMIT = 3 # TODO UPDATE!
 
 class DashboardSettingsForm(forms.Form):
     profile_name = forms.CharField(label='Your bandcamp username', max_length=100, required=True)
@@ -22,6 +21,11 @@ class DashboardSettingsForm(forms.Form):
                                help_text="This specifies how many recursive crawls into the users you follow \
                                our crawler will go. I.e., how deep the 'you're following x who follows xx who \
                                 follows xxx...' rabbit hole goes ")
+
+def img_id_to_url(img_id, size=42):
+    if img_id == 0:
+        return "" # TODO
+    return "https://f4.bcbits.com/img/" + str(img_id).zfill(10) + "_" + str(size) + ".jpg"
 
 def main_last_completed_date(request):
     if DashboardSettings.objects.count() == 0:
@@ -39,7 +43,7 @@ def base_profile_info(request):
         return HttpResponse("")
     return JsonResponse({
                 "base_profile_username": settings_obj.base_profile.username,
-                "base_profile_img_url": "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_42.jpg" 
+                "base_profile_img_url": img_id_to_url(settings_obj.base_profile.img_id, size=42) 
                 })
 
 
@@ -120,7 +124,7 @@ def dashboard_wrapper(request, ajax_content_link=None, active_nav_link_id=None):
         active_nav_link_id = 'dashboard_home_link'
         
 
-    base_profile_img_url = "https://f4.bcbits.com/img/" + str(settings_obj.base_profile.img_id).zfill(10) + "_42.jpg"        
+    base_profile_img_url = img_id_to_url(settings_obj.base_profile.img_id, size=42)
 
     return render(request, '_post_dashboard_base.html', 
                   {'ajax_content_link': ajax_content_link, 
@@ -224,11 +228,11 @@ def progress_view_abort(request):
     return HttpResponse("")
 
 def progress_view_run(request):
-    print("%>%>%>%>%>>%>%", json.load(request)['post_data'])
+    post_data = json.load(request)['post_data']
     check = AbortableAsyncResult('django-test-main')
     if check.state != "PROGRESS":
         check.forget()
-        check = my_task.apply_async((5,), task_id='django-test-main')
+        check = main_update_task.apply_async((post_data,), task_id='django-test-main')
     return HttpResponse("")
     
 def progress_view_reset(request):

@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Profile, Purchase
 
 class ProfileAdmin(admin.ModelAdmin):
-    fields = ['id', 'username', 'name', 'img_id', 'followers', 'following_labelbands']
+    fields = ['id', 'username', 'name', 'img_id', 'following_fans', 'following_labelbands']
     list_display = ('id', 'username', 'name', 'img_id') 
 
 class PurchaseAdmin(admin.ModelAdmin):

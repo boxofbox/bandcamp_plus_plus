@@ -9,7 +9,7 @@ bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
 count = 10
-switch = 1
+switch = 3
 
 
 if switch == -3:
@@ -126,6 +126,7 @@ elif switch == 3:
         "count": count,    
     }
     r = requests.post(url, data=json.dumps(blob))
+    print(r.json())
     following_fans = r.json()['followeers']
     for f in following_fans:
         fan_id = f['fan_id']
