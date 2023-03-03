@@ -49,57 +49,54 @@
           </nav>
         </div> 
       </div>
+             
+        <div class="row container-fluid pt-2 pb-2 align-items-center ms-0 me-0 bg-dark-subtle">
+          
+          <div class="col">
+            <div id="progress-bar-wrapper" class="bg-body-tertiary border border-3 rounded-4" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" data-bs-title=" ">
+              <div class="progress bg-secondary" role="progressbar" id='progress-bar' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-secondary" style="width: 0%"></div>
+              </div>
+            </div>              
+          </div>
 
-      <div class="row g-0 ps-3 pe-3 bg-warning-subtle">
-        <div class="container-fluid">
-          <div class="row mt-1 mb-1 align-items-center">
-            
-            <div class="col bg-info-subtle">
-              <div id="progress-bar-wrapper" class="bg-success border border-3 border-warning" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" data-bs-title=" ">
-                <div class="progress" role="progressbar" id='progress-bar' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
-                </div>
-              </div>              
-            </div>
-
-            <div class="col-auto bg-primary-subtle pl-0 pr-0 btn-group">
-              <button class="btn btn-secondary btn-sm" style="width: 70px" type="button"  id="maintaskbutton" disabled>                
-              </button>
-              <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" style="width:180px">
-                <li class="bg-warning-subtle form-check form-check-reverse form-switch px-auto">
-                  <input class="form-check-input" type="checkbox" role="switch" id="update_profiles" checked>
-                  <label class="form-check-label fs-6" for="update_profiles">Fan Connections</label>
-                </li>
-                <li class="bg-warning-subtle form-check form-check-reverse form-switch px-auto">
-                  <input class="form-check-input" type="checkbox" id="update_purchases" checked>
-                  <label class="form-check-label fs-6" for="update_purchases">My Purchases</label>
-                </li>
-                <li class="bg-warning-subtle form-check form-check-reverse form-switch px-auto">
-                  <input class="form-check-input" type="checkbox" id="update_fanpurchases" checked>
-                  <label class="form-check-label fs-6" for="update_fanpurchases">Fans' Purchases</label>
-                </li>
-                <li class="bg-warning-subtle form-check form-check-reverse form-switch px-auto">
-                  <input class="form-check-input" type="checkbox" id="update_labelartists" checked>
-                  <label class="form-check-label fs-6" for="update_labelartists">Label/Artists</label>
-                </li>
-                <li class="bg-warning-subtle form-check form-check-reverse form-switch px-auto">
-                  <input class="form-check-input" type="checkbox" id="update_releaseowners" checked>
-                  <label class="form-check-label fs-6" for="update_releaseowners">Release Owners</label>
-                </li>
-                <li class="btn-group btn-primary" role="group" aria-label="update_button_group">
-                  <button class="btn btn-primary btn-sm"  id="update_all"> select all</button>          
-                  <button class="btn btn-primary btn-sm" id="update_none"> select none</button>
-                </li>
-              </ul>
-            </div>
-
-          </div>          
-        </div>  
-      </div> 
-
+          <div class="col-auto pl-0 pr-0 btn-group">
+            <button class="btn btn-secondary btn-sm" style="width: 70px" type="button"  id="maintaskbutton" disabled>                
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu p-2 align-items-center" style="width:200px">
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" role="switch" id="update_profiles" checked>
+                <label class="form-check-label fs-6" for="update_profiles">Fan Connections</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_purchases" checked>
+                <label class="form-check-label fs-6" for="update_purchases">My Purchases</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_fanpurchases" checked>
+                <label class="form-check-label fs-6" for="update_fanpurchases">Fans' Purchases</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_labelartists" checked>
+                <label class="form-check-label fs-6" for="update_labelartists">Label/Artists</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_releaseowners" checked>
+                <label class="form-check-label fs-6" for="update_releaseowners">Release Owners</label>
+              </li>                
+              <li class="btn-group d-flex" role="group" aria-label="update_button_group">
+                <button class="btn btn-outline-secondary btn-sm"  id="update_all"> select all</button>          
+                <button class="btn btn-outline-secondary btn-sm" id="update_none"> select none</button>
+              </li>
+            </ul>
+          </div>
+        </div>          
+        
+      
+      
          
 
         <br/>
