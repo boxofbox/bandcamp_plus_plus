@@ -81,7 +81,11 @@
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
                 <input class="form-check-input" type="checkbox" id="update_labelartists" checked>
-                <label class="form-check-label fs-6" for="update_labelartists">Label/Artists</label>
+                <label class="form-check-label fs-6" for="update_labelartists">My Label/Artists</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_fanlabelartists" checked>
+                <label class="form-check-label fs-6" for="update_fanlabelartists">Fans' Label/Artists</label>
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
                 <input class="form-check-input" type="checkbox" id="update_releaseowners" checked>
@@ -90,6 +94,17 @@
               <li class="btn-group d-flex" role="group" aria-label="update_button_group">
                 <button class="btn btn-outline-secondary btn-sm"  id="update_all"> select all</button>          
                 <button class="btn btn-outline-secondary btn-sm" id="update_none"> select none</button>
+              </li>
+              <li class="mt-2">
+                Data to update:
+                <div class="btn-group d-flex" role="group" aria-label="update_radio_button_group">                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_new" autocomplete="off" checked>
+                  <label class="btn btn-outline-secondary btn-sm" for="update_radio_new">New</label>                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_old" autocomplete="off">
+                  <label class="btn btn-outline-secondary btn-sm" for="update_radio_old">Old</label>
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_all" autocomplete="off">
+                  <label class="btn btn-outline-warning btn-sm" for="update_radio_all">All</label>
+                </div>
               </li>
             </ul>
           </div>
@@ -134,6 +149,7 @@
             let update_purchases = document.getElementById("update_purchases");
             let update_fanpurchases = document.getElementById("update_fanpurchases");
             let update_labelartists = document.getElementById("update_labelartists");
+            let update_fanlabelartists = document.getElementById("update_fanlabelartists");
             let update_releaseowners = document.getElementById("update_releaseowners");
             
             let ajax_content_div = document.getElementById('content')
@@ -237,7 +253,10 @@
               body.update_purchases = document.getElementById("update_purchases").checked;
               body.update_fanpurchases = document.getElementById("update_fanpurchases").checked;
               body.update_labelartists = document.getElementById("update_labelartists").checked;
+              body.update_fanlabelartists = document.getElementById("update_fanlabelartists").checked;
               body.update_releaseowners = document.getElementById("update_releaseowners").checked;
+              body.update_new = document.getElementById("update_radio_all").checked || document.getElementById("update_radio_new").checked;
+              body.update_old = document.getElementById("update_radio_all").checked || document.getElementById("update_radio_old").checked;
               
               fetch("/progtest/run", 
                 { method: 'POST', 
@@ -337,6 +356,7 @@
               update_purchases.checked = true;
               update_fanpurchases.checked = true;
               update_labelartists.checked = true;
+              update_fanlabelartists.checked = true;
               update_releaseowners.checked = true;
             };
 
@@ -345,6 +365,7 @@
               update_purchases.checked = false;
               update_fanpurchases.checked = false;
               update_labelartists.checked = false;
+              update_fanlabelartists.checked = false;
               update_releaseowners.checked = false;
             };
             

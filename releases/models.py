@@ -19,19 +19,19 @@ class Release(models.Model):
     
     title = models.TextField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
-    img_url = models.URLField(null=True, blank=True)
+    img_id = models.BigIntegerField(null=True, blank=True)
     price = models.TextField(null=True, blank=True)
     release_date = models.DateTimeField(null=True, blank=True)
     last_viewed_as_preorder = models.BooleanField(null=True, blank=True)
     
-    artist_id = models.ForeignKey(
+    artist = models.ForeignKey(
                                     LabelBand, 
                                     related_name="releases", 
                                     blank=True,
                                     null=True,
                                     on_delete=models.PROTECT
                                     )
-    selling_artist_id = models.ForeignKey(
+    selling_artist = models.ForeignKey(
                                     LabelBand, 
                                     related_name="selling_releases",
                                     blank=True,

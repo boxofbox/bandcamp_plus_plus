@@ -21,3 +21,11 @@ class Purchase(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     release = models.ForeignKey(Release, on_delete=models.CASCADE)
     date = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['profile','release'],
+                name='unique_profile_release_combination'
+            )
+        ]

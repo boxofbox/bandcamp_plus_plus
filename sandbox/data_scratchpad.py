@@ -8,8 +8,8 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleW
 bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
-count = 10
-switch = 3
+count = 3
+switch = 6
 
 
 if switch == -3:
@@ -58,6 +58,7 @@ elif switch == 0:
         "count": count,    
     }   
     r = requests.post(url, data=json.dumps(blob))
+    print(r.json())
     items = r.json()['items']
     for i in items:
         item_id = i['item_id']
@@ -204,7 +205,7 @@ elif switch == 5:
 
     print("SELLING: ", artist_id, selling_artist_id, album_is_preorder, default_price, currency)
 
-    for t in data_tralbum['trackinfo']:
+    for t in data_tralbum['trackinfo']:        
         track_id = t['track_id']
         track_mp3 = None
         if t['file'] is not None:
@@ -246,6 +247,7 @@ elif switch == 6:
     # track info
 
     url = "https://twoshell.bandcamp.com/track/no-reply-1"
+    # TEST_SINGLE_TRACK RELEASE url = "https://sidneycharles.bandcamp.com/track/block-party"
     r = requests.get(url, headers=headers)
     soup = BeautifulSoup(r.text, 'html.parser')
 
@@ -262,13 +264,17 @@ elif switch == 6:
     label_url = soup.find_all("div",attrs={"id":"name-section"})[0].h3.span.a['href']
     print("LABEL: ",label_id, label_name, label_url, label_img_url)
 
-    album_id = data_embed['album_embed_data']['tralbum_param']['value']
-    album_title = data_embed['album_embed_data']['album_title']
-    album_url = data_embed['album_embed_data']['linkback']
-    album_artist = data_embed['album_embed_data']['artist']
-    album_img_url = soup.find_all("div", attrs={"id":"tralbumArt"})[0].img['src']
-    release_date = data_tralbum['album_release_date']
-    print("ALBUM: ",album_id, album_title, album_url, album_artist, album_img_url, release_date)
+    if data_embed.get('album_embed_data', None) is not None:
+        album_id = data_embed['album_embed_data']['tralbum_param']['value']
+        album_title = data_embed['album_embed_data']['album_title']
+        album_url = data_embed['album_embed_data']['linkback']
+        album_artist = data_embed['album_embed_data']['artist']
+        album_img_url = soup.find_all("div", attrs={"id":"tralbumArt"})[0].img['src']
+        release_date = data_tralbum['album_release_date']
+        print("ALBUM: ",album_id, album_title, album_url, album_artist, album_img_url, release_date)
+    else:
+        release_date = data_tralbum['current']['release_date']
+        print("RELEASE DATE: ", release_date)
 
     item_type = json.loads(soup.find_all("meta", attrs={"name":"bc-page-properties"})[0]['content'])['item_type']       
     track_id = data_embed['tralbum_param']['value']

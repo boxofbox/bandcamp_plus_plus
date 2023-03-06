@@ -8,7 +8,7 @@ class ReleaseAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'artist_name', 'release_date') 
 
 class TrackAdmin(admin.ModelAdmin):
-    fields = ['id', 'subclass', 'title', 'url', 'img_url', 'price', 'release_date', 'artist_id', 'artist_name', 'selling_artist_id','album', 'mp3', 'track_number', 'duration']
+    fields = ['id', 'subclass', 'title', 'url', 'img_id', 'price', 'release_date', 'artist_id', 'artist_name', 'selling_artist_id','album', 'mp3', 'track_number', 'duration']
     list_display = ('id', 'title', 'artist_name', 'release_date', 'album') 
 
 
