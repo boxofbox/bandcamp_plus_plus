@@ -61,50 +61,130 @@
           </div>
 
           <div class="col-auto pl-0 pr-0 btn-group">
-            <button class="btn btn-secondary btn-sm" style="width: 70px" type="button"  id="maintaskbutton" disabled>                
+            <button class="btn btn-secondary btn-sm" style="width: 70px" type="button"  id="maintaskbutton" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>                
             </button>
             <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
-            <ul class="dropdown-menu p-2 align-items-center" style="width:200px">
-              <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" role="switch" id="update_profiles" checked>
-                <label class="form-check-label fs-6" for="update_profiles">Fan Connections</label>
+            <ul class="dropdown-menu p-2 align-items-center" style="width:300px">
+
+              <li>                
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="update_profiles" checked>
+                  <label class="form-check-label" for="update_profiles">
+                    PROFILES
+                  </label>
+                </div>
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" id="update_purchases" checked>
-                <label class="form-check-label fs-6" for="update_purchases">My Purchases</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="update_following_fans" checked>
+                <label class="form-check-label fs-6" for="update_following_fans">Following Fans</label>
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" id="update_fanpurchases" checked>
-                <label class="form-check-label fs-6" for="update_fanpurchases">Fans' Purchases</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="update_followers" checked>
+                <label class="form-check-label fs-6" for="update_followers">Followers</label>
+              </li>
+              <li class="mt-2">
+                <div id="update_profile_group_label">Profile Data to update:</div>
+                <div class="btn-group d-flex" role="group" aria-label="update_profile_button_group">                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_new" autocomplete="off" checked>
+                  <label class="btn btn-outline-secondary btn-sm" for="update_profile_new">New</label>                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_old" autocomplete="off">
+                  <label class="btn btn-outline-secondary btn-sm" for="update_profile_old">Old</label>
+                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_all" autocomplete="off">
+                  <label class="btn btn-outline-warning btn-sm" for="update_profile_all">All</label>
+                </div>
+              </li>
+              <hr/>
+
+              <li>                
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="update_purchases" checked>
+                  <label class="form-check-label" for="update_purchases">                    
+                    PURCHASES
+                  </label>
+                </div>
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" id="update_labelartists" checked>
-                <label class="form-check-label fs-6" for="update_labelartists">My Label/Artists</label>
+                <input class="form-check-input" type="checkbox" id="update_base_purchases" checked>
+                <label class="form-check-label fs-6" for="update_base_purchases">My Purchases</label>
               </li>
               <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" id="update_fanlabelartists" checked>
-                <label class="form-check-label fs-6" for="update_fanlabelartists">Fans' Label/Artists</label>
+                <input class="form-check-input" type="checkbox" id="update_fan_purchases" checked>
+                <label class="form-check-label fs-6" for="update_fan_purchases">Fans' Purchases</label>
               </li>
+              <li class="mt-2">
+                <span id="update_purchases_group_label">Purchase Data to update:</span>
+                <div class="btn-group d-flex" role="group" aria-label="update_purchases_button_group">          
+                  <input type="radio" class="btn-check btn-sm" name="btnradio2" id="update_purchases_new" autocomplete="off" checked>
+                  <label class="btn btn-outline-secondary btn-sm" for="update_purchases_new">New</label>                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio2" id="update_purchases_old" autocomplete="off">
+                  <label class="btn btn-outline-secondary btn-sm" for="update_purchases_old">Old</label>
+                  <input type="radio" class="btn-check btn-sm" name="btnradio2" id="update_purchases_all" autocomplete="off">
+                  <label class="btn btn-outline-warning btn-sm" for="update_purchases_all">All</label>
+                </div>
+              </li>
+              <li class="form-check mt-1 form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_old_preorders" >
+                <label class="form-check-label fs-6" for="update_old_preorders">Recheck pre-orders</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_old_nodigital" >
+                <label class="form-check-label fs-6" for="update_old_nodigital">Recheck Non-digital releases</label>
+              </li>
+              <hr/>
+
+              <li>                
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="update_labelartists" checked>
+                  <label class="form-check-label" for="update_labelartists"> 
+                    LABELS/ARTISTS                                       
+                  </label>
+                </div>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_base_labelartists" checked>
+                <label class="form-check-label fs-6" for="update_base_labelartists">My Label/Artists</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_fan_labelartists" checked>
+                <label class="form-check-label fs-6" for="update_fan_labelartists">Fans' Label/Artists</label>
+              </li>
+              <li class="mt-2">
+                <span id="update_labelartists_group_label">Label/Artist Data to update:</span>
+                <div class="btn-group d-flex" role="group" aria-label="update_labelartists_button_group">                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_labelartists_new" autocomplete="off" checked>
+                  <label class="btn btn-outline-secondary btn-sm" for="update_labelartists_new">New</label>                
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_labelartists_old" autocomplete="off">
+                  <label class="btn btn-outline-secondary btn-sm" for="update_labelartists_old">Old</label>
+                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_labelartists_all" autocomplete="off">
+                  <label class="btn btn-outline-warning btn-sm" for="update_labelartists_all">All</label>
+                </div>
+              </li>              
+              <li class="form-check mt-1 form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_old_labelartists_preorders" >
+                <label class="form-check-label fs-6" for="update_old_labelartists_preorders">Recheck pre-orders</label>
+              </li>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_old_labelartists_nodigital" >
+                <label class="form-check-label fs-6" for="update_old_labelartists_nodigital">Recheck Non-digital releases</label>
+              </li>
+              <hr/>
+
               <li class="form-check form-check-reverse form-switch px-auto">
                 <input class="form-check-input" type="checkbox" id="update_releaseowners" checked>
                 <label class="form-check-label fs-6" for="update_releaseowners">Release Owners</label>
-              </li>                
+              </li> 
+              <hr/>
+              <li class="form-check form-check-reverse form-switch px-auto">
+                <input class="form-check-input" type="checkbox" id="update_bins" checked>
+                <label class="form-check-label fs-6" for="update_bins">Bins</label>
+              </li> 
+              <hr/>
               <li class="btn-group d-flex" role="group" aria-label="update_button_group">
                 <button class="btn btn-outline-secondary btn-sm"  id="update_all"> select all</button>          
                 <button class="btn btn-outline-secondary btn-sm" id="update_none"> select none</button>
-              </li>
-              <li class="mt-2">
-                Data to update:
-                <div class="btn-group d-flex" role="group" aria-label="update_radio_button_group">                
-                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_new" autocomplete="off" checked>
-                  <label class="btn btn-outline-secondary btn-sm" for="update_radio_new">New</label>                
-                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_old" autocomplete="off">
-                  <label class="btn btn-outline-secondary btn-sm" for="update_radio_old">Old</label>
-                  <input type="radio" class="btn-check btn-sm" name="btnradio" id="update_radio_all" autocomplete="off">
-                  <label class="btn btn-outline-warning btn-sm" for="update_radio_all">All</label>
-                </div>
               </li>
             </ul>
           </div>
@@ -113,12 +193,10 @@
       
       
          
-
-        <br/>
         
 
         
-        <div class="container" id="content">
+        <div class="container-fluid mh-100" id="content">
         </div>
 
 
@@ -136,7 +214,7 @@
             let abortPressed = false;
             let maintaskbutton_runmsg = 'Update';
             let maintaskbutton_abortmsg = 'Abort';
-            let maintaskbutton_idlemsg = '';
+            let maintaskbutton_idlemsg = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
             
             let progressBarElement = document.getElementById('progress-bar');
             let progressBarWrapper = document.getElementById('progress-bar-wrapper');
@@ -146,14 +224,46 @@
             let update_none = document.getElementById("update_none");
 
             let update_profiles = document.getElementById("update_profiles");
+            let update_profile_group_label = document.getElementById("update_profile_group_label");
+            let update_following_fans = document.getElementById("update_following_fans");
+            let update_followers = document.getElementById("update_followers");
+            let update_profile_new = document.getElementById("update_profile_new");
+            let update_profile_old = document.getElementById("update_profile_old");
+            let update_profile_all = document.getElementById("update_profile_all");
+            
+
             let update_purchases = document.getElementById("update_purchases");
-            let update_fanpurchases = document.getElementById("update_fanpurchases");
+            let update_purchases_group_label = document.getElementById("update_purchases_group_label");
+            let update_base_purchases = document.getElementById("update_base_purchases");
+            let update_fan_purchases = document.getElementById("update_fan_purchases");
+            let update_purchases_old = document.getElementById("update_purchases_old");
+            let update_purchases_new = document.getElementById("update_purchases_new");
+            let update_purchases_all = document.getElementById("update_purchases_all");
+            let update_old_preorders = document.getElementById("update_old_preorders");
+            let update_old_nodigital = document.getElementById("update_old_nodigital");
+
+
             let update_labelartists = document.getElementById("update_labelartists");
-            let update_fanlabelartists = document.getElementById("update_fanlabelartists");
+            let update_labelartists_group_label = document.getElementById("update_labelartists_group_label");
+            let update_base_labelartists = document.getElementById("update_base_labelartists");
+            let update_fan_labelartists = document.getElementById("update_fan_labelartists");
+            let update_labelartists_new = document.getElementById("update_labelartists_new");
+            let update_labelartists_old = document.getElementById("update_labelartists_old");
+            let update_labelartists_all = document.getElementById("update_labelartists_all");
+            let update_old_labelartists_preorders = document.getElementById("update_old_labelartists_preorders");
+            let update_old_labelartists_nodigital = document.getElementById("update_old_labelartists_nodigital");
+
+
             let update_releaseowners = document.getElementById("update_releaseowners");
+            let update_bins = document.getElementById("update_bins");
+            
             
             let ajax_content_div = document.getElementById('content')
-            let loading_interstitial_html = "Loading... interstitial placeholder"; // TODO: solve potential flicker?            
+            let loading_interstitial_html = '<div class="d-flex align-items-center" style="height:300px"> \
+                                                <div class="container-fluid text-center"><div class="spinner-border" \
+                                                role="status"><span class="visually-hidden"> \
+                                                Loading...</span></div></div></div>';
+            
         
             let barColors = {
               success: '#76ce60',
@@ -213,20 +323,20 @@
                   if (data.progress.current == 0) {
                     if (data.progress.pending === true) {
                       if (!runPressed) {
-                        maintaskbutton.innerText = maintaskbutton_runmsg;
+                        maintaskbutton.innerHTML = maintaskbutton_runmsg;
                         maintaskbutton.disabled = false;
                       }                    
                     setMainProgressWaitingMessage();                    
                     } else {                      
-                      maintaskbutton.innerText = maintaskbutton_idlemsg;
+                      maintaskbutton.innerHTML = maintaskbutton_idlemsg;
                       maintaskbutton.disabled = true;
                     }
                   } else {
                     if (abortPressed) {
-                      maintaskbutton.innerText = maintaskbutton_runmsg;
+                      maintaskbutton.innerHTML = maintaskbutton_runmsg;
                       maintaskbutton.disabled = false;             
                     } else {
-                      maintaskbutton.innerText = maintaskbutton_abortmsg;
+                      maintaskbutton.innerHTML = maintaskbutton_abortmsg;
                       maintaskbutton.disabled = false;                      
                     }            
                   }
@@ -235,7 +345,7 @@
                 runPressed = false;
           
                 if (data.complete === true) {  
-                    maintaskbutton.innerText = maintaskbutton_runmsg;
+                    maintaskbutton.innerHTML = maintaskbutton_runmsg;
                     maintaskbutton.disabled = false;
                     fetch("/progtest/reset");
                     progressBarElement.style.width = "0%";
@@ -245,19 +355,33 @@
             };         
                   
             function runfun() {
-              maintaskbutton.innerText = maintaskbutton_idlemsg;
+              maintaskbutton.innerHTML = maintaskbutton_idlemsg;
               maintaskbutton.disabled = true;
               runPressed = true;
               body = {};
-              body.update_profiles = document.getElementById("update_profiles").checked;
-              body.update_purchases = document.getElementById("update_purchases").checked;
-              body.update_fanpurchases = document.getElementById("update_fanpurchases").checked;
-              body.update_labelartists = document.getElementById("update_labelartists").checked;
-              body.update_fanlabelartists = document.getElementById("update_fanlabelartists").checked;
-              body.update_releaseowners = document.getElementById("update_releaseowners").checked;
-              body.update_new = document.getElementById("update_radio_all").checked || document.getElementById("update_radio_new").checked;
-              body.update_old = document.getElementById("update_radio_all").checked || document.getElementById("update_radio_old").checked;
               
+              body.update_following_fans = update_profiles.checked && update_following_fans.checked;
+              body.update_followers = update_profiles.checked && update_followers.checked;
+              body.update_profile_new = update_profile_all.checked || update_profile_new.checked;
+              body.update_profile_old = update_profile_all.checked || update_profile_new.checked;              
+              
+              body.update_base_purchases = update_purchases.checked && update_base_purchases.checked;
+              body.update_fan_purchases = update_purchases.checked && update_fan_purchases.checked;
+              body.update_purchases_old = update_purchases_all.checked || update_purchases_old.checked;
+              body.update_purchases_new = update_purchases_all.checked || update_purchases_new.checked;              
+              body.update_old_preorders = body.update_purchases_new && update_old_preorders.checked;
+              body.update_old_nodigital = body.update_purchases_new && update_old_nodigital.checked;
+              
+              body.update_base_labelartists = update_labelartists.checked && update_base_labelartists.checked;
+              body.update_fan_labelartists = update_labelartists.checked && update_fan_labelartists.checked;
+              body.update_labelartists_new = update_labelartists_all.checked || update_labelartists_new.checked;
+              body.update_labelartists_old = update_labelartists_all.checked || update_labelartists_old.checked;                   
+              body.update_old_labelartists_preorders = body.update_labelartists_new && update_old_labelartists_preorders.checked;
+              body.update_old_labelartists_nodigital = body.update_labelartists_new && update_old_labelartists_nodigital.checked;
+
+              body.update_releaseowners = document.getElementById("update_releaseowners");
+              body.update_bins = document.getElementById("update_bins");
+
               fetch("/progtest/run", 
                 { method: 'POST', 
                   credentials: 'same-origin',
@@ -286,7 +410,7 @@
             }          
             
             function abortfun() {
-              maintaskbutton.innerText = maintaskbutton_idlemsg;
+              maintaskbutton.innerHTML = maintaskbutton_idlemsg;
               maintaskbutton.disabled = true;
               abortPressed = true;
               fetch("/progtest/abort");
@@ -351,22 +475,72 @@
               };
             };
 
-            function check_all_updates() {
+            function check_all_updates() {            
               update_profiles.checked = true;
+              update_following_fans.checked = true;
+              update_followers.checked = true;
+              update_profile_new.checked = false;
+              update_profile_old.checked = false;
+              update_profile_all.checked = true;
               update_purchases.checked = true;
-              update_fanpurchases.checked = true;
+              update_base_purchases.checked = true;
+              update_fan_purchases.checked = true;
+              update_purchases_old.checked = false;
+              update_purchases_new.checked = false;
+              update_purchases_all.checked = true;
+              update_old_preorders.checked = true;
+              update_old_nodigital.checked = true;
+              update_old_preorders.disabled = true;
+              update_old_nodigital.disabled = true;
               update_labelartists.checked = true;
-              update_fanlabelartists.checked = true;
+              update_base_labelartists.checked = true;
+              update_fan_labelartists.checked = true;
+              update_labelartists_new.checked = false;
+              update_labelartists_old.checked = false;
+              update_labelartists_all.checked = true;
+              update_old_labelartists_preorders.checked = true;
+              update_old_labelartists_nodigital.checked = true;
+              update_old_labelartists_preorders.disabled = true;
+              update_old_labelartists_nodigital.disabled = true;
               update_releaseowners.checked = true;
+              update_bins.checked = true;
+              update_profiles_toggle();
+              update_purchases_toggle();
+              update_labelartists_toggle();
             };
 
-            function uncheck_all_updates() {
+            function uncheck_all_updates() {      
               update_profiles.checked = false;
+              update_following_fans.checked = false;
+              update_followers.checked = false;
+              update_profile_new.checked = true;
+              update_profile_old.checked = false;
+              update_profile_all.checked = false;
               update_purchases.checked = false;
-              update_fanpurchases.checked = false;
+              update_base_purchases.checked = false;
+              update_fan_purchases.checked = false;
+              update_purchases_old.checked = false;
+              update_purchases_new.checked = true;
+              update_purchases_all.checked = false;
+              update_old_preorders.checked = false;
+              update_old_nodigital.checked = false;
+              update_old_preorders.disabled = false;
+              update_old_nodigital.disabled = false;
               update_labelartists.checked = false;
-              update_fanlabelartists.checked = false;
+              update_base_labelartists.checked = false;
+              update_fan_labelartists.checked = false;
+              update_labelartists_new.checked = true;
+              update_labelartists_old.checked = false;
+              update_labelartists_all.checked = false;
+              update_old_labelartists_preorders.checked = false;
+              update_old_labelartists_nodigital.checked = false;
+              update_old_labelartists_preorders.disabled = false;
+              update_old_labelartists_nodigital.disabled = false;
               update_releaseowners.checked = false;
+              update_bins.checked = false;
+              update_profiles_toggle();
+              update_purchases_toggle();
+              update_labelartists_toggle();
             };
             
             function register_ajax_navbar_link(link_id, ajax_path, window_path) {
@@ -384,13 +558,116 @@
                 );                
               });
             }
+
+            function update_profiles_toggle() {
+              if (update_profiles.checked) {
+                update_following_fans.disabled = false;
+                update_followers.disabled = false;
+                update_profile_new.disabled = false;
+                update_profile_old.disabled = false;
+                update_profile_all.disabled = false;
+                update_profile_group_label.style.opacity = "1.0";
+              } else {
+                update_following_fans.disabled = true;
+                update_followers.disabled = true;
+                update_profile_new.disabled = true;
+                update_profile_old.disabled = true;
+                update_profile_all.disabled = true;
+                update_profile_group_label.style.opacity = "0.5";
+              }
+            }
+
+            function update_purchases_toggle() {
+              if (update_purchases.checked) {
+                update_base_purchases.disabled = false;
+                update_fan_purchases.disabled = false;
+                update_purchases_new.disabled = false;
+                update_purchases_old.disabled = false;
+                update_purchases_all.disabled = false;
+                update_purchases_group_label.style.opacity = "1.0";
+                if (update_purchases_new.checked) {
+                  update_old_preorders.disabled = false;
+                  update_old_nodigital.disabled = false;
+                } else {
+                  update_old_preorders.disabled = true;
+                  update_old_nodigital.disabled = true;
+                }
+              } else {
+                update_base_purchases.disabled = true;
+                update_fan_purchases.disabled = true;
+                update_purchases_new.disabled = true;
+                update_purchases_old.disabled = true;
+                update_purchases_all.disabled = true;
+                update_purchases_group_label.style.opacity = "0.5";
+                update_old_preorders.disabled = true;
+                update_old_nodigital.disabled = true;
+              }
+            }
+
+            function update_purchases_additional_toggle() {
+              console.log(update_purchases.checked)
+              if (update_purchases_new.checked) {
+                update_old_preorders.disabled = false;
+                update_old_nodigital.disabled = false;
+              } else {
+                update_old_preorders.disabled = true;
+                update_old_nodigital.disabled = true;
+              }
+            }
+
+            function update_labelartists_toggle() {
+              if (update_labelartists.checked) {
+                update_base_labelartists.disabled = false;
+                update_fan_labelartists.disabled = false;
+                update_labelartists_new.disabled = false;
+                update_labelartists_old.disabled = false;
+                update_labelartists_all.disabled = false;
+                update_labelartists_group_label.style.opacity = "1.0";
+                if (update_labelartists_new.checked) {
+                  update_old_labelartists_preorders.disabled = false;
+                  update_old_labelartists_nodigital.disabled = false;
+                } else {
+                  update_old_labelartists_preorders.disabled = true;
+                  update_old_labelartists_nodigital.disabled = true;
+                }
+              } else {
+                update_base_labelartists.disabled = true;
+                update_fan_labelartists.disabled = true;
+                update_labelartists_new.disabled = true;
+                update_labelartists_old.disabled = true;
+                update_labelartists_all.disabled = true;
+                update_labelartists_group_label.style.opacity = "0.5";
+                update_old_labelartists_preorders.disabled = true;
+                update_old_labelartists_nodigital.disabled = true;
+              }
+            }
+
+            function update_labelartists_additional_toggle() {
+              console.log(update_labelartists.checked)
+              if (update_labelartists_new.checked) {
+                update_old_labelartists_preorders.disabled = false;
+                update_old_labelartists_nodigital.disabled = false;
+              } else {
+                update_old_labelartists_preorders.disabled = true;
+                update_old_labelartists_nodigital.disabled = true;
+              }
+            }
                       
             function init() {            
               console.log("init");
               maintaskbutton.addEventListener("click", maintaskcontrolbutton);  
               update_all.addEventListener("click", check_all_updates);
-              update_none.addEventListener("click", uncheck_all_updates);                                  
-              
+              update_none.addEventListener("click", uncheck_all_updates);
+              update_profiles.addEventListener("click", update_profiles_toggle);
+              update_purchases.addEventListener("click", update_purchases_toggle);
+              update_purchases_new.addEventListener("click", update_purchases_additional_toggle);
+              update_purchases_old.addEventListener("click", update_purchases_additional_toggle);
+              update_purchases_all.addEventListener("click", update_purchases_additional_toggle);
+              update_labelartists.addEventListener("click", update_labelartists_toggle);
+              update_labelartists_new.addEventListener("click", update_labelartists_additional_toggle);
+              update_labelartists_old.addEventListener("click", update_labelartists_additional_toggle);
+              update_labelartists_all.addEventListener("click", update_labelartists_additional_toggle);
+          
               progressBar();
 
               history.replaceState({

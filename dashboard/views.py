@@ -228,7 +228,7 @@ def progress_view_abort(request):
     return HttpResponse("")
 
 def progress_view_run(request):
-    post_data = json.load(request)['post_data']
+    post_data = json.load(request)['post_data']    
     check = AbortableAsyncResult('django-test-main')
     if check.state != "PROGRESS":
         check.forget()

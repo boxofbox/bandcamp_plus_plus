@@ -65,7 +65,7 @@ def standard_abort_progress_request(abortable_task, url, blob=None, delay=None, 
         log_aborted()
         return ABORT # abort code
     if None not in (progress_recorder, progress, progress_max):
-        progress[0].set_progress(progress[1], progress[2])
+        progress_recorder.set_progress(progress, progress_max, message)
 
     r = None
     if blob is None:
@@ -103,7 +103,7 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
                                                                       
             r = standard_abort_progress_request(abortable_task, url, blob, 
                                                 settings_obj.delay_time, 
-                                                progress=(progress_recorder, i, cur_block_size)) # TODO update progress calcs
+                                                progress_recorder, i, cur_block_size) # TODO update progress calcs
             if r == ABORT:
                 return ABORT
             
@@ -411,7 +411,7 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
 
         r = standard_abort_progress_request(abortable_task, url, blob, 
                                                 settings_obj.delay_time, 
-                                                progress=(progress_recorder, i, n_fans)) # TODO update progress calcs
+                                                progress_recorder, i, n_fans) # TODO update progress calcs
         if r == ABORT:
             return ABORT, seen
         
@@ -498,7 +498,7 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
         
         r = standard_abort_progress_request(abortable_task, url, blob, 
                                                 settings_obj.delay_time, 
-                                                progress=(progress_recorder, i, n_fans)) # TODO update progress calcs
+                                                progress_recorder, i, n_fans) # TODO update progress calcs
         if r == ABORT:
             return ABORT
         
@@ -562,37 +562,35 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
 
 @shared_task(bind=True, base=AbortableTask)
 def main_update_task(self, flags):
-    # process flags
-    FLAG_UPDATE_OLD = flags.get("update_old", False)
-    FLAG_UPDATE_NEW = flags.get("update_new", False)
-    FLAG_UPDATE_RELEASEOWNERS = flags.get("update_releaseowners", False)
-    
-    FLAG_UPDATE_PROFILES = flags.get("update_profiles",False)
-    FLAG_UPDATE_FOLLOWING_FANS = FLAG_UPDATE_PROFILES # TODO
-    FLAG_UPDATE_OLD_FOLLOWING_FANS = FLAG_UPDATE_OLD # TODO
-    FLAG_UPDATE_NEW_FOLLOWING_FANS = FLAG_UPDATE_NEW # TODO
-    FLAG_UPDATE_FOLLOWERS = FLAG_UPDATE_PROFILES # TODO
+    # process flags    
+    FLAG_UPDATE_FOLLOWING_FANS = flags.get("update_following_fans", False)
+    FLAG_UPDATE_FOLLOWERS = flags.get("update_followers", False)
+    FLAG_UPDATE_OLD_FOLLOWING_FANS = flags.get("update_profile_new", False)
+    FLAG_UPDATE_NEW_FOLLOWING_FANS = flags.get("update_profile_old", False)
 
-    FLAG_UPDATE_BASE_PURCHASES = flags.get("update_purchases", False)
+    FLAG_UPDATE_BASE_PURCHASES = flags.get("update_base_purchases", False)
     FLAG_UPDATE_FAN_PURCHASES = flags.get("update_fanpurchases", False)
-    FLAG_UPDATE_OLD_PURCHASES = FLAG_UPDATE_OLD # TODO
-    FLAG_UPDATE_NEW_PURCHASES = FLAG_UPDATE_NEW # TODO
-    FLAG_UPDATE_OLD_PREORDERS = FLAG_UPDATE_OLD # TODO
-    FLAG_UPDATE_OLD_NODIGITAL = FLAG_UPDATE_OLD # TODO
+    FLAG_UPDATE_OLD_PURCHASES = flags.get("update_purchases_old", False)
+    FLAG_UPDATE_NEW_PURCHASES = flags.get("update_purchases_new", False)
+    FLAG_UPDATE_OLD_PREORDERS = flags.get("update_old_preorders", False)
+    FLAG_UPDATE_OLD_NODIGITAL = flags.get("update_old_nodigital", False)
     
-    FLAG_UPDATE_LABELBANDS = flags.get("update_labelartists", False)
-    FLAG_UPDATE_FAN_LABELBANDS = flags.get("update_fanlabelartists", False)
-    FLAG_UPDATE_BASE_LABELBANDS = FLAG_UPDATE_LABELBANDS # TODO
-    FLAG_UPDATE_OLD_DISCOGRAPHY = FLAG_UPDATE_OLD # TODO
-    FLAG_UPDATE_NEW_DISCOGRAPHY = FLAG_UPDATE_NEW # TODO
-    FLAG_UPDATE_OLD_DISCOG_PREORDERS = FLAG_UPDATE_OLD # TODO
-    FLAG_UPDATE_OLD_DISCOG_NODIGITAL = FLAG_UPDATE_OLD # TODO
+    FLAG_UPDATE_FAN_LABELBANDS = flags.get("update_fan_labelartists", False)
+    FLAG_UPDATE_BASE_LABELBANDS = flags.get("update_base_labelartists", False)
+    FLAG_UPDATE_OLD_DISCOGRAPHY = flags.get("update_labelartists_old", False)
+    FLAG_UPDATE_NEW_DISCOGRAPHY = flags.get("update_labelartists_new", False)
+    FLAG_UPDATE_OLD_DISCOG_PREORDERS = flags.get("update_old_labelartists_preorders", False)
+    FLAG_UPDATE_OLD_DISCOG_NODIGITAL = flags.get("update_old_labelartists_nodigital", False)
+
+    FLAG_UPDATE_RELEASEOWNERS = flags.get("update_releaseowners", False)
+    FLAG_UPDATE_BINS = flags.get("update_bins", False)
 
     # init
     if DashboardSettings.objects.count() >= 0:
         settings_obj = DashboardSettings.objects.get(lock='X')                
         if settings_obj.base_profile is not None:            
             progress_recorder = WebSocketProgressRecorder(self)
+            progress_recorder.set_progress(0.0000001, 100, description="init")
         
             if FLAG_UPDATE_FOLLOWING_FANS: # TODO update old/new flags
                 status = update_following_fans_subtask(self, settings_obj, progress_recorder,
@@ -614,7 +612,7 @@ def main_update_task(self, flags):
                 elif status == ERROR:
                     return ERROR
             
-            if FLAG_UPDATE_LABELBANDS or FLAG_UPDATE_FAN_LABELBANDS:                
+            if FLAG_UPDATE_BASE_LABELBANDS or FLAG_UPDATE_FAN_LABELBANDS:                
                 status = update_labelbands_subtask(self, settings_obj, progress_recorder, seen_releases,
                               FLAG_UPDATE_BASE_LABELBANDS, FLAG_UPDATE_FAN_LABELBANDS,
                               FLAG_UPDATE_OLD_DISCOGRAPHY, FLAG_UPDATE_NEW_DISCOGRAPHY,
