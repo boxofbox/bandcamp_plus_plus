@@ -4,12 +4,12 @@ from .models import Release, Track, LabelBand
 
 
 class ReleaseAdmin(admin.ModelAdmin):
-    fields = ['id', 'subclass', 'title', 'url', 'img_id', 'price', 'release_date', 'artist', 'artist_name', 'selling_artist',]
+    fields = ['id', 'subclass', 'title', 'url', 'img_id', 'price', 'release_date','artist_name']
     list_display = ('id', 'subclass', 'title', 'artist_name', 'release_date') 
 
 class TrackAdmin(admin.ModelAdmin):
-    fields = ['id', 'subclass', 'title', 'url', 'img_id', 'price', 'release_date', 'artist', 'artist_name', 'selling_artist','album', 'mp3', 'track_number', 'duration']
-    list_display = ('id', 'title', 'artist_name', 'release_date', 'album') 
+    fields = ['id', 'subclass', 'title', 'url', 'img_id', 'price', 'release_date', 'artist_name','mp3', 'track_number', 'duration']
+    list_display = ('id', 'title', 'artist_name', 'release_date') 
 
 
 class LabelBandAdmin(admin.ModelAdmin):

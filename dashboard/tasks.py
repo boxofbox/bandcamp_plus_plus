@@ -379,9 +379,7 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
     
     url = "https://bandcamp.com/api/fancollection/1/collection_items"
     
-    old_release_ids = None
-    if not FLAG_UPDATE_OLD_PURCHASES:        
-        old_release_ids = set(Release.objects.values_list('id', flat=True)) # TODO performance tuning opportunity
+    old_release_ids = set(Release.objects.values_list('id', flat=True)) # TODO performance tuning opportunity, maybe delete/cleanup after use?
 
     old_preorder_ids = None
     if not FLAG_UPDATE_OLD_PURCHASES and FLAG_UPDATE_OLD_PREORDERS:
@@ -463,9 +461,7 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                               FLAG_UPDATE_OLD_DISCOGRAPHY, FLAG_UPDATE_NEW_DISCOGRAPHY,
                               FLAG_UPDATE_OLD_DISCOG_PREORDERS, FLAG_UPDATE_OLD_DISCOG_NODIGITAL):
     
-    old_release_ids = None
-    if not FLAG_UPDATE_OLD_DISCOGRAPHY:        
-        old_release_ids = set(Release.objects.values_list('id', flat=True)) # TODO performance tuning opportunity
+    old_release_ids = set(Release.objects.values_list('id', flat=True)) # TODO performance tuning opportunity
 
     old_preorder_ids = None
     if not FLAG_UPDATE_OLD_DISCOGRAPHY and FLAG_UPDATE_OLD_DISCOG_PREORDERS:
