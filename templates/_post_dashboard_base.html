@@ -177,11 +177,6 @@
                 <label class="form-check-label fs-6" for="update_releaseowners">Release Owners</label>
               </li> 
               <hr/>
-              <li class="form-check form-check-reverse form-switch px-auto">
-                <input class="form-check-input" type="checkbox" id="update_bins" checked>
-                <label class="form-check-label fs-6" for="update_bins">Bins</label>
-              </li> 
-              <hr/>
               <li class="btn-group d-flex" role="group" aria-label="update_button_group">
                 <button class="btn btn-outline-secondary btn-sm"  id="update_all"> select all</button>          
                 <button class="btn btn-outline-secondary btn-sm" id="update_none"> select none</button>
@@ -231,7 +226,6 @@
             let update_profile_old = document.getElementById("update_profile_old");
             let update_profile_all = document.getElementById("update_profile_all");
             
-
             let update_purchases = document.getElementById("update_purchases");
             let update_purchases_group_label = document.getElementById("update_purchases_group_label");
             let update_base_purchases = document.getElementById("update_base_purchases");
@@ -241,7 +235,6 @@
             let update_purchases_all = document.getElementById("update_purchases_all");
             let update_old_preorders = document.getElementById("update_old_preorders");
             let update_old_nodigital = document.getElementById("update_old_nodigital");
-
 
             let update_labelartists = document.getElementById("update_labelartists");
             let update_labelartists_group_label = document.getElementById("update_labelartists_group_label");
@@ -253,10 +246,7 @@
             let update_old_labelartists_preorders = document.getElementById("update_old_labelartists_preorders");
             let update_old_labelartists_nodigital = document.getElementById("update_old_labelartists_nodigital");
 
-
-            let update_releaseowners = document.getElementById("update_releaseowners");
-            let update_bins = document.getElementById("update_bins");
-            
+            let update_releaseowners = document.getElementById("update_releaseowners");                        
             
             let ajax_content_div = document.getElementById('content')
             let loading_interstitial_html = '<div class="d-flex align-items-center" style="height:300px"> \
@@ -380,7 +370,7 @@
               body.update_old_labelartists_nodigital = body.update_labelartists_new && update_old_labelartists_nodigital.checked;
 
               body.update_releaseowners = document.getElementById("update_releaseowners");
-              body.update_bins = document.getElementById("update_bins");
+              
 
               fetch("/progtest/run", 
                 { method: 'POST', 
@@ -503,7 +493,7 @@
               update_old_labelartists_preorders.disabled = true;
               update_old_labelartists_nodigital.disabled = true;
               update_releaseowners.checked = true;
-              update_bins.checked = true;
+              
               update_profiles_toggle();
               update_purchases_toggle();
               update_labelartists_toggle();
@@ -537,7 +527,7 @@
               update_old_labelartists_preorders.disabled = false;
               update_old_labelartists_nodigital.disabled = false;
               update_releaseowners.checked = false;
-              update_bins.checked = false;
+              
               update_profiles_toggle();
               update_purchases_toggle();
               update_labelartists_toggle();

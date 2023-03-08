@@ -29,3 +29,8 @@ class Purchase(models.Model):
                 name='unique_profile_release_combination'
             )
         ]
+
+
+class IgnoredProfile(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    username = models.TextField(null=True, blank=True, unique=True)

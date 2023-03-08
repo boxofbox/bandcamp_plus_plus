@@ -9,8 +9,9 @@ import json
 from bs4 import BeautifulSoup
 
 from .models import DashboardSettings
-from profiles.models import Profile, Purchase
+from profiles.models import Profile, Purchase, IgnoredProfile
 from releases.models import Release, Track, LabelBand
+from bins.models import NewFollowers, NewFollowingFans, NewFollowingLabelBands, RecentFanPurchase, RecentLabelBandRelease
 
 HARD_CODED_COUNT_LIMIT = 3 # TODO UPDATE!
 HARD_CODED_DEFAULT_DELAY_TIME = 1
@@ -78,14 +79,14 @@ def standard_abort_progress_request(abortable_task, url, blob=None, delay=None, 
     return r
 
 
-def update_following_fans_subtask(abortable_task, settings_obj, progress_recorder, 
+def update_following_fans_subtask(abortable_task, settings_obj, progress_recorder, seen, new_following_fan_ids,
                                FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS):
     
-    url = "https://bandcamp.com/api/fancollection/1/following_fans"
-    seen = set()
-    cur_process = {settings_obj.base_profile_id:settings_obj.base_profile}
+    url = "https://bandcamp.com/api/fancollection/1/following_fans" 
+    base_profile_id = settings_obj.base_profile.id
+    cur_process = {base_profile_id:settings_obj.base_profile}
     old_profile_ids = set(Profile.objects.values_list('id', flat=True))
-    new_added_profile_ids = set()
+    ignored_profiles = set(IgnoredProfile.objects.values_list('id', flat=True))   
     
     depth = settings_obj.max_profile_depth    
 
@@ -105,17 +106,28 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
                                                 settings_obj.delay_time, 
                                                 progress_recorder, i, cur_block_size) # TODO update progress calcs
             if r == ABORT:
-                return ABORT
+                return ABORT, seen, new_following_fan_ids
             
-            following_fans = r.json()['followeers']
-            cached_followers = set()
+            following_fans = r.json()['followeers']                                       
+
+            cached_followings = set()
+            current_fan_id_set = set()
+
+            preexisting_followings_ids = set(cur_process[id].following_fans.values_list('id', flat=True)) 
+            
             for fan in following_fans:   
                 fan_id = int(fan['fan_id'])
+                
+                if fan_id in ignored_profiles:
+                    continue 
+
+                current_fan_id_set.add(fan_id)
+
                 if fan_id in seen:
-                    cached_followers.add(fan_id)
+                    cached_followings.add(fan_id)
                     continue
                 elif not FLAG_UPDATE_OLD_FOLLOWING_FANS and fan_id in old_profile_ids:
-                    cached_followers.add(fan_id)
+                    cached_followings.add(fan_id)
                     continue                            
                 elif not FLAG_UPDATE_NEW_FOLLOWING_FANS and fan_id not in old_profile_ids:
                     seen.add(fan_id) # ignore it b/c it's NEW
@@ -131,25 +143,95 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
                     profile_obj.img_id = fan_img_id
                     profile_obj.save()
 
-                    # add to the follower
-                    cur_process[id].following_fans.add(profile_obj)
+                    # add to the follower cache to update later
+                    cached_followings.add(fan_id)
 
                     # mark as 'seen' to prevent circular traversals and store newly added for later binning
                     seen.add(fan_id)
-                    new_added_profile_ids.add(fan_id)
 
                     # add to the dict for next level of depth processing
                     next_process[fan_id] = profile_obj
 
-            # process cached followers
-            if len(cached_followers) > 0:
-                cur_process[id].following_fans.add(*Profile.objects.filter(id__in=cached_followers))
+            if id == base_profile_id:                   
+                new_following_fan_ids = current_fan_id_set - preexisting_followings_ids 
+
+            # remove any new unfollows
+            following_removal_set = preexisting_followings_ids - current_fan_id_set
+            if len(following_removal_set) > 0:
+                logger.warn(f"removing fan_id {id}'s following fans {following_removal_set}")
+                cur_process[id].following_fans.remove(*Profile.objects.filter(id__in=following_removal_set))
+
+            # process bulk following
+            if len(cached_followings) > 0:
+                cur_process[id].following_fans.add(*Profile.objects.filter(id__in=cached_followings))
 
             # save parent obj
             cur_process[id].save()
 
         cur_process = next_process
         depth -= 1
+    return OK, seen, new_following_fan_ids
+
+def update_fan_followers_subtask(abortable_task, settings_obj, progress_recorder, seen, new_follower_ids,
+                               FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS):
+    
+    url = "https://bandcamp.com/api/fancollection/1/followers"
+
+    old_profile_ids = set(Profile.objects.values_list('id', flat=True))      
+    ignored_profiles = set(IgnoredProfile.objects.values_list('id', flat=True))   
+
+    blob = {
+        "fan_id": settings_obj.base_profile.id,
+        "older_than_token": f"{int(time.time())}:",
+        "count": HARD_CODED_COUNT_LIMIT,    
+    }
+    r = standard_abort_progress_request(abortable_task, url, blob, 
+                                                settings_obj.delay_time) # TODO update progress calcs
+    if r == ABORT:
+        return ABORT, seen, new_follower_ids
+
+    preexisting_followers_ids = set(settings_obj.base_profile.followers.values_list('id', flat=True))
+    current_fan_id_set = set()
+
+    followers = r.json()['followeers']
+    for fan in followers:   
+        fan_id = int(fan['fan_id'])
+
+        if fan_id in ignored_profiles:
+            continue
+
+        current_fan_id_set.add(fan_id)
+
+        if fan_id in seen:
+            continue        
+        elif not FLAG_UPDATE_OLD_FOLLOWING_FANS and fan_id in old_profile_ids:
+            continue                            
+        elif not FLAG_UPDATE_NEW_FOLLOWING_FANS and fan_id not in old_profile_ids:
+            seen.add(fan_id) # ignore it b/c it's NEW
+            continue                       
+        else:                                   
+            profile_obj, _ = Profile.objects.get_or_create(id=fan_id)
+            profile_obj.username = fan['trackpipe_url'].split("/")[-1]
+            profile_obj.name = fan['name']
+            if fan['image_id'] is None:
+                fan_img_id = 0
+            else:
+                fan_img_id = int(fan['image_id'])
+            profile_obj.img_id = fan_img_id
+            profile_obj.following_fans.add(settings_obj.base_profile)
+            profile_obj.save()
+
+            seen.add(fan_id)
+
+    new_follower_ids = current_fan_id_set - preexisting_followers_ids
+
+    follower_removal_set = preexisting_followers_ids - current_fan_id_set
+    if len(follower_removal_set) > 0:
+        logger.warn(f"removing fan_id {id}'s followers {follower_removal_set}")
+        settings_obj.base_profile.followers.remove(*Profile.objects.filer(id__in=follower_removal_set))
+
+    return OK, seen, new_follower_ids
+
 
 
 def get_fan_network_id_set(settings_obj, FLAG_INCLUDE_BASE, FLAG_INCLUDE_NETWORK):
@@ -456,7 +538,7 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
     return OK, seen - old_release_ids_added_from_tracks
 
 
-def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, seen_releases,
+def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, seen_releases, new_following_labelband_ids,
                               FLAG_UPDATE_BASE_LABELBANDS, FLAG_UPDATE_FAN_LABELBANDS,
                               FLAG_UPDATE_OLD_DISCOGRAPHY, FLAG_UPDATE_NEW_DISCOGRAPHY,
                               FLAG_UPDATE_OLD_DISCOG_PREORDERS, FLAG_UPDATE_OLD_DISCOG_NODIGITAL):
@@ -482,9 +564,10 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
     old_release_ids_added_from_tracks = set()
     new_added_release_ids = set() 
 
-    for i, fan_id in enumerate(fan_set):      
+    base_profile_id = settings_obj.base_profile.id
 
-        following_labelbands_update_cache = set()         
+    for i, fan_id in enumerate(fan_set):      
+                
         url = "https://bandcamp.com/api/fancollection/1/following_bands"                    
         blob = {
             "fan_id": fan_id,
@@ -496,14 +579,21 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                                                 settings_obj.delay_time, 
                                                 progress_recorder, i, n_fans) # TODO update progress calcs
         if r == ABORT:
-            return ABORT
+            return ABORT, new_following_labelband_ids
         
         following_labelbands = r.json()['followeers']
+                
+        current_labelband_id_set = set()
+
+        current_profile = Profile.objects.get(id=fan_id)
+
+        preexisting_followings_ids = set(current_profile.following_labelbands.values_list('id',flat=True))
         
-        for j, lb in enumerate(following_labelbands):
-            
+        
+        for j, lb in enumerate(following_labelbands):            
             band_id = int(lb['band_id'])
-            following_labelbands_update_cache.add(band_id)
+
+            current_labelband_id_set.add(band_id)
 
             if band_id in seen_bands:
                 continue
@@ -524,7 +614,7 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                 r = standard_abort_progress_request(abortable_task, labelband.url + "/music", 
                                                 delay=settings_obj.delay_time ) # TODO update progress calcs
                 if r == ABORT:
-                    return ABORT
+                    return ABORT, new_following_labelband_ids
                 
                 # list for comparing to existing list of releases (possibly from selling_artist)
                 existing_releases = set(labelband.releases.values_list('id', flat=True)) | set(labelband.selling_releases.values_list('id', flat=True))
@@ -550,10 +640,27 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                     release = add_release(abortable_task, item_id, labelband.url + rl.a['href'], settings_obj.delay_time, seen_releases, 
                         existing_labelband_ids, old_release_ids, old_release_ids_added_from_tracks, new_added_release_ids)
                     if release == ABORT:
-                        return ABORT
+                        return ABORT, new_following_labelband_ids
                     elif release == ERROR:
-                        return ERROR
-    return OK
+                        return ERROR, new_following_labelband_ids
+            
+            if fan_id == base_profile_id:
+                new_following_labelband_ids = current_labelband_id_set - preexisting_followings_ids
+                
+            # remove any new unfollows
+            following_removal_set = preexisting_followings_ids - current_labelband_id_set
+            if len(following_removal_set) > 0:
+                logger.warn(f"removing fan_id {fan_id}'s following labelbands {following_removal_set}")
+                current_profile.following_labelbands.remove(*LabelBand.objects.filter(id__in=following_removal_set)) 
+
+            # process bulk following
+            if len(current_labelband_id_set) > 0:
+                current_profile.following_labelbands.add(*LabelBand.objects.filter(id__in=current_labelband_id_set))
+
+            # save parent obj
+            current_profile.save()
+
+    return OK, new_following_labelband_ids
 
 
 @shared_task(bind=True, base=AbortableTask)
@@ -578,8 +685,7 @@ def main_update_task(self, flags):
     FLAG_UPDATE_OLD_DISCOG_PREORDERS = flags.get("update_old_labelartists_preorders", False)
     FLAG_UPDATE_OLD_DISCOG_NODIGITAL = flags.get("update_old_labelartists_nodigital", False)
 
-    FLAG_UPDATE_RELEASEOWNERS = flags.get("update_releaseowners", False)
-    FLAG_UPDATE_BINS = flags.get("update_bins", False)
+    FLAG_UPDATE_RELEASEOWNERS = flags.get("update_releaseowners", False)    
 
     # init
     if DashboardSettings.objects.count() >= 0:
@@ -588,37 +694,47 @@ def main_update_task(self, flags):
             progress_recorder = WebSocketProgressRecorder(self)
             progress_recorder.set_progress(0.0000001, 100, description="init")
         
-            if FLAG_UPDATE_FOLLOWING_FANS: # TODO update old/new flags
-                status = update_following_fans_subtask(self, settings_obj, progress_recorder,
-                               FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
+            seen_profile_ids = set()
+            seen_release_ids = set()
+            
+            new_following_fan_ids = set()
+            new_follower_ids = set()
+            new_following_labelband_ids = set()           
+
+            abort_state = False
+            if FLAG_UPDATE_FOLLOWING_FANS:
+                status, seen_profile_ids, new_following_fan_ids = update_following_fans_subtask(self, settings_obj, progress_recorder, seen_profile_ids,
+                               new_following_fan_ids, FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
+                if status == ABORT:
+                    abort_state = True
+                
+            if not abort_state and FLAG_UPDATE_FOLLOWERS:
+                status, seen_profile_ids, new_follower_ids = update_fan_followers_subtask(self, settings_obj, progress_recorder, seen_profile_ids,
+                               new_follower_ids, FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
                 if status == ABORT:
                     return ABORT
-                
-            if FLAG_UPDATE_FOLLOWERS:
-                pass # TODO
             
-            seen_releases = set()
-            if FLAG_UPDATE_BASE_PURCHASES or FLAG_UPDATE_FAN_PURCHASES:
-                status, seen_releases = update_purchases_subtask(self, settings_obj, progress_recorder, seen_releases, 
+            if not abort_state and (FLAG_UPDATE_BASE_PURCHASES or FLAG_UPDATE_FAN_PURCHASES):
+                status, seen_release_ids = update_purchases_subtask(self, settings_obj, progress_recorder, seen_release_ids, 
                      FLAG_UPDATE_BASE_PURCHASES, FLAG_UPDATE_FAN_PURCHASES,
                      FLAG_UPDATE_OLD_PURCHASES, FLAG_UPDATE_NEW_PURCHASES,
                      FLAG_UPDATE_OLD_PREORDERS, FLAG_UPDATE_OLD_NODIGITAL)                
                 if status == ABORT:
-                    return ABORT
+                    abort_state = True
                 elif status == ERROR:
-                    return ERROR
+                    abort_state = True
             
-            if FLAG_UPDATE_BASE_LABELBANDS or FLAG_UPDATE_FAN_LABELBANDS:                
-                status = update_labelbands_subtask(self, settings_obj, progress_recorder, seen_releases,
-                              FLAG_UPDATE_BASE_LABELBANDS, FLAG_UPDATE_FAN_LABELBANDS,
+            if not abort_state and (FLAG_UPDATE_BASE_LABELBANDS or FLAG_UPDATE_FAN_LABELBANDS):                
+                status, new_following_labelband_ids = update_labelbands_subtask(self, settings_obj, progress_recorder, seen_release_ids,
+                              new_following_labelband_ids, FLAG_UPDATE_BASE_LABELBANDS, FLAG_UPDATE_FAN_LABELBANDS,
                               FLAG_UPDATE_OLD_DISCOGRAPHY, FLAG_UPDATE_NEW_DISCOGRAPHY,
                               FLAG_UPDATE_OLD_DISCOG_PREORDERS, FLAG_UPDATE_OLD_DISCOG_NODIGITAL)              
                 if status == ABORT:
-                    return ABORT
+                    abort_state = True
                 elif status == ERROR:
-                    return ERROR
+                    abort_state = True
         
-            if FLAG_UPDATE_RELEASEOWNERS:
+            if not abort_state and FLAG_UPDATE_RELEASEOWNERS:
                 pass # TODO
 
             # UPDATE BINS!
