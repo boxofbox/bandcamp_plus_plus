@@ -1,14 +1,16 @@
-{% extends "_base.html" %}
+{% extends "_pre_dashboard_base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block title %}Bandcamp++ | Initial Setup{% endblock title %}
 
 {% block content %}
-<form action="/dashboard_settings_update" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <h2 id='error_msg'>{{ error_msg }}</h2>
-    <input type="submit" value="Submit">
-</form>
+<div class="pe-3 ps-3">
+    <form action="/dashboard_settings_update" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <h2 id='error_msg'>{{ error_msg }}</h2>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 {% endblock content %}

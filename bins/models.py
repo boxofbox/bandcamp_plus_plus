@@ -18,15 +18,13 @@ class Bin(models.Model):
 class RecentFanPurchase(models.Model):
     release = models.OneToOneField(Release, on_delete=models.CASCADE)
     recently_bought_by = models.ManyToManyField(Profile)
-    most_recent_purchase_date = models.DateTimeField(null=True, blank=True)
-    seen_before = models.BooleanField(default=False)
+    most_recent_purchase_date = models.DateTimeField(null=True, blank=True)    
 
 
 class RecentLabelBandRelease(models.Model):
     release = models.OneToOneField(Release, on_delete=models.CASCADE)
     recently_released_by = models.ManyToManyField(LabelBand)
-    release_date = models.DateTimeField(null=True, blank=True)
-    seen_before = models.BooleanField(default=False)
+    release_date = models.DateTimeField(null=True, blank=True)    
 
 
 class ReleaseAcquiredOutsideBandcamp(models.Model):
@@ -37,9 +35,11 @@ class NewFollowers(models.Model):
     follower = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
 
-class NewFollowingFans(models.Model):
+class NewFollowingFans_Base(models.Model):
     following_fan = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
+class NewFollowingFans_Network(models.Model):
+    following_fan = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
 class NewFollowingLabelBands(models.Model):
     following_fan = models.OneToOneField(LabelBand, on_delete=models.CASCADE)

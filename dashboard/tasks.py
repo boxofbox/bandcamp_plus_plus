@@ -7,13 +7,14 @@ import datetime
 import requests
 import json
 from bs4 import BeautifulSoup
+from collections import defaultdict
 
 from .models import DashboardSettings
 from profiles.models import Profile, Purchase, IgnoredProfile
 from releases.models import Release, Track, LabelBand
-from bins.models import NewFollowers, NewFollowingFans, NewFollowingLabelBands, RecentFanPurchase, RecentLabelBandRelease
+from bins.models import NewFollowers, NewFollowingFans_Base, NewFollowingFans_Network, NewFollowingLabelBands, RecentFanPurchase, RecentLabelBandRelease
 
-HARD_CODED_COUNT_LIMIT = 3 # TODO UPDATE!
+HARD_CODED_COUNT_LIMIT = 4 # TODO UPDATE!
 HARD_CODED_DEFAULT_DELAY_TIME = 1
 
 ABORT = -1
@@ -79,7 +80,8 @@ def standard_abort_progress_request(abortable_task, url, blob=None, delay=None, 
     return r
 
 
-def update_following_fans_subtask(abortable_task, settings_obj, progress_recorder, seen, new_following_fan_ids,
+def update_following_fans_subtask(abortable_task, settings_obj, progress_recorder, seen, 
+                                  new_following_fan_base_ids, new_following_fan_network_ids,
                                FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS):
     
     url = "https://bandcamp.com/api/fancollection/1/following_fans" 
@@ -106,7 +108,7 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
                                                 settings_obj.delay_time, 
                                                 progress_recorder, i, cur_block_size) # TODO update progress calcs
             if r == ABORT:
-                return ABORT, seen, new_following_fan_ids
+                return ABORT, seen, new_following_fan_base_ids, new_following_fan_network_ids
             
             following_fans = r.json()['followeers']                                       
 
@@ -152,8 +154,12 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
                     # add to the dict for next level of depth processing
                     next_process[fan_id] = profile_obj
 
+            # update new followings for bin processing
+            new_following_ids_for_this_fan = current_fan_id_set - preexisting_followings_ids            
+            new_following_fan_network_ids |= new_following_ids_for_this_fan
             if id == base_profile_id:                   
-                new_following_fan_ids = current_fan_id_set - preexisting_followings_ids 
+                new_following_fan_base_ids = new_following_ids_for_this_fan
+            
 
             # remove any new unfollows
             following_removal_set = preexisting_followings_ids - current_fan_id_set
@@ -170,7 +176,8 @@ def update_following_fans_subtask(abortable_task, settings_obj, progress_recorde
 
         cur_process = next_process
         depth -= 1
-    return OK, seen, new_following_fan_ids
+    return OK, seen, new_following_fan_base_ids, new_following_fan_network_ids
+
 
 def update_fan_followers_subtask(abortable_task, settings_obj, progress_recorder, seen, new_follower_ids,
                                FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS):
@@ -260,7 +267,7 @@ def get_fan_network_id_set(settings_obj, FLAG_INCLUDE_BASE, FLAG_INCLUDE_NETWORK
 
 def add_release(abortable_task, item_id, item_url, delay, seen_releases, 
                 existing_labelband_ids, old_release_ids, 
-                old_release_ids_added_from_tracks, new_added_release_ids):
+                old_release_ids_added_from_tracks):
     
     # pull album/track page info:           
     r = standard_abort_progress_request(abortable_task, item_url,  
@@ -449,7 +456,6 @@ def add_release(abortable_task, item_id, item_url, delay, seen_releases,
         return ERROR
     
     seen_releases.add(item_id)
-    new_added_release_ids.add(item_id)
 
     return release
 
@@ -460,7 +466,7 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
                      FLAG_UPDATE_OLD_PREORDERS, FLAG_UPDATE_OLD_NODIGITAL):
     
     url = "https://bandcamp.com/api/fancollection/1/collection_items"
-    
+    base_profile_id = settings_obj.base_profile.id
     old_release_ids = set(Release.objects.values_list('id', flat=True)) # TODO performance tuning opportunity, maybe delete/cleanup after use?
 
     old_preorder_ids = None
@@ -478,10 +484,9 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
     logger.info(f'current status: running update_purchases for {n_fans} users')
        
     old_release_ids_added_from_tracks = set()
-    new_added_release_ids = set()
+    new_purchases = defaultdict(list)    
 
-    for i, fan_id in enumerate(fan_set):
-        cur_profile = Profile.objects.get(id=fan_id)                    
+    for i, fan_id in enumerate(fan_set):                   
         # get the fan's purchases
         blob = {
             "fan_id": fan_id,
@@ -493,7 +498,10 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
                                                 settings_obj.delay_time, 
                                                 progress_recorder, i, n_fans) # TODO update progress calcs
         if r == ABORT:
-            return ABORT, seen
+            return ABORT, seen, new_purchases
+        
+        cur_profile = Profile.objects.prefetch_related('purchases').get(id=fan_id)
+        preexisting_purchase_ids = { p.id for p in cur_profile.purchases.all() }
         
         items = r.json()['items']                    
         
@@ -501,41 +509,51 @@ def update_purchases_subtask(abortable_task, settings_obj, progress_recorder, se
             item_id = item['item_id']    
 
             if item_id in seen:
-                # Associate purchase
-                purchase, created = Purchase.objects.get_or_create(profile=cur_profile, release=Release.objects.get(id=item_id))
-                if created:
-                    purchase.date = bcdate_to_datetime(item['purchased'])
+                if item_id not in preexisting_purchase_ids:                
+                    # Associate purchase
+                    purchase = Purchase(profile=cur_profile, release=Release.objects.get(id=item_id), date=bcdate_to_datetime(item['purchased']))                    
                     purchase.save()
-                continue
+                    if fan_id != base_profile_id:
+                        new_purchases[item_id].append((cur_profile, purchase.date))
+                continue            
             elif not FLAG_UPDATE_OLD_PURCHASES and FLAG_UPDATE_OLD_PREORDERS and item_id in old_preorder_ids:
                 pass # We want to go ahead and process this one
             elif not FLAG_UPDATE_OLD_PURCHASES and FLAG_UPDATE_OLD_NODIGITAL and item_id in old_nodigital_ids:
                 pass # We want to go ahead and process this one
             elif not FLAG_UPDATE_OLD_PURCHASES and item_id in old_release_ids:
                 # Associate purchase
-                purchase, created = Purchase.objects.get_or_create(profile=cur_profile, release=Release.objects.get(id=item_id))
-                if created:
-                    purchase.date = bcdate_to_datetime(item['purchased'])
+                if item_id not in preexisting_purchase_ids:                
+                    # Associate purchase
+                    purchase = Purchase(profile=cur_profile, release=Release.objects.get(id=item_id), date=bcdate_to_datetime(item['purchased']))                    
                     purchase.save()
+                    if fan_id != base_profile_id:
+                        new_purchases[item_id].append((cur_profile, purchase.date))
                 continue                            
             elif not FLAG_UPDATE_NEW_PURCHASES and item_id not in old_release_ids:
                 seen.add(item_id) # ignore it b/c it's NEW and don't add the purchase b/c we won't be creating the associated db entry
                 continue 
             
             release = add_release(abortable_task, item_id, item['item_url'], settings_obj.delay_time, seen, 
-                existing_labelband_ids, old_release_ids, old_release_ids_added_from_tracks, new_added_release_ids)
-            if release == ABORT:
-                return ABORT, seen - old_release_ids_added_from_tracks
-            elif release == ERROR:
-                return ERROR, seen - old_release_ids_added_from_tracks
+                existing_labelband_ids, old_release_ids, old_release_ids_added_from_tracks)
+            
+            if release != ERROR:
+                 # Associate purchase
+                if item_id not in preexisting_purchase_ids:                
+                    # Associate purchase
+                    purchase = Purchase(profile=cur_profile, release=release, date=bcdate_to_datetime(item['purchased']))                    
+                    purchase.save()
+                    if fan_id != base_profile_id:
+                        new_purchases[item_id].append((cur_profile, purchase.date))
 
-            # Associate purchase
-            purchase, created = Purchase.objects.get_or_create(profile=cur_profile, release=release)
-            if created:
-                purchase.date = bcdate_to_datetime(item['purchased'])
-                purchase.save()
+                if release == ABORT:
+                    return ABORT, seen - old_release_ids_added_from_tracks, new_purchases
+                
+            else:
+                return ERROR, seen - old_release_ids_added_from_tracks, new_purchases
 
-    return OK, seen - old_release_ids_added_from_tracks
+           
+                
+    return OK, seen - old_release_ids_added_from_tracks, new_purchases
 
 
 def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, seen_releases, new_following_labelband_ids,
@@ -562,8 +580,8 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
 
     seen_bands = set()   
     old_release_ids_added_from_tracks = set()
-    new_added_release_ids = set() 
-
+    new_releases = defaultdict(list)
+    
     base_profile_id = settings_obj.base_profile.id
 
     for i, fan_id in enumerate(fan_set):      
@@ -589,11 +607,10 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
 
         preexisting_followings_ids = set(current_profile.following_labelbands.values_list('id',flat=True))
         
-        
         for j, lb in enumerate(following_labelbands):            
             band_id = int(lb['band_id'])
 
-            current_labelband_id_set.add(band_id)
+            current_labelband_id_set.add(band_id)            
 
             if band_id in seen_bands:
                 continue
@@ -614,18 +631,22 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                 r = standard_abort_progress_request(abortable_task, labelband.url + "/music", 
                                                 delay=settings_obj.delay_time ) # TODO update progress calcs
                 if r == ABORT:
-                    return ABORT, new_following_labelband_ids
+                    return ABORT, new_following_labelband_ids, new_releases
                 
                 # list for comparing to existing list of releases (possibly from selling_artist)
-                existing_releases = set(labelband.releases.values_list('id', flat=True)) | set(labelband.selling_releases.values_list('id', flat=True))
-                                
+                # existing_releases = set(labelband.releases.values_list('id', flat=True)) | set(labelband.selling_releases.values_list('id', flat=True)) # TODO check performance vs.
+                band_id_obj = LabelBand.objects.prefetch_related('releases','selling_releases').get(id=band_id)
+                preexisting_releases = { release.id for release in band_id_obj.releases.all() | band_id_obj.selling_releases.all() }
+
                 soup_discog = BeautifulSoup(r.text, 'html.parser')
                 
                 releases = soup_discog.find_all("li",attrs={'data-item-id':True})
                 for k, rl in enumerate(releases):
                     item_id = int(rl['data-item-id'][6:])
 
-                    if item_id in seen_releases:                        
+                    if item_id in seen_releases and item_id not in preexisting_releases:
+                        if item_id not in preexisting_releases:
+                            new_releases[item_id].append((band_id_obj, band_id_obj.releases.get(id=band_id).release_date))
                         continue
                     elif not FLAG_UPDATE_OLD_DISCOGRAPHY and FLAG_UPDATE_OLD_DISCOG_PREORDERS and item_id in old_preorder_ids:
                         pass # We want to go ahead and process this one
@@ -638,11 +659,16 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
                         continue 
                     
                     release = add_release(abortable_task, item_id, labelband.url + rl.a['href'], settings_obj.delay_time, seen_releases, 
-                        existing_labelband_ids, old_release_ids, old_release_ids_added_from_tracks, new_added_release_ids)
-                    if release == ABORT:
-                        return ABORT, new_following_labelband_ids
-                    elif release == ERROR:
-                        return ERROR, new_following_labelband_ids
+                        existing_labelband_ids, old_release_ids, old_release_ids_added_from_tracks)    
+
+                    if release != ERROR:  
+                        if item_id not in preexisting_releases:
+                            new_releases[item_id].append((band_id_obj, release.release_date))                                  
+
+                        if release == ABORT:
+                            return ABORT, new_following_labelband_ids, new_releases
+                    else:
+                        return ERROR, new_following_labelband_ids, new_releases
             
             if fan_id == base_profile_id:
                 new_following_labelband_ids = current_labelband_id_set - preexisting_followings_ids
@@ -660,7 +686,7 @@ def update_labelbands_subtask(abortable_task, settings_obj, progress_recorder, s
             # save parent obj
             current_profile.save()
 
-    return OK, new_following_labelband_ids
+    return OK, new_following_labelband_ids, new_releases
 
 
 @shared_task(bind=True, base=AbortableTask)
@@ -668,11 +694,11 @@ def main_update_task(self, flags):
     # process flags    
     FLAG_UPDATE_FOLLOWING_FANS = flags.get("update_following_fans", False)
     FLAG_UPDATE_FOLLOWERS = flags.get("update_followers", False)
-    FLAG_UPDATE_OLD_FOLLOWING_FANS = flags.get("update_profile_new", False)
-    FLAG_UPDATE_NEW_FOLLOWING_FANS = flags.get("update_profile_old", False)
+    FLAG_UPDATE_NEW_FOLLOWING_FANS = flags.get("update_profile_new", False)
+    FLAG_UPDATE_OLD_FOLLOWING_FANS = flags.get("update_profile_old", False)
 
     FLAG_UPDATE_BASE_PURCHASES = flags.get("update_base_purchases", False)
-    FLAG_UPDATE_FAN_PURCHASES = flags.get("update_fanpurchases", False)
+    FLAG_UPDATE_FAN_PURCHASES = flags.get("update_fan_purchases", False)
     FLAG_UPDATE_OLD_PURCHASES = flags.get("update_purchases_old", False)
     FLAG_UPDATE_NEW_PURCHASES = flags.get("update_purchases_new", False)
     FLAG_UPDATE_OLD_PREORDERS = flags.get("update_old_preorders", False)
@@ -697,38 +723,85 @@ def main_update_task(self, flags):
             seen_profile_ids = set()
             seen_release_ids = set()
             
-            new_following_fan_ids = set()
+            new_following_fan_base_ids = set()
+            new_following_fan_network_ids = set()
             new_follower_ids = set()
             new_following_labelband_ids = set()           
 
             abort_state = False
             if FLAG_UPDATE_FOLLOWING_FANS:
-                status, seen_profile_ids, new_following_fan_ids = update_following_fans_subtask(self, settings_obj, progress_recorder, seen_profile_ids,
-                               new_following_fan_ids, FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
+                status, seen_profile_ids, new_following_fan_base_ids, new_following_fan_network_ids = update_following_fans_subtask(
+                                                                                                        self, settings_obj, progress_recorder, seen_profile_ids,
+                                                                                                        new_following_fan_base_ids, new_following_fan_network_ids, 
+                                                                                                        FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
+                
+                logger.info(f"new_following_fan_base_ids {new_following_fan_base_ids}")
+                new_following_fan_base_profiles = Profile.objects.filter(id__in=new_following_fan_base_ids).all()
+                NewFollowingFans_Base.objects.bulk_create([NewFollowingFans_Base(following_fan=p) for p in new_following_fan_base_profiles], ignore_conflicts=True)
+
+                logger.info(f"new_following_fan_network_ids {new_following_fan_network_ids}")
+                new_following_fan_network_profiles = Profile.objects.filter(id__in=new_following_fan_network_ids).all()
+                NewFollowingFans_Network.objects.bulk_create([NewFollowingFans_Network(following_fan=p) for p in new_following_fan_network_profiles], ignore_conflicts=True)
+
                 if status == ABORT:
                     abort_state = True
                 
             if not abort_state and FLAG_UPDATE_FOLLOWERS:
                 status, seen_profile_ids, new_follower_ids = update_fan_followers_subtask(self, settings_obj, progress_recorder, seen_profile_ids,
                                new_follower_ids, FLAG_UPDATE_NEW_FOLLOWING_FANS, FLAG_UPDATE_OLD_FOLLOWING_FANS)
+                
+                logger.info(f"new_follower_ids {new_follower_ids}")
+                new_follower_profiles = Profile.objects.filter(id__in=new_follower_ids).all()
+                NewFollowers.objects.bulk_create([NewFollowers(follower=p) for p in new_follower_profiles], ignore_conflicts=True)
+
                 if status == ABORT:
                     return ABORT
             
             if not abort_state and (FLAG_UPDATE_BASE_PURCHASES or FLAG_UPDATE_FAN_PURCHASES):
-                status, seen_release_ids = update_purchases_subtask(self, settings_obj, progress_recorder, seen_release_ids, 
+                status, seen_release_ids, new_purchases = update_purchases_subtask(self, settings_obj, progress_recorder, seen_release_ids, 
                      FLAG_UPDATE_BASE_PURCHASES, FLAG_UPDATE_FAN_PURCHASES,
                      FLAG_UPDATE_OLD_PURCHASES, FLAG_UPDATE_NEW_PURCHASES,
-                     FLAG_UPDATE_OLD_PREORDERS, FLAG_UPDATE_OLD_NODIGITAL)                
+                     FLAG_UPDATE_OLD_PREORDERS, FLAG_UPDATE_OLD_NODIGITAL)  
+                
+                logger.info(f"new_purchases {new_purchases}") # BUG
+                
+                if len(new_purchases) > 0:
+                    releases = Release.objects.filter(id__in=new_purchases).all()
+                    for release in releases:
+                        recent_fan_purchase, created = RecentFanPurchase.objects.get_or_create(release=release)                    
+                        for purchaser, purchase_date in new_purchases[release.id]:
+                            recent_fan_purchase.recently_bought_by.add(purchaser)
+                            if recent_fan_purchase.most_recent_purchase_date is None or recent_fan_purchase.most_recent_purchase_date < purchase_date: # BUG
+                                recent_fan_purchase.most_recent_purchase_date = purchase_date
+                        recent_fan_purchase.save()
+
                 if status == ABORT:
                     abort_state = True
                 elif status == ERROR:
                     abort_state = True
             
             if not abort_state and (FLAG_UPDATE_BASE_LABELBANDS or FLAG_UPDATE_FAN_LABELBANDS):                
-                status, new_following_labelband_ids = update_labelbands_subtask(self, settings_obj, progress_recorder, seen_release_ids,
+                status, new_following_labelband_ids, new_releases = update_labelbands_subtask(self, settings_obj, progress_recorder, seen_release_ids,
                               new_following_labelband_ids, FLAG_UPDATE_BASE_LABELBANDS, FLAG_UPDATE_FAN_LABELBANDS,
                               FLAG_UPDATE_OLD_DISCOGRAPHY, FLAG_UPDATE_NEW_DISCOGRAPHY,
-                              FLAG_UPDATE_OLD_DISCOG_PREORDERS, FLAG_UPDATE_OLD_DISCOG_NODIGITAL)              
+                              FLAG_UPDATE_OLD_DISCOG_PREORDERS, FLAG_UPDATE_OLD_DISCOG_NODIGITAL) 
+                
+                logger.info(f"new_following_labelband_ids {new_following_labelband_ids}")                 
+                new_following_labelband_profiles = LabelBand.objects.filter(id__in=new_following_labelband_ids).all()
+                NewFollowingLabelBands.objects.bulk_create([NewFollowingLabelBands(following_fan=p) for p in new_following_labelband_profiles], ignore_conflicts=True)
+
+                logger.info(f"new_releases {new_releases}") 
+
+                if len(new_releases) > 0:
+                    releases = Release.objects.filter(id__in=new_releases).all()
+                    for release in releases:
+                        recent_labelband_release, created = RecentLabelBandRelease.objects.get_or_create(release=release)                    
+                        for releaser, release_date in new_releases[release.id]:
+                            recent_labelband_release.recently_released_by.add(releaser)
+                            if recent_labelband_release.release_date is None or recent_labelband_release.release_date < release_date:
+                                recent_labelband_release.release_date = release_date
+                        recent_labelband_release.save()
+
                 if status == ABORT:
                     abort_state = True
                 elif status == ERROR:
