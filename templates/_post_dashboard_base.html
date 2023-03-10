@@ -88,11 +88,11 @@
               <li class="mt-2">
                 <div id="update_profile_group_label">Profile Data to update:</div>
                 <div class="btn-group d-flex" role="group" aria-label="update_profile_button_group">                
-                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_new" autocomplete="off" checked>
+                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_new" autocomplete="off">
                   <label class="btn btn-outline-secondary btn-sm" for="update_profile_new">New</label>                
                   <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_old" autocomplete="off">
                   <label class="btn btn-outline-secondary btn-sm" for="update_profile_old">Old</label>
-                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_all" autocomplete="off">
+                  <input type="radio" class="btn-check btn-sm" name="btnradio1" id="update_profile_all" autocomplete="off" checked>
                   <label class="btn btn-outline-warning btn-sm" for="update_profile_all">All</label>
                 </div>
               </li>
@@ -198,6 +198,8 @@
 
         <!-- Bootstrap JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v7.min.js"></script>      
         <!-- JavaScript -->
         <script src="{% static 'js/base.js' %}"></script>
     
@@ -353,7 +355,7 @@
               body.update_following_fans = update_profiles.checked && update_following_fans.checked;
               body.update_followers = update_profiles.checked && update_followers.checked;
               body.update_profile_new = update_profile_all.checked || update_profile_new.checked;
-              body.update_profile_old = update_profile_all.checked || update_profile_new.checked;              
+              body.update_profile_old = update_profile_all.checked || update_profile_old.checked;              
               
               body.update_base_purchases = update_purchases.checked && update_base_purchases.checked;
               body.update_fan_purchases = update_purchases.checked && update_fan_purchases.checked;

@@ -3,7 +3,7 @@ from django.db import models
 class LabelBand(models.Model):
     id = models.BigIntegerField(primary_key=True)
     name = models.TextField(null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True, max_length=400)
     img_id = models.BigIntegerField(null=True, blank=True)
 
 class Release(models.Model):
@@ -18,7 +18,7 @@ class Release(models.Model):
         )
     
     title = models.TextField(null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True, max_length=400)
     img_id = models.BigIntegerField(null=True, blank=True)
     price = models.TextField(null=True, blank=True)
     release_date = models.DateTimeField(null=True, blank=True)

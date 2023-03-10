@@ -14,7 +14,7 @@ from profiles.models import Profile, Purchase, IgnoredProfile
 from releases.models import Release, Track, LabelBand
 from bins.models import NewFollowers, NewFollowingFans_Base, NewFollowingFans_Network, NewFollowingLabelBands, RecentFanPurchase, RecentLabelBandRelease
 
-HARD_CODED_COUNT_LIMIT = 4 # TODO UPDATE!
+HARD_CODED_COUNT_LIMIT = 10000000 # TODO UPDATE!
 HARD_CODED_DEFAULT_DELAY_TIME = 1
 
 ABORT = -1
@@ -37,6 +37,8 @@ def log_aborted():
 MONTH_MAP = {'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12 }
 
 def bcdate_to_datetime(bcdate):
+    if bcdate is None:
+        return None
     bcdate_split = bcdate.split(" ")
     bctime_split = bcdate_split[3].split(":")
     return datetime.datetime(int(bcdate_split[2]),MONTH_MAP[bcdate_split[1]],int(bcdate_split[0]),
@@ -234,8 +236,8 @@ def update_fan_followers_subtask(abortable_task, settings_obj, progress_recorder
 
     follower_removal_set = preexisting_followers_ids - current_fan_id_set
     if len(follower_removal_set) > 0:
-        logger.warn(f"removing fan_id {id}'s followers {follower_removal_set}")
-        settings_obj.base_profile.followers.remove(*Profile.objects.filer(id__in=follower_removal_set))
+        logger.warn(f"removing fan_id {fan_id}'s followers {follower_removal_set}")
+        settings_obj.base_profile.followers.remove(*Profile.objects.filter(id__in=follower_removal_set))
 
     return OK, seen, new_follower_ids
 
@@ -314,7 +316,7 @@ def add_release(abortable_task, item_id, item_url, delay, seen_releases,
         album_id = data_embed['album_embed_data']['tralbum_param']['value']
 
     item_release_date = None
-    if data_tralbum['album_release_date'] is None:
+    if data_tralbum['album_release_date'] is None:        
         item_release_date = bcdate_to_datetime(data_tralbum['current']['release_date'])
     else:
         item_release_date = bcdate_to_datetime(data_tralbum['album_release_date'])                                                     
@@ -763,15 +765,15 @@ def main_update_task(self, flags):
                      FLAG_UPDATE_OLD_PURCHASES, FLAG_UPDATE_NEW_PURCHASES,
                      FLAG_UPDATE_OLD_PREORDERS, FLAG_UPDATE_OLD_NODIGITAL)  
                 
-                logger.info(f"new_purchases {new_purchases}") # BUG
+                logger.info(f"new_purchases {new_purchases}")
                 
                 if len(new_purchases) > 0:
                     releases = Release.objects.filter(id__in=new_purchases).all()
                     for release in releases:
-                        recent_fan_purchase, created = RecentFanPurchase.objects.get_or_create(release=release)                    
+                        recent_fan_purchase, _ = RecentFanPurchase.objects.get_or_create(release=release)                    
                         for purchaser, purchase_date in new_purchases[release.id]:
                             recent_fan_purchase.recently_bought_by.add(purchaser)
-                            if recent_fan_purchase.most_recent_purchase_date is None or recent_fan_purchase.most_recent_purchase_date < purchase_date: # BUG
+                            if recent_fan_purchase.most_recent_purchase_date is None or (purchase_date is not None and recent_fan_purchase.most_recent_purchase_date < purchase_date):
                                 recent_fan_purchase.most_recent_purchase_date = purchase_date
                         recent_fan_purchase.save()
 
@@ -795,10 +797,10 @@ def main_update_task(self, flags):
                 if len(new_releases) > 0:
                     releases = Release.objects.filter(id__in=new_releases).all()
                     for release in releases:
-                        recent_labelband_release, created = RecentLabelBandRelease.objects.get_or_create(release=release)                    
+                        recent_labelband_release, _ = RecentLabelBandRelease.objects.get_or_create(release=release)                    
                         for releaser, release_date in new_releases[release.id]:
                             recent_labelband_release.recently_released_by.add(releaser)
-                            if recent_labelband_release.release_date is None or recent_labelband_release.release_date < release_date:
+                            if recent_labelband_release.release_date is None or (release_date is not None and recent_labelband_release.release_date < release_date):                                
                                 recent_labelband_release.release_date = release_date
                         recent_labelband_release.save()
 

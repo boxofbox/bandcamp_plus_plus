@@ -10,7 +10,8 @@ from bs4 import BeautifulSoup
 import json
 
 from .models import DashboardSettings
-from profiles.models import Profile
+from profiles.models import Profile, Purchase
+from releases.models import Release, Track, LabelBand
 from .tasks import my_task, main_update_task
 
 
@@ -184,8 +185,84 @@ def dashboard_settings(request):
 def dashboard_settings_wrapper(request):
     return dashboard_wrapper(request, '/dashboard/ajax/settings', 'dashboard_settings_link')
 
+def dashboard_d3test_wrapper(request):
+    return dashboard_wrapper(request, '/dashboard/ajax/d3test', 'dashboard_d3test_link')
+
+def dashboard_d3test(request):
+    return render(request, 'profile_d3_test.html')
+
 def dashboard_home(request):
-    return HttpResponse("DASHBOARD HOME PLACEHOLDER")
+
+    settings_obj = DashboardSettings.objects.get(lock='X')    
+
+    # TOTALS
+    out = ""
+    # PROFILES
+    out += "# Profiles: " + str(Profile.objects.count()) + "<br/>"
+
+    # LABELS ARTISTS
+    out += "# Labels/Artists: " + str(LabelBand.objects.count()) + "<br/>"
+
+    # RELEASES
+    release_count = Release.objects.count()
+    album_count = Release.objects.filter(subclass='a').count()
+    out += "# Releases: " + str(release_count) + "<br/>"
+    # ALBUMS VS TRACKS
+    out += "# Albums: " + str(album_count) + "<br/>"
+    out += "# Tracks: " + str(release_count - album_count) + "<br/>"
+    # PRE_ORDERS
+    out += "# Pre-orders: " + str(Release.objects.filter(last_viewed_as_preorder=True).count()) + "<br/>"
+
+    # PURCHASES    
+    out += "# Purchases: " + str(Purchase.objects.count()) + "<br/>"
+
+    out += "<br/><br/>"
+    
+    # following - purchase_counts purchase_overlap_counts
+    base_profile_cache = Profile.objects.prefetch_related('purchases','following_fans', 'following_fans__purchases',
+                                                 'following_labelbands', 'followers', 'followers__following_fans').get(id=settings_obj.base_profile.id)
+    
+    base_profile_album_ids = { p.id for p in base_profile_cache.purchases.filter(subclass='a').all() }
+    base_profile_track_ids = { p.id for p in base_profile_cache.purchases.filter(subclass='t').all() }
+    base_profile_partial_albums = Track.objects.select_related('album').filter(id__in=base_profile_track_ids).all()
+    base_profile_partial_album_ids = { p.album.id for p in base_profile_partial_albums if p.album is not None }
+    base_profile_included_track_releases = Release.objects.prefetch_related('tracks').filter(id__in=base_profile_album_ids, subclass='a').all()    
+    base_profile_included_tracks_ids = set()
+    for r in base_profile_included_track_releases:
+        for t in r.tracks.all():
+            base_profile_included_tracks_ids.add(t.id)            
+
+    out += base_profile_cache.username + ":" + base_profile_cache.name + " - #purchases: " + str(len(base_profile_album_ids) + len(base_profile_track_ids))
+    out += f" | albums: {len(base_profile_album_ids)}, loosies: {len(base_profile_track_ids)}<br/>"
+    out += "<br/><br/>"
+
+    base_profile_following_ids = set()
+    for f in base_profile_cache.following_fans.all():
+        base_profile_following_ids.add(f.id)
+        f_album_ids = { p.id for p in f.purchases.filter(subclass='a').all() }
+        f_track_ids = { p.id for p in f.purchases.filter(subclass='t').all() }
+        out += f.username + ":" + f.name + " - #purchases: " + str(len(f_album_ids) + len(f_track_ids))
+        
+        n_common_albums = len(base_profile_album_ids & f_album_ids)
+        n_common_tracks = len(base_profile_track_ids & f_track_ids)
+        n_f_tracks_base_album = len(base_profile_included_tracks_ids & f_track_ids)
+        n_f_albums_base_tracks = len(base_profile_partial_album_ids & f_album_ids)        
+
+        out += f" | #in-common-with-base: {n_common_albums}, {n_common_tracks}, {n_f_tracks_base_album}, {n_f_albums_base_tracks}<br/>"
+
+
+    out += "<br/><br/>"
+
+
+    # followers - following
+    for f in base_profile_cache.followers.all():
+        out += f.username + ":" + f.name + " - base_follows?: " + str(f.id in base_profile_following_ids) + "<br/>"
+
+
+    # BIN SUMMARY
+
+
+    return HttpResponse(out)
 
 
     # TODO 

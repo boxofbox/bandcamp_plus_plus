@@ -9,7 +9,7 @@ bought_url = "https://bandcamp.com/api/tralbumcollectors/2/thumbs"
 
 fan_id = 15221
 count = 3
-switch = 6
+switch = 5
 
 
 if switch == -3:
@@ -162,6 +162,7 @@ elif switch == 4:
 elif switch == 5:
     # album info    
     url = "https://sebastienforrester.bandcamp.com/album/orpheus-pipes-object-oriented-studies"
+    url = "https://famouslaughs.bandcamp.com/album/total-icon"
     r = requests.get(url, headers=headers)
     soup = BeautifulSoup(r.text, 'html.parser')
 
