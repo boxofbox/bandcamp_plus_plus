@@ -1,7 +1,7 @@
 
 testing d3
 
-<div id="graphhere"></div>
+<div id="graphhere" class="content-fluid"></div>
 
 <script>
 {% verbatim %}
@@ -21,7 +21,7 @@ function ForceGraph({
     nodeStroke = "#fff", // node stroke color
     nodeStrokeWidth = 1.5, // node stroke width, in pixels
     nodeStrokeOpacity = 1, // node stroke opacity
-    nodeRadius = 5, // node radius, in pixels
+    nodeRadius = 150, // node radius, in pixels
     nodeStrength,
     linkSource = ({source}) => source, // given d in links, returns a node identifier string
     linkTarget = ({target}) => target, // given d in links, returns a node identifier string
@@ -31,21 +31,25 @@ function ForceGraph({
     linkStrokeLinecap = "round", // link stroke linecap
     linkStrength,
     colors = d3.schemeTableau10, // an array of color strings, for the node groups
-    width = 640, // outer width, in pixels
-    height = 400, // outer height, in pixels
+    width = 2000, // outer width, in pixels
+    height = 2000, // outer height, in pixels
     invalidation // when this promise resolves, stop the simulation
   } = {}) {
     // Compute values.
     const N = d3.map(nodes, nodeId).map(intern);
     const LS = d3.map(links, linkSource).map(intern);
     const LT = d3.map(links, linkTarget).map(intern);
+    
+    const IMG = d3.map(nodes, d => d.img).map(intern);
+
     if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
     const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
     const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
     const W = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
+    
   
     // Replace the input nodes and links with mutable objects for the simulation.
-    nodes = d3.map(nodes, (_, i) => ({id: N[i]}));
+    nodes = d3.map(nodes, (_, i) => ({id: N[i], img: IMG[i]}));
     links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i]}));
   
     // Compute default domains.
@@ -55,7 +59,7 @@ function ForceGraph({
     const color = nodeGroup == null ? null : d3.scaleOrdinal(nodeGroups, colors);
   
     // Construct the forces.
-    const forceNode = d3.forceManyBody();
+    const forceNode = d3.forceManyBody().strength(-350);
     const forceLink = d3.forceLink(links).id(({index: i}) => N[i]);
     if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
     if (linkStrength !== undefined) forceLink.strength(linkStrength);
@@ -83,7 +87,20 @@ function ForceGraph({
       .join("line");
   
     if (W) link.attr("stroke-width", ({index: i}) => W[i]);
-  
+
+    const node = svg.append("g")
+        .attr("fill", nodeFill)
+        .attr("stroke", nodeStroke)
+        .attr("stroke-opacity", nodeStrokeOpacity)
+        .attr("stroke-width", nodeStrokeWidth)
+      .selectAll("circle")
+      .data(nodes)
+      .join("image")        
+        .attr('width', 40)
+        .attr('height', 40)
+        .call(drag(simulation));
+        
+    /*
     const node = svg.append("g")
         .attr("fill", nodeFill)
         .attr("stroke", nodeStroke)
@@ -94,9 +111,10 @@ function ForceGraph({
       .join("circle")
         .attr("r", nodeRadius)
         .call(drag(simulation));
-  
+  */
     if (G) node.attr("fill", ({index: i}) => color(G[i]));
     if (T) node.append("title").text(({index: i}) => T[i]);
+    if (IMG) node.attr('xlink:href', ({index: i}) => IMG[i]);
   
     // Handle invalidation.
     if (invalidation != null) invalidation.then(() => simulation.stop());
@@ -113,8 +131,8 @@ function ForceGraph({
         .attr("y2", d => d.target.y);
   
       node
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
+        .attr("x", d => d.x)
+        .attr("y", d => d.y);
     }
   
     function drag(simulation) {    
@@ -144,17 +162,30 @@ function ForceGraph({
     return Object.assign(svg.node(), {scales: {color}});
   }
 
+  {% endverbatim %}
  
+  in_nodes = [
+    {% for node in node_list %}
+        { id: {{node.0}}, img: "{{node.1}}", radius: 10, group: "1" },
+    {% endfor %}
+    ];
+
+  in_links = [
+    {% for link in link_list %}
+        { source: {{link.0}}, target: {{link.1}}, value: 3},
+    {% endfor %}
+  ];
+
+  //in_nodes = [{id: 1, group: "1", radius: 3}, {id: 2, group: "1", radius: 3}, {id: 3, group: "1", radius: 3}, {id: 4, group: "1", radius: 3}, {id: 5, group: "1", radius: 3}];
+  //in_links = [{source: 1, target: 3, value: 10}, {source: 2, target: 3, value: 3}, {source: 4, target: 5, value: 4}, {source: 2, target: 5, value: 10}];
   
-  in_nodes = [{id: 1, group: "1", radius: 3}, {id: 2, group: "1", radius: 3}, {id: 3, group: "1", radius: 3}, {id: 4, group: "1", radius: 3}, {id: 5, group: "1", radius: 3}];
-  in_links = [{source: 1, target: 3, value: 10}, {source: 2, target: 3, value: 3}, {source: 4, target: 5, value: 4}, {source: 2, target: 5, value: 10}];
-  
+  {% verbatim %}
   chart = ForceGraph({nodes:in_nodes, links:in_links}, {
     nodeId: d => d.id,
     nodeGroup: d => d.group,
     nodeTitle: d => `${d.id} (${d.group})`,
-    width: 680,
-    height: 680,
+    width: 2000,
+    height: 2000,
     invalidation: null // a promise to stop the simulation when the cell is re-run
   })
 

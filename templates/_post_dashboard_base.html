@@ -29,6 +29,7 @@
                       <li class="nav-item"><a class="nav-link">Artists</a></li>
                       <li class="nav-item"><a class="nav-link">Releases</a></li>
                       <li class="nav-item"><a class="nav-link">Bins</a></li> 
+                      <li class="nav-item" id="dashboard_d3test_link"><a class="nav-link">d3test</a></li> 
                     </ul>    
                   </div>
                   <div class="ms-auto">                    
@@ -672,6 +673,7 @@
                           
               register_ajax_navbar_link('dashboard_settings_link', '/dashboard/ajax/settings', "/dashboard/settings");
               register_ajax_navbar_link('dashboard_home_link', '/dashboard/ajax/dashboard_home', "/dashboard");
+              register_ajax_navbar_link('dashboard_d3test_link', '/dashboard/ajax/d3test', "/dashboard/d3test")
 
               // TODO: handle POST vs GET?
               // TODO: handle anchor links? and external links?

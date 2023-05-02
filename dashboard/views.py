@@ -189,7 +189,34 @@ def dashboard_d3test_wrapper(request):
     return dashboard_wrapper(request, '/dashboard/ajax/d3test', 'dashboard_d3test_link')
 
 def dashboard_d3test(request):
-    return render(request, 'profile_d3_test.html')
+    node_list = []
+    link_list = []
+    settings_obj = DashboardSettings.objects.get(lock='X')
+
+    base_profile_cache = Profile.objects.prefetch_related('purchases','following_fans', 'following_fans__following_fans', 'following_fans__purchases').get(id=settings_obj.base_profile.id)
+    base_profile_album_ids = { p.id for p in base_profile_cache.purchases.filter(subclass='a').all() }
+    base_profile_track_ids = { p.id for p in base_profile_cache.purchases.filter(subclass='t').all() }
+    base_profile_partial_albums = Track.objects.select_related('album').filter(id__in=base_profile_track_ids).all()
+    base_profile_partial_album_ids = { p.album.id for p in base_profile_partial_albums if p.album is not None }
+    base_profile_included_track_releases = Release.objects.prefetch_related('tracks').filter(id__in=base_profile_album_ids, subclass='a').all()    
+    base_profile_included_tracks_ids = set()
+    for r in base_profile_included_track_releases:
+        for t in r.tracks.all():
+            base_profile_included_tracks_ids.add(t.id) 
+    
+    node_list.append([base_profile_cache.id, img_id_to_url(base_profile_cache.img_id)])
+
+    following_fan_ids = set(f.id for f in base_profile_cache.following_fans.all())
+
+    for f in base_profile_cache.following_fans.all():
+        node_list.append([f.id, img_id_to_url(f.img_id)])
+        link_list.append([base_profile_cache.id, f.id])
+
+        f_following = set(ff.id for ff in f.following_fans.all())
+        for l in f_following & following_fan_ids:
+            link_list.append([f.id, l])        
+    
+    return render(request, 'profile_d3_test.html', {'node_list': node_list, 'link_list': link_list })
 
 def dashboard_home(request):
 
