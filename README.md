@@ -10,6 +10,7 @@ The primary features are:
 
 Front-end technologies used:
 - javascript
+- HTML/CSS
 - Bootstrap5
 - d3.js
 
