@@ -23,7 +23,7 @@ cryptography==39.0.1
 daphne==4.0.0
 dj-database-url==1.2.0
 dj-email-url==1.0.6
-Django==4.0.10
+django>=4.2.3
 django-cache-url==3.4.4
 django-crispy-forms==2.0
 environs==9.5.0
